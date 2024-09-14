@@ -26,7 +26,7 @@ const MULTIPLIER : float = 10.0
 @export var use_acceleration : bool
 
 @export_group("References")
-@export var ground : PlayerGroundCheck
+#@export var ground : PlayerGroundCheck
 @export var character_body_2d : CharacterBody2D
 @export var animated_sprite : AnimatedSprite2D
 
@@ -46,7 +46,7 @@ var pressing_key : bool
 #endregion
 	
 func _input(event: InputEvent) -> void:
-	direction_x = Input.get_axis("ui_left","ui_right")
+	direction_x = Input.get_axis("move_left","move_right")
 	
 	
 func _process(delta: float) -> void:
@@ -64,7 +64,7 @@ func _process(delta: float) -> void:
 
 
 func _physics_process(delta: float) -> void:
-	on_ground = ground.get_on_ground()
+	on_ground = character_body_2d.is_on_floor()
 	
 	#print(on_ground)
 	

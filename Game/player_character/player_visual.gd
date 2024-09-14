@@ -14,6 +14,8 @@ func _process(delta: float) -> void:
 		if character_body_2d.velocity.y > 0.0 && animated_sprite_2d.animation != "fall":
 			animated_sprite_2d.play("fall")
 		return
+	if not character_body_2d.is_on_floor():
+		return
 	if player_movement.direction_x != 0:
 		animated_sprite_2d.play("run")
 	else:
