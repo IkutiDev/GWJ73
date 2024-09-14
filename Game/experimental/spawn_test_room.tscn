@@ -1,0 +1,98 @@
+[gd_scene load_steps=4 format=3 uid="uid://bsr8x7pfnxqpi"]
+
+[ext_resource type="PackedScene" uid="uid://cfe7ri5jiti47" path="res://experimental/spawner.tscn" id="1_0r6jn"]
+[ext_resource type="Script" path="res://experimental/spawn_test_room.gd" id="1_mora1"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_3xn4f"]
+size = Vector2(200, 20)
+
+[node name="SpawnTestRoom" type="Node2D"]
+script = ExtResource("1_mora1")
+
+[node name="WallSegment1" type="StaticBody2D" parent="."]
+position = Vector2(461, 679)
+
+[node name="Line2D" type="Line2D" parent="WallSegment1"]
+points = PackedVector2Array(100, 0, -100, 0)
+width = 20.0
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="WallSegment1"]
+shape = SubResource("RectangleShape2D_3xn4f")
+
+[node name="WallSegment2" type="StaticBody2D" parent="."]
+position = Vector2(625, 718)
+
+[node name="Line2D" type="Line2D" parent="WallSegment2"]
+points = PackedVector2Array(100, 0, -100, 0)
+width = 20.0
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="WallSegment2"]
+shape = SubResource("RectangleShape2D_3xn4f")
+
+[node name="WallSegment3" type="StaticBody2D" parent="."]
+position = Vector2(803, 685)
+
+[node name="Line2D" type="Line2D" parent="WallSegment3"]
+points = PackedVector2Array(100, 0, -100, 0)
+width = 20.0
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="WallSegment3"]
+shape = SubResource("RectangleShape2D_3xn4f")
+
+[node name="WallSegment4" type="StaticBody2D" parent="."]
+position = Vector2(959, 654)
+
+[node name="Line2D" type="Line2D" parent="WallSegment4"]
+points = PackedVector2Array(100, 0, -100, 0)
+width = 20.0
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="WallSegment4"]
+shape = SubResource("RectangleShape2D_3xn4f")
+
+[node name="WallSegment5" type="StaticBody2D" parent="."]
+position = Vector2(1126, 612)
+
+[node name="Line2D" type="Line2D" parent="WallSegment5"]
+points = PackedVector2Array(100, 0, -100, 0)
+width = 20.0
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="WallSegment5"]
+shape = SubResource("RectangleShape2D_3xn4f")
+
+[node name="WallSegment6" type="StaticBody2D" parent="."]
+position = Vector2(368, 563)
+rotation = 1.5708
+
+[node name="Line2D" type="Line2D" parent="WallSegment6"]
+points = PackedVector2Array(100, 0, -100, 0)
+width = 20.0
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="WallSegment6"]
+shape = SubResource("RectangleShape2D_3xn4f")
+
+[node name="WallSegment7" type="StaticBody2D" parent="."]
+position = Vector2(1216, 483)
+rotation = 1.5708
+
+[node name="Line2D" type="Line2D" parent="WallSegment7"]
+points = PackedVector2Array(100, 0, -100, 0)
+width = 20.0
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="WallSegment7"]
+shape = SubResource("RectangleShape2D_3xn4f")
+
+[node name="Spawner" parent="." instance=ExtResource("1_0r6jn")]
+
+[node name="SpawnPoint" parent="Spawner" index="0"]
+position = Vector2(483, 539)
+
+[node name="KillPlayer" type="Button" parent="."]
+offset_left = 815.0
+offset_top = 175.0
+offset_right = 823.0
+offset_bottom = 183.0
+text = "KILL!"
+
+[connection signal="pressed" from="KillPlayer" to="." method="_on_kill_player_pressed"]
+
+[editable path="Spawner"]
