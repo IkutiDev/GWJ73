@@ -220,12 +220,7 @@ animated_sprite = NodePath("../../PlayerVisual/AnimatedSprite2D")
 
 [node name="Jump" type="Node" parent="MovementControl" node_paths=PackedStringArray("ground", "character_body_2d")]
 script = ExtResource("2_qrali")
-jump_height = 12.0
-downward_movement_multiplier = 1.0
-max_air_jumps = 1
-variable_jump_height = true
-jump_cut_off = 1.0
-speed_limit = 100.0
+jump_height = 20.0
 ground = NodePath("../GroundCheck")
 character_body_2d = NodePath("../..")
 
@@ -246,14 +241,16 @@ collision_mask = 2
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 shape = SubResource("CapsuleShape2D_7monb")
 
-[node name="PlayerVisual" type="Node2D" parent="." node_paths=PackedStringArray("player_movement", "animated_sprite_2d")]
+[node name="PlayerVisual" type="Node2D" parent="." node_paths=PackedStringArray("player_movement", "player_jump", "character_body_2d", "animated_sprite_2d")]
 script = ExtResource("4_dn60v")
 player_movement = NodePath("../MovementControl/Movement")
+player_jump = NodePath("../MovementControl/Jump")
+character_body_2d = NodePath("..")
 animated_sprite_2d = NodePath("AnimatedSprite2D")
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="PlayerVisual"]
 texture_filter = 1
 position = Vector2(0, -1)
 sprite_frames = SubResource("SpriteFrames_cf2wf")
-animation = &"idle"
+animation = &"fall"
 autoplay = "idle"
