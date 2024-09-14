@@ -11,6 +11,7 @@ signal pressed_jump
 
 @export_category("Options")
 @export_range(0.0, 0.3) var jump_buffer : float = 0.15
+@export_range(0.0, 0.3) var coyote_time : float = 0.15
 
 @export_group("References")
 #@export var ground : PlayerGroundCheck
@@ -24,6 +25,8 @@ var pressing_jump : bool
 var on_ground : bool
 var can_jump_again : bool = false
 var jump_buffer_counter : float
+var coyote_time_counter : float = 0
+var currently_jumping : bool
 #endregion
 
 func _input(event: InputEvent) -> void:
@@ -44,6 +47,11 @@ func _process(delta: float) -> void:
 			if jump_buffer_counter > jump_buffer:
 				desired_jump = false
 				jump_buffer_counter = 0
+				
+	if not currently_jumping and not on_ground:
+		coyote_time_counter += delta
+	else:
+		coyote_time_counter = 0
 	
 func _physics_process(delta: float) -> void:
 	if not on_ground:
@@ -51,18 +59,33 @@ func _physics_process(delta: float) -> void:
 		
 	if desired_jump:
 		do_a_jump()
+		
+	calculate_gravity()
 
+
+func calculate_gravity() -> void:
+	# if going up
+	if character_body_2d.velocity.y < -0.01:
+		print("Going up!")
+	# if going down
+	elif character_body_2d.velocity.y > 0.01:
+		print("Going down!")
+	else:
+		if on_ground:
+			currently_jumping = false
+			
+	
 
 func do_a_jump() -> void:
-	print("Doing a jump")
-	print("On Ground "+str(on_ground))
-	print("Can jump again "+str(can_jump_again))
-	if on_ground or can_jump_again:
+	if on_ground or (coyote_time_counter > 0.03 and coyote_time_counter < coyote_time) or can_jump_again:
 		desired_jump = false
 		jump_buffer_counter = 0
+		coyote_time_counter = 0
 		can_jump_again = (max_air_jumps == 1 and can_jump_again == false)
 		
 		character_body_2d.velocity.y = -(jump_height * 10)
+		
+		currently_jumping = true
 		
 	if jump_buffer == 0:
 		desired_jump = false
