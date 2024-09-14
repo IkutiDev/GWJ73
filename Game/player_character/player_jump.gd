@@ -7,9 +7,15 @@ signal pressed_jump
 @export_category("Jumping Stats")
 ## Maximum jump height
 @export_range(0.0, 100.0) var jump_height : float = 45.0
+@export_range(0.2, 1.25) var time_to_jump_apex : float  = 0.2
+@export_range(0.0, 5.0) var upward_movement_multiplier : float = 1
+@export_range(1.0,10.0) var downward_movement_multiplier : float = 6.17
 @export_range(0,1) var max_air_jumps : int = 0
 
 @export_category("Options")
+@export var variable_jump_height : bool
+@export_range(1.0, 10.0) var jump_cut_off : float
+@export var speed_limit : float
 @export_range(0.0, 0.3) var jump_buffer : float = 0.15
 @export_range(0.0, 0.3) var coyote_time : float = 0.15
 
@@ -17,8 +23,15 @@ signal pressed_jump
 #@export var ground : PlayerGroundCheck
 @export var character_body_2d : CharacterBody2D
 
-var gravity_scale := 0.5
+const GRAVITY_MULTIPLIER : float = 0.5
 
+var gravity_scale : float
+var velocity : Vector2
+#region Calculations
+var jump_speed : float
+var default_gravity_scale : float = -1.0
+var grav_multiplier : float
+#endregion
 #region Current State
 var desired_jump : bool
 var pressing_jump : bool
@@ -38,6 +51,7 @@ func _input(event: InputEvent) -> void:
 		pressing_jump = false
 
 func _process(delta: float) -> void:
+	set_physics()
 	on_ground = character_body_2d.is_on_floor()
 	
 	if jump_buffer > 0:
@@ -54,25 +68,48 @@ func _process(delta: float) -> void:
 		coyote_time_counter = 0
 	
 func _physics_process(delta: float) -> void:
+	velocity = character_body_2d.velocity
 	if not on_ground:
-		character_body_2d.velocity += character_body_2d.get_gravity() * delta * gravity_scale
+		velocity += character_body_2d.get_gravity() * delta * gravity_scale
 		
 	if desired_jump:
 		do_a_jump()
-		
+		character_body_2d.velocity = velocity
+		return
 	calculate_gravity()
 
+func set_physics() -> void:
+	var new_gravity : Vector2 = Vector2(0, (-2 * jump_height) / (time_to_jump_apex * time_to_jump_apex))
+	gravity_scale = (new_gravity.y / character_body_2d.get_gravity().y) * grav_multiplier * GRAVITY_MULTIPLIER
+	#print(grav_multiplier)
 
 func calculate_gravity() -> void:
 	# if going up
 	if character_body_2d.velocity.y < -0.01:
-		print("Going up!")
+		if on_ground:
+			grav_multiplier = default_gravity_scale
+		else:
+			if variable_jump_height:
+				if pressing_jump and currently_jumping:
+					grav_multiplier = -upward_movement_multiplier
+				else:
+					grav_multiplier = -jump_cut_off
+			else:
+				grav_multiplier = -upward_movement_multiplier
 	# if going down
 	elif character_body_2d.velocity.y > 0.01:
-		print("Going down!")
+		if on_ground:
+			grav_multiplier = default_gravity_scale
+		else:
+			grav_multiplier = -downward_movement_multiplier
+			
 	else:
 		if on_ground:
 			currently_jumping = false
+			
+		grav_multiplier = default_gravity_scale
+			
+	character_body_2d.velocity = Vector2(velocity.x, clampf(velocity.y, -INF, speed_limit))
 			
 	
 
@@ -83,7 +120,16 @@ func do_a_jump() -> void:
 		coyote_time_counter = 0
 		can_jump_again = (max_air_jumps == 1 and can_jump_again == false)
 		
-		character_body_2d.velocity.y = -(jump_height * 10)
+		jump_speed = sqrt(2.0 * character_body_2d.get_gravity().y * gravity_scale * jump_height) * 0.15
+		
+		if velocity.y < 0.0:
+			print("Less Y")
+			jump_speed = maxf(jump_speed - velocity.y, 0)
+		elif velocity.y > 0.0:
+			print("Big Y")
+			jump_speed += absf(character_body_2d.velocity.y * 0.15)
+		
+		velocity.y += -(jump_speed * 10)
 		
 		currently_jumping = true
 		
