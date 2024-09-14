@@ -1,0 +1,91 @@
+[gd_scene load_steps=7 format=3 uid="uid://4vo5kd1v1q8t"]
+
+[ext_resource type="Script" path="res://experimental/crate_test.gd" id="1_yugfp"]
+[ext_resource type="Script" path="res://experimental/crate.gd" id="2_6bv18"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_533bl"]
+size = Vector2(800, 40)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_h3k4r"]
+size = Vector2(800, 40)
+
+[sub_resource type="PhysicsMaterial" id="PhysicsMaterial_5b01w"]
+friction = 0.8
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_d0jgn"]
+size = Vector2(100, 100)
+
+[node name="CrateTest" type="Node2D"]
+script = ExtResource("1_yugfp")
+
+[node name="Floor" type="StaticBody2D" parent="."]
+position = Vector2(935, 663)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Floor"]
+shape = SubResource("RectangleShape2D_533bl")
+
+[node name="Line2D" type="Line2D" parent="Floor"]
+points = PackedVector2Array(-400, 0, 400, 0)
+width = 40.0
+
+[node name="Wall" type="StaticBody2D" parent="."]
+position = Vector2(508, 691)
+rotation = 1.5708
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Wall"]
+shape = SubResource("RectangleShape2D_h3k4r")
+
+[node name="Line2D" type="Line2D" parent="Wall"]
+points = PackedVector2Array(-400, 0, 400, 0)
+width = 40.0
+
+[node name="Crate" type="RigidBody2D" parent="."]
+modulate = Color(0.305882, 1, 1, 1)
+position = Vector2(877, 591)
+physics_material_override = SubResource("PhysicsMaterial_5b01w")
+script = ExtResource("2_6bv18")
+
+[node name="TheClamper" type="Timer" parent="Crate"]
+process_callback = 0
+wait_time = 0.1
+
+[node name="TestOverlay" type="Control" parent="Crate"]
+layout_mode = 3
+anchors_preset = 0
+offset_right = 40.0
+offset_bottom = 40.0
+
+[node name="left" type="Button" parent="Crate/TestOverlay"]
+layout_mode = 0
+offset_left = -140.0
+offset_top = -15.0
+offset_right = -63.0
+offset_bottom = 16.0
+text = "left push"
+
+[node name="right" type="Button" parent="Crate/TestOverlay"]
+layout_mode = 0
+offset_left = 69.0
+offset_top = -16.0
+offset_right = 156.0
+offset_bottom = 15.0
+text = "right push"
+
+[node name="stop" type="Button" parent="Crate/TestOverlay"]
+layout_mode = 0
+offset_left = -12.0
+offset_top = -90.0
+offset_right = -4.0
+offset_bottom = -82.0
+text = "stop"
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Crate"]
+shape = SubResource("RectangleShape2D_d0jgn")
+
+[node name="Polygon2D" type="Polygon2D" parent="Crate"]
+polygon = PackedVector2Array(-50, -50, -50, 50, 50, 50, 50, -50)
+
+[connection signal="timeout" from="Crate/TheClamper" to="Crate" method="_on_the_clamper_timeout"]
+[connection signal="pressed" from="Crate/TestOverlay/left" to="Crate" method="push_start"]
+[connection signal="pressed" from="Crate/TestOverlay/right" to="Crate" method="push_start"]
+[connection signal="pressed" from="Crate/TestOverlay/stop" to="Crate" method="push_end"]
