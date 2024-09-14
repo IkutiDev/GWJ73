@@ -10,7 +10,7 @@ signal pressed_jump
 @export_range(0,1) var max_air_jumps : int = 0
 
 @export_group("References")
-@export var ground : PlayerGroundCheck
+#@export var ground : PlayerGroundCheck
 @export var character_body_2d : CharacterBody2D
 
 var gravity_scale := 0.5
@@ -23,15 +23,15 @@ var can_jump_again : bool = false
 #endregion
 
 func _input(event: InputEvent) -> void:
-	if event.is_action_pressed("ui_accept"):
+	if event.is_action_pressed("jump"):
 		pressed_jump.emit()
 		desired_jump = true
 		pressing_jump = true
-	if event.is_action_released("ui_accept"):
+	if event.is_action_released("jump"):
 		pressing_jump = false
 
 func _process(delta: float) -> void:
-	on_ground = ground.get_on_ground()
+	on_ground = character_body_2d.is_on_floor()
 	
 func _physics_process(delta: float) -> void:
 	if not on_ground:

@@ -1,19 +1,19 @@
-[gd_scene load_steps=9 format=4 uid="uid://bic6kbt3ukpee"]
+[gd_scene load_steps=9 format=4 uid="uid://1wvlqiodn4ow"]
 
-[ext_resource type="Script" path="res://addons/phantom_camera/scripts/phantom_camera/phantom_camera_2d.gd" id="1_pyfga"]
-[ext_resource type="Script" path="res://addons/phantom_camera/scripts/resources/tween_resource.gd" id="2_7wcl5"]
-[ext_resource type="Script" path="res://addons/phantom_camera/scripts/phantom_camera_host/phantom_camera_host.gd" id="3_4sbi1"]
-[ext_resource type="PackedScene" uid="uid://cqh07empuga21" path="res://player_character/player_character.tscn" id="4_taqpq"]
-[ext_resource type="Texture2D" uid="uid://jb8irxai7cph" path="res://platform_base_character/art/Super Basic Tilemap/Basic Tilemap.png" id="5_qks3b"]
+[ext_resource type="Script" path="res://addons/phantom_camera/scripts/phantom_camera/phantom_camera_2d.gd" id="1_yr3wr"]
+[ext_resource type="Script" path="res://addons/phantom_camera/scripts/resources/tween_resource.gd" id="2_6q12q"]
+[ext_resource type="Script" path="res://addons/phantom_camera/scripts/phantom_camera_host/phantom_camera_host.gd" id="3_g51qt"]
+[ext_resource type="PackedScene" uid="uid://cqh07empuga21" path="res://player_character/player_character.tscn" id="4_mipcv"]
+[ext_resource type="Texture2D" uid="uid://jb8irxai7cph" path="res://platform_base_character/art/Super Basic Tilemap/Basic Tilemap.png" id="5_snonn"]
 
-[sub_resource type="Resource" id="Resource_t4iev"]
-script = ExtResource("2_7wcl5")
+[sub_resource type="Resource" id="Resource_lrbyw"]
+script = ExtResource("2_6q12q")
 duration = 1.0
 transition = 0
 ease = 2
 
-[sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_mjrji"]
-texture = ExtResource("5_qks3b")
+[sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_ochh4"]
+texture = ExtResource("5_snonn")
 0:0/0 = 0
 1:0/0 = 0
 2:0/0 = 0
@@ -68,33 +68,34 @@ texture = ExtResource("5_qks3b")
 4:9/0 = 0
 5:9/0 = 0
 
-[sub_resource type="TileSet" id="TileSet_qtiqs"]
+[sub_resource type="TileSet" id="TileSet_bjcek"]
 physics_layer_0/collision_layer = 2
 physics_layer_0/collision_mask = 0
-sources/0 = SubResource("TileSetAtlasSource_mjrji")
+sources/0 = SubResource("TileSetAtlasSource_ochh4")
 
 [node name="Sandbox" type="Node2D"]
 
-[node name="PhantomCamera2D" type="Node2D" parent="."]
-position = Vector2(7, 0)
-script = ExtResource("1_pyfga")
+[node name="PhantomCamera2D" type="Node2D" parent="." node_paths=PackedStringArray("follow_target")]
+position = Vector2(7, -110)
+script = ExtResource("1_yr3wr")
 follow_mode = 2
+follow_target = NodePath("../PlayerCharacter")
 zoom = Vector2(2, 2)
-tween_resource = SubResource("Resource_t4iev")
+tween_resource = SubResource("Resource_lrbyw")
 
 [node name="Camera2D" type="Camera2D" parent="."]
-physics_interpolation_mode = 2
-position = Vector2(7, 0)
+physics_interpolation_mode = 1
+position = Vector2(7, -110)
 zoom = Vector2(2, 2)
 
 [node name="PhantomCameraHost" type="Node" parent="Camera2D"]
-script = ExtResource("3_4sbi1")
+script = ExtResource("3_g51qt")
 
-[node name="PlayerCharacter" parent="." instance=ExtResource("4_taqpq")]
+[node name="PlayerCharacter" parent="." instance=ExtResource("4_mipcv")]
 position = Vector2(7, -110)
 
 [node name="TileMapLayer" type="TileMapLayer" parent="."]
 texture_filter = 1
 tile_map_data = PackedByteArray("AAAAAAEAAAABAAQAAAABAAEAAAABAAQAAAACAAEAAAABAAQAAAADAAEAAAABAAQAAAAEAAEAAAABAAQAAAD//wEAAAABAAQAAAD+/wEAAAABAAQAAAD9/wEAAAABAAQAAAD8/wEAAAABAAQAAAD7/wEAAAABAAQAAAD6/wEAAAABAAQAAAD5/wEAAAABAAQAAAD4/wEAAAABAAQAAAD3/wEAAAABAAQAAAD2/wEAAAABAAQAAAAFAAEAAAABAAQAAAAGAAEAAAABAAQAAAAHAAEAAAABAAQAAAAIAAEAAAABAAQAAAAJAAEAAAABAAQAAAAKAAEAAAABAAQAAAALAAEAAAABAAQAAAA=")
-tile_set = SubResource("TileSet_qtiqs")
+tile_set = SubResource("TileSet_bjcek")
 collision_visibility_mode = 1
