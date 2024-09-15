@@ -3,11 +3,7 @@
 [ext_resource type="Script" path="res://experimental/electric_wire.gd" id="1_rvl3e"]
 [ext_resource type="PackedScene" uid="uid://dscsbre0lxqrb" path="res://experimental/death_sentence.tscn" id="2_1u6bw"]
 
-[sub_resource type="Curve2D" id="Curve2D_p7g5t"]
-_data = {
-"points": PackedVector2Array(170.053, -86.4296, -170.053, 86.4296, 1, -124, 0, 0, 0, 0, 1, -2)
-}
-point_count = 2
+[sub_resource type="Curve2D" id="Curve2D_axy07"]
 
 [sub_resource type="Gradient" id="Gradient_1inha"]
 interpolation_mode = 1
@@ -89,7 +85,7 @@ _data = {
 }
 
 [node name="ElectricWire" type="Path2D"]
-curve = SubResource("Curve2D_p7g5t")
+curve = SubResource("Curve2D_axy07")
 script = ExtResource("1_rvl3e")
 
 [node name="Isolation" type="Line2D" parent="."]
@@ -100,7 +96,7 @@ texture_mode = 2
 
 [node name="SparkMover" type="PathFollow2D" parent="."]
 visible = false
-position = Vector2(1, -124)
+position = Vector2(-34, -76)
 rotates = false
 
 [node name="SparkEmitter" type="CPUParticles2D" parent="SparkMover"]

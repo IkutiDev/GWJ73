@@ -10,7 +10,7 @@ func _ready() -> void:
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 
 func apply_jump_boost(power : float):
-	player.jump_boost = power
+	player.get_node("MovementControl").get_node("Jump").jump_boost = power
 	pass
 
 func _on_player_detector_body_entered(body: Node2D) -> void:

@@ -2,6 +2,7 @@ extends Node2D
 
 @export var player_character : Resource
 
+signal player_created (player)
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
@@ -15,6 +16,7 @@ func spawn_player():
 	new_player.global_position = $SpawnPoint.global_position
 	new_player.connect("tree_exited",Callable(self, "player_died"))
 	add_child(new_player)
+	emit_signal("player_created",new_player)
 	pass
 
 

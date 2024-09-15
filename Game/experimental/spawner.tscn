@@ -1,42 +1,14 @@
 [gd_scene load_steps=7 format=3 uid="uid://cfe7ri5jiti47"]
 
 [ext_resource type="Script" path="res://experimental/spawner.gd" id="1_kbh3w"]
-[ext_resource type="PackedScene" uid="uid://cdgthmg8dm5c3" path="res://experimental/puppet.tscn" id="2_3dkkx"]
-
-[sub_resource type="Animation" id="Animation_pacth"]
-resource_name = "death"
-length = 1.2
-tracks/0/type = "value"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath("ColorRect:visible")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 1,
-"values": [true]
-}
-tracks/1/type = "value"
-tracks/1/imported = false
-tracks/1/enabled = true
-tracks/1/path = NodePath("ColorRect:color")
-tracks/1/interp = 1
-tracks/1/loop_wrap = true
-tracks/1/keys = {
-"times": PackedFloat32Array(0, 1.06667),
-"transitions": PackedFloat32Array(2, 0),
-"update": 0,
-"values": [Color(0, 0, 0, 0.0784314), Color(0, 0, 0, 1)]
-}
+[ext_resource type="PackedScene" uid="uid://cqh07empuga21" path="res://player_character/player_character.tscn" id="2_xpw0w"]
 
 [sub_resource type="Animation" id="Animation_0sms0"]
 length = 0.001
 tracks/0/type = "value"
 tracks/0/imported = false
 tracks/0/enabled = true
-tracks/0/path = NodePath("ColorRect:visible")
+tracks/0/path = NodePath("CanvasLayer/ColorRect:visible")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/keys = {
@@ -48,7 +20,7 @@ tracks/0/keys = {
 tracks/1/type = "value"
 tracks/1/imported = false
 tracks/1/enabled = true
-tracks/1/path = NodePath("ColorRect:color")
+tracks/1/path = NodePath("CanvasLayer/ColorRect:color")
 tracks/1/interp = 1
 tracks/1/loop_wrap = true
 tracks/1/keys = {
@@ -58,13 +30,41 @@ tracks/1/keys = {
 "values": [Color(0, 0, 0, 1)]
 }
 
+[sub_resource type="Animation" id="Animation_pacth"]
+resource_name = "death"
+length = 1.2
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("CanvasLayer/ColorRect:visible")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [true]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("CanvasLayer/ColorRect:color")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 1.06667),
+"transitions": PackedFloat32Array(2, 0),
+"update": 0,
+"values": [Color(0, 0, 0, 0.0784314), Color(0, 0, 0, 1)]
+}
+
 [sub_resource type="Animation" id="Animation_hhwuh"]
 resource_name = "start"
 length = 0.6
 tracks/0/type = "value"
 tracks/0/imported = false
 tracks/0/enabled = true
-tracks/0/path = NodePath("ColorRect:color")
+tracks/0/path = NodePath("CanvasLayer/ColorRect:color")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/keys = {
@@ -76,7 +76,7 @@ tracks/0/keys = {
 tracks/1/type = "value"
 tracks/1/imported = false
 tracks/1/enabled = true
-tracks/1/path = NodePath("ColorRect:visible")
+tracks/1/path = NodePath("CanvasLayer/ColorRect:visible")
 tracks/1/interp = 1
 tracks/1/loop_wrap = true
 tracks/1/keys = {
@@ -95,7 +95,7 @@ _data = {
 
 [node name="Spawner" type="Node2D"]
 script = ExtResource("1_kbh3w")
-player_character = ExtResource("2_3dkkx")
+player_character = ExtResource("2_xpw0w")
 
 [node name="SpawnPoint" type="Marker2D" parent="."]
 
@@ -111,12 +111,12 @@ libraries = {
 "": SubResource("AnimationLibrary_c5wy1")
 }
 
-[node name="ColorRect" type="ColorRect" parent="."]
+[node name="CanvasLayer" type="CanvasLayer" parent="."]
+
+[node name="ColorRect" type="ColorRect" parent="CanvasLayer"]
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
-offset_right = 1920.0
-offset_bottom = 1080.0
 grow_horizontal = 2
 grow_vertical = 2
 color = Color(0, 0, 0, 1)

@@ -1,0 +1,39 @@
+[gd_scene load_steps=5 format=3 uid="uid://dmhgqvqymht2c"]
+
+[ext_resource type="Script" path="res://experimental/crate.gd" id="1_21tix"]
+
+[sub_resource type="PhysicsMaterial" id="PhysicsMaterial_5b01w"]
+friction = 0.8
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_d0jgn"]
+size = Vector2(100, 100)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_58d00"]
+size = Vector2(108, 90)
+
+[node name="Crate" type="RigidBody2D"]
+collision_layer = 2
+collision_mask = 2
+physics_material_override = SubResource("PhysicsMaterial_5b01w")
+script = ExtResource("1_21tix")
+
+[node name="TheClamper" type="Timer" parent="."]
+process_callback = 0
+wait_time = 0.1
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("RectangleShape2D_d0jgn")
+
+[node name="Polygon2D" type="Polygon2D" parent="."]
+polygon = PackedVector2Array(-50, -50, -50, 50, 50, 50, 50, -50)
+
+[node name="PushDetector" type="Area2D" parent="."]
+collision_layer = 0
+collision_mask = 4
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="PushDetector"]
+shape = SubResource("RectangleShape2D_58d00")
+
+[connection signal="timeout" from="TheClamper" to="." method="_on_the_clamper_timeout"]
+[connection signal="body_entered" from="PushDetector" to="." method="_on_push_detector_body_entered"]
+[connection signal="body_exited" from="PushDetector" to="." method="_on_push_detector_body_exited"]
