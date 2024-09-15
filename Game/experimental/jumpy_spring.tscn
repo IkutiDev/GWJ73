@@ -1,0 +1,142 @@
+[gd_scene load_steps=7 format=3 uid="uid://bm668srqcrjd4"]
+
+[ext_resource type="Script" path="res://experimental/jumpy_spring.gd" id="1_0tfc5"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_dg6sj"]
+size = Vector2(36, 3)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_vygki"]
+size = Vector2(40, 15)
+
+[sub_resource type="Animation" id="Animation_2x8gn"]
+resource_name = "coiling"
+length = 0.8
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("LaunchPad:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.8),
+"transitions": PackedFloat32Array(0.5, 1),
+"update": 0,
+"values": [Vector2(0, -30), Vector2(0, -19)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Sproing:scale")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.8),
+"transitions": PackedFloat32Array(0.5, 1),
+"update": 0,
+"values": [Vector2(1, 1), Vector2(1, 0.6)]
+}
+tracks/2/type = "method"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath(".")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0.166667, 0.4, 0.75),
+"transitions": PackedFloat32Array(1, 1, 1),
+"values": [{
+"args": [0.3],
+"method": &"apply_jump_boost"
+}, {
+"args": [0.65],
+"method": &"apply_jump_boost"
+}, {
+"args": [1.0],
+"method": &"apply_jump_boost"
+}]
+}
+
+[sub_resource type="Animation" id="Animation_xfn75"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("LaunchPad:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(0, -30)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Sproing:scale")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(1, 1)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_4lxt0"]
+_data = {
+"RESET": SubResource("Animation_xfn75"),
+"coiling": SubResource("Animation_2x8gn")
+}
+
+[node name="JumpySpring" type="StaticBody2D"]
+collision_layer = 2
+collision_mask = 6
+script = ExtResource("1_0tfc5")
+
+[node name="Sproing" type="Line2D" parent="."]
+position = Vector2(0, -4)
+points = PackedVector2Array(20, -25, -20, -20, 20, -15, -20, -10, 20, -5, -20, 0)
+width = 2.0
+default_color = Color(0.568973, 0.568973, 0.568973, 1)
+
+[node name="LaunchPad" type="Node2D" parent="."]
+position = Vector2(0, -30)
+
+[node name="Line2D" type="Line2D" parent="LaunchPad"]
+position = Vector2(0, -2)
+points = PackedVector2Array(20, 0, -20, 0)
+width = 6.0
+
+[node name="PlayerDetector" type="Area2D" parent="LaunchPad"]
+position = Vector2(0, -6)
+collision_layer = 0
+collision_mask = 4
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="LaunchPad/PlayerDetector"]
+shape = SubResource("RectangleShape2D_dg6sj")
+
+[node name="SpringSide" type="CollisionShape2D" parent="."]
+position = Vector2(0, -16.5)
+shape = SubResource("RectangleShape2D_vygki")
+
+[node name="Base" type="Line2D" parent="."]
+position = Vector2(0, -3)
+points = PackedVector2Array(20, 0, -20, 0)
+width = 6.0
+default_color = Color(1, 0.572549, 0.368627, 1)
+
+[node name="SpringMax" type="Marker2D" parent="."]
+position = Vector2(0, -16)
+
+[node name="SpringMin" type="Marker2D" parent="."]
+position = Vector2(0, -30)
+
+[node name="CoilAniamtor" type="AnimationPlayer" parent="."]
+libraries = {
+"": SubResource("AnimationLibrary_4lxt0")
+}
+speed_scale = 5.0
+
+[connection signal="body_entered" from="LaunchPad/PlayerDetector" to="." method="_on_player_detector_body_entered"]
+[connection signal="body_exited" from="LaunchPad/PlayerDetector" to="." method="_on_player_detector_body_exited"]
