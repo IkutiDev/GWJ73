@@ -1,4 +1,4 @@
-[gd_scene load_steps=10 format=3 uid="uid://4vo5kd1v1q8t"]
+[gd_scene load_steps=11 format=3 uid="uid://4vo5kd1v1q8t"]
 
 [ext_resource type="Script" path="res://experimental/crate_test.gd" id="1_yugfp"]
 [ext_resource type="Script" path="res://experimental/crate.gd" id="2_6bv18"]
@@ -17,6 +17,9 @@ friction = 0.8
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_d0jgn"]
 size = Vector2(100, 100)
 
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_58d00"]
+size = Vector2(108, 90)
+
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_vmftt"]
 size = Vector2(30, 30)
 
@@ -25,6 +28,8 @@ script = ExtResource("1_yugfp")
 
 [node name="Floor" type="StaticBody2D" parent="."]
 position = Vector2(935, 663)
+collision_layer = 2
+collision_mask = 0
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Floor"]
 shape = SubResource("RectangleShape2D_533bl")
@@ -36,6 +41,8 @@ width = 40.0
 [node name="Wall" type="StaticBody2D" parent="."]
 position = Vector2(508, 691)
 rotation = 1.5708
+collision_layer = 2
+collision_mask = 0
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Wall"]
 shape = SubResource("RectangleShape2D_h3k4r")
@@ -47,6 +54,8 @@ width = 40.0
 [node name="Crate" type="RigidBody2D" parent="."]
 modulate = Color(0.305882, 1, 1, 1)
 position = Vector2(877, 591)
+collision_layer = 2
+collision_mask = 2
 physics_material_override = SubResource("PhysicsMaterial_5b01w")
 script = ExtResource("2_6bv18")
 
@@ -54,49 +63,24 @@ script = ExtResource("2_6bv18")
 process_callback = 0
 wait_time = 0.1
 
-[node name="TestOverlay" type="Control" parent="Crate"]
-layout_mode = 3
-anchors_preset = 0
-offset_right = 40.0
-offset_bottom = 40.0
-
-[node name="left" type="Button" parent="Crate/TestOverlay"]
-layout_mode = 0
-offset_left = -140.0
-offset_top = -15.0
-offset_right = -63.0
-offset_bottom = 16.0
-text = "left push"
-
-[node name="right" type="Button" parent="Crate/TestOverlay"]
-layout_mode = 0
-offset_left = 69.0
-offset_top = -16.0
-offset_right = 156.0
-offset_bottom = 15.0
-text = "right push"
-
-[node name="stop" type="Button" parent="Crate/TestOverlay"]
-layout_mode = 0
-offset_left = -12.0
-offset_top = -90.0
-offset_right = -4.0
-offset_bottom = -82.0
-text = "stop"
-
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Crate"]
 shape = SubResource("RectangleShape2D_d0jgn")
 
 [node name="Polygon2D" type="Polygon2D" parent="Crate"]
 polygon = PackedVector2Array(-50, -50, -50, 50, 50, 50, 50, -50)
 
-[node name="Puppet" parent="." instance=ExtResource("3_pfixm")]
-position = Vector2(1082, 595)
+[node name="PushDetector" type="Area2D" parent="Crate"]
+collision_layer = 0
+collision_mask = 4
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Crate/PushDetector"]
+shape = SubResource("RectangleShape2D_58d00")
 
 [node name="GrabbyCrate" type="RigidBody2D" parent="."]
 modulate = Color(0.99665, 0.447716, 0.511557, 1)
-position = Vector2(1152, 595)
-collision_layer = 4
+position = Vector2(643, 608)
+collision_layer = 0
+collision_mask = 2
 script = ExtResource("3_kts0i")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="GrabbyCrate"]
@@ -106,7 +90,9 @@ shape = SubResource("RectangleShape2D_vmftt")
 scale = Vector2(0.695, 0.695)
 polygon = PackedVector2Array(20, 20, 20, -20, -20, -20, -20, 20)
 
+[node name="Puppet" parent="." instance=ExtResource("3_pfixm")]
+position = Vector2(1143, 610)
+
 [connection signal="timeout" from="Crate/TheClamper" to="Crate" method="_on_the_clamper_timeout"]
-[connection signal="pressed" from="Crate/TestOverlay/left" to="Crate" method="push_start"]
-[connection signal="pressed" from="Crate/TestOverlay/right" to="Crate" method="push_start"]
-[connection signal="pressed" from="Crate/TestOverlay/stop" to="Crate" method="push_end"]
+[connection signal="body_entered" from="Crate/PushDetector" to="Crate" method="_on_push_detector_body_entered"]
+[connection signal="body_exited" from="Crate/PushDetector" to="Crate" method="_on_push_detector_body_exited"]
