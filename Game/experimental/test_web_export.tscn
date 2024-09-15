@@ -1,4 +1,4 @@
-[gd_scene load_steps=21 format=3 uid="uid://b6yhr1bv7mjw5"]
+[gd_scene load_steps=22 format=3 uid="uid://b6yhr1bv7mjw5"]
 
 [ext_resource type="Script" path="res://experimental/test_web_export.gd" id="1_6og4n"]
 [ext_resource type="PackedScene" uid="uid://cfe7ri5jiti47" path="res://experimental/spawner.tscn" id="1_8sa44"]
@@ -11,6 +11,7 @@
 [ext_resource type="PackedScene" uid="uid://bm668srqcrjd4" path="res://experimental/jumpy_spring.tscn" id="9_tnr6b"]
 [ext_resource type="PackedScene" uid="uid://pd78setlifv6" path="res://experimental/example_pin.tscn" id="10_52hgi"]
 [ext_resource type="PackedScene" uid="uid://ct85pctxsvxat" path="res://experimental/electric_heater.tscn" id="11_qg6oh"]
+[ext_resource type="AudioStream" uid="uid://d2evmj6tmalnp" path="res://A Quest For A Hero.wav" id="12_gg48j"]
 
 [sub_resource type="Resource" id="Resource_lrbyw"]
 script = ExtResource("3_lbjv6")
@@ -277,6 +278,10 @@ curve = SubResource("Curve2D_82vv4")
 position = Vector2(2063, 1061)
 connected_devices = Array[NodePath]([NodePath("../ElectricWire2"), NodePath("../ElectricHeater")])
 starting_state = false
+
+[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("12_gg48j")
+autoplay = true
 
 [connection signal="player_created" from="Spawner" to="." method="connect_camera_to_player"]
 
