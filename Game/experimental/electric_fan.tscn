@@ -1,0 +1,26 @@
+[gd_scene load_steps=4 format=3 uid="uid://cwxpl8yna4ooh"]
+
+[ext_resource type="Script" path="res://experimental/electric_fan.gd" id="1_y4xjb"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_o72le"]
+size = Vector2(70, 30)
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_165x3"]
+radius = 24.4541
+height = 80.3493
+
+[node name="ElectricFan" type="StaticBody2D"]
+collision_layer = 2
+collision_mask = 4
+script = ExtResource("1_y4xjb")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(0, -15)
+shape = SubResource("RectangleShape2D_o72le")
+
+[node name="Wind" type="Area2D" parent="."]
+position = Vector2(0, -60)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Wind"]
+scale = Vector2(1.145, 1.145)
+shape = SubResource("CapsuleShape2D_165x3")
