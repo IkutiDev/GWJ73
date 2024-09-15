@@ -23,4 +23,5 @@ func _process(delta: float) -> void:
 	#print(character_body_2d.velocity.y)
 
 func pressed_jump() -> void:
-	animated_sprite_2d.play("jump")
+	if character_body_2d.is_on_floor():
+		animated_sprite_2d.play("jump")
