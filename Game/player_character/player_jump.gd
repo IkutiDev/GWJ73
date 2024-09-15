@@ -2,6 +2,7 @@ class_name PlayerJump
 extends Node
 
 signal pressed_jump
+signal landed
 
 @export_storage var this_is_needed_for_tooltip_to_work_if_we_start_with_category := false
 @export_category("Jumping Stats")
@@ -86,6 +87,8 @@ func set_physics() -> void:
 	gravity_scale = (new_gravity.y / character_body_2d.get_gravity().y) * grav_multiplier * GRAVITY_MULTIPLIER
 	#print(grav_multiplier)
 
+var falling_down
+
 func calculate_gravity() -> void:
 	# if going up
 	if character_body_2d.velocity.y < -0.01:
@@ -101,6 +104,7 @@ func calculate_gravity() -> void:
 				grav_multiplier = -upward_movement_multiplier
 	# if going down
 	elif character_body_2d.velocity.y > 0.01:
+		falling_down = true
 		if on_ground:
 			grav_multiplier = default_gravity_scale
 		else:
@@ -108,7 +112,11 @@ func calculate_gravity() -> void:
 			
 	else:
 		if on_ground:
+			if falling_down:
+				landed.emit()
 			currently_jumping = false
+			falling_down = false
+			
 			
 		grav_multiplier = default_gravity_scale
 			
