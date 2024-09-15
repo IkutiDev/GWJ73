@@ -40,6 +40,8 @@ var can_jump_again : bool = false
 var jump_buffer_counter : float
 var coyote_time_counter : float = 0
 var currently_jumping : bool
+
+@export var jump_boost : float = 0
 #endregion
 
 func _input(event: InputEvent) -> void:
@@ -80,6 +82,7 @@ func _physics_process(delta: float) -> void:
 
 func set_physics() -> void:
 	var new_gravity : Vector2 = Vector2(0, (-2 * jump_height) / (time_to_jump_apex * time_to_jump_apex))
+	
 	gravity_scale = (new_gravity.y / character_body_2d.get_gravity().y) * grav_multiplier * GRAVITY_MULTIPLIER
 	#print(grav_multiplier)
 
@@ -120,14 +123,16 @@ func do_a_jump() -> void:
 		coyote_time_counter = 0
 		can_jump_again = (max_air_jumps == 1 and can_jump_again == false)
 		
-		jump_speed = sqrt(2.0 * character_body_2d.get_gravity().y * gravity_scale * jump_height) * 0.15
+		var current_jump_height = jump_height + jump_height * jump_boost
+		jump_speed = sqrt(2.0 * character_body_2d.get_gravity().y * current_jump_height) * 0.15
 		
 		if velocity.y < 0.0:
 			print("Less Y")
-			jump_speed = maxf(jump_speed - velocity.y, 0)
+			jump_speed = maxf(jump_speed + (velocity.y*0.1), 0)
 		elif velocity.y > 0.0:
 			print("Big Y")
-			jump_speed += absf(character_body_2d.velocity.y * 0.15)
+			jump_speed += absf(character_body_2d.velocity.y* 0.1)
+		
 		
 		velocity.y += -(jump_speed * 10)
 		
