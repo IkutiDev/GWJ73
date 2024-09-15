@@ -1,4 +1,4 @@
-[gd_scene load_steps=15 format=3 uid="uid://4vo5kd1v1q8t"]
+[gd_scene load_steps=16 format=3 uid="uid://4vo5kd1v1q8t"]
 
 [ext_resource type="Script" path="res://experimental/crate_test.gd" id="1_yugfp"]
 [ext_resource type="Script" path="res://experimental/crate.gd" id="2_6bv18"]
@@ -8,6 +8,7 @@
 [ext_resource type="PackedScene" uid="uid://pd78setlifv6" path="res://experimental/example_pin.tscn" id="6_8o83h"]
 [ext_resource type="PackedScene" uid="uid://c3ba6ngtqm7fj" path="res://experimental/power_switch.tscn" id="7_8xyk8"]
 [ext_resource type="PackedScene" uid="uid://xfwcmndnkomw" path="res://experimental/electric_wire.tscn" id="8_skhi7"]
+[ext_resource type="PackedScene" uid="uid://ct85pctxsvxat" path="res://experimental/electric_heater.tscn" id="9_w7mvx"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_533bl"]
 size = Vector2(800, 40)
@@ -108,10 +109,14 @@ position = Vector2(1300, 640)
 
 [node name="PowerSwitch" parent="." instance=ExtResource("7_8xyk8")]
 position = Vector2(742, 638)
-connected_devices = Array[NodePath]([NodePath("../ElectricWire")])
+connected_devices = Array[NodePath]([NodePath("../ElectricWire"), NodePath("../ElectricHeater")])
 
 [node name="ElectricWire" parent="." instance=ExtResource("8_skhi7")]
-position = Vector2(679, 637)
+position = Vector2(615, 627)
+
+[node name="ElectricHeater" parent="." instance=ExtResource("9_w7mvx")]
+position = Vector2(1416, 680)
+start_powered = false
 
 [connection signal="timeout" from="Crate/TheClamper" to="Crate" method="_on_the_clamper_timeout"]
 [connection signal="body_entered" from="Crate/PushDetector" to="Crate" method="_on_push_detector_body_entered"]

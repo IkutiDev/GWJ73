@@ -4,8 +4,9 @@ extends Path2D
 
 var length_to_spark_ratio = 89.0
 
-@export var powered = true
+@export var start_powered = true
 
+var powered = false
 
 func toggle_power():
 	powered = !powered
@@ -15,6 +16,7 @@ func toggle_power():
 	else:
 		$SparkMover/AnimationPlayer.play("RESET")
 		$SparkMover/DeathSentence.set_deferred("monitoring",false)
+	
 	pass
 
 
@@ -33,4 +35,7 @@ func _ready() -> void:
 	
 	$Isolation.visible = true
 	$SparkMover.visible = true
+	
+	if start_powered:
+		toggle_power()
 	pass # Replace with function body.
