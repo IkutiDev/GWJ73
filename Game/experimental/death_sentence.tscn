@@ -1,0 +1,18 @@
+[gd_scene load_steps=3 format=3 uid="uid://dscsbre0lxqrb"]
+
+[ext_resource type="Script" path="res://experimental/death_sentence.gd" id="1_tk554"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_7c5h2"]
+radius = 6.0
+
+[node name="DeathSentence" type="Area2D"]
+collision_layer = 0
+collision_mask = 4
+monitorable = false
+script = ExtResource("1_tk554")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("CircleShape2D_7c5h2")
+debug_color = Color(0.831373, 0.0117647, 0.129412, 0.419608)
+
+[connection signal="body_entered" from="." to="." method="_on_body_entered"]

@@ -1,10 +1,11 @@
-[gd_scene load_steps=12 format=3 uid="uid://4vo5kd1v1q8t"]
+[gd_scene load_steps=13 format=3 uid="uid://4vo5kd1v1q8t"]
 
 [ext_resource type="Script" path="res://experimental/crate_test.gd" id="1_yugfp"]
 [ext_resource type="Script" path="res://experimental/crate.gd" id="2_6bv18"]
 [ext_resource type="Script" path="res://experimental/grabby_crate.gd" id="3_kts0i"]
 [ext_resource type="PackedScene" uid="uid://cdgthmg8dm5c3" path="res://experimental/puppet.tscn" id="3_pfixm"]
 [ext_resource type="PackedScene" uid="uid://bm668srqcrjd4" path="res://experimental/jumpy_spring.tscn" id="5_clart"]
+[ext_resource type="PackedScene" uid="uid://pd78setlifv6" path="res://experimental/example_pin.tscn" id="6_8o83h"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_533bl"]
 size = Vector2(800, 40)
@@ -96,6 +97,12 @@ position = Vector2(1026, 642)
 
 [node name="Puppet" parent="." instance=ExtResource("3_pfixm")]
 position = Vector2(1142, 609)
+
+[node name="ExamplePin" parent="." instance=ExtResource("6_8o83h")]
+position = Vector2(1251, 641)
+
+[node name="ExamplePin2" parent="." instance=ExtResource("6_8o83h")]
+position = Vector2(1300, 640)
 
 [connection signal="timeout" from="Crate/TheClamper" to="Crate" method="_on_the_clamper_timeout"]
 [connection signal="body_entered" from="Crate/PushDetector" to="Crate" method="_on_push_detector_body_entered"]
