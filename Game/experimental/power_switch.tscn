@@ -1,0 +1,54 @@
+[gd_scene load_steps=4 format=3 uid="uid://c3ba6ngtqm7fj"]
+
+[ext_resource type="Script" path="res://experimental/power_switch.gd" id="1_hvciv"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_8myfk"]
+size = Vector2(8, 4)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_c8as1"]
+size = Vector2(40, 10)
+
+[node name="PowerSwitch" type="StaticBody2D"]
+collision_layer = 2
+collision_mask = 4
+script = ExtResource("1_hvciv")
+
+[node name="RightSwitch" type="Area2D" parent="."]
+position = Vector2(12, -12)
+collision_layer = 0
+collision_mask = 4
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="RightSwitch"]
+shape = SubResource("RectangleShape2D_8myfk")
+
+[node name="Flip2" type="Line2D" parent="RightSwitch"]
+position = Vector2(-1, 0)
+rotation = 3.14159
+scale = Vector2(1, -1)
+points = PackedVector2Array(-7, -1, 9, 5)
+width = 6.0
+default_color = Color(0.816549, 0, 0.168767, 1)
+
+[node name="LeftSwitch" type="Area2D" parent="."]
+position = Vector2(-12, -12)
+collision_layer = 0
+collision_mask = 4
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="LeftSwitch"]
+shape = SubResource("RectangleShape2D_8myfk")
+
+[node name="Flip3" type="Line2D" parent="LeftSwitch"]
+position = Vector2(1, 0)
+points = PackedVector2Array(-7, -1, 9, 5)
+width = 6.0
+default_color = Color(0.816549, 0, 0.168767, 1)
+
+[node name="Line2D" type="Line2D" parent="."]
+points = PackedVector2Array(-20, -5, 20, -5)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(0, -5)
+shape = SubResource("RectangleShape2D_c8as1")
+
+[connection signal="body_entered" from="RightSwitch" to="." method="_on_right_switch_body_entered"]
+[connection signal="body_entered" from="LeftSwitch" to="." method="_on_left_switch_body_entered"]

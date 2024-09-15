@@ -1,4 +1,4 @@
-[gd_scene load_steps=13 format=3 uid="uid://4vo5kd1v1q8t"]
+[gd_scene load_steps=15 format=3 uid="uid://4vo5kd1v1q8t"]
 
 [ext_resource type="Script" path="res://experimental/crate_test.gd" id="1_yugfp"]
 [ext_resource type="Script" path="res://experimental/crate.gd" id="2_6bv18"]
@@ -6,6 +6,8 @@
 [ext_resource type="PackedScene" uid="uid://cdgthmg8dm5c3" path="res://experimental/puppet.tscn" id="3_pfixm"]
 [ext_resource type="PackedScene" uid="uid://bm668srqcrjd4" path="res://experimental/jumpy_spring.tscn" id="5_clart"]
 [ext_resource type="PackedScene" uid="uid://pd78setlifv6" path="res://experimental/example_pin.tscn" id="6_8o83h"]
+[ext_resource type="PackedScene" uid="uid://c3ba6ngtqm7fj" path="res://experimental/power_switch.tscn" id="7_8xyk8"]
+[ext_resource type="PackedScene" uid="uid://xfwcmndnkomw" path="res://experimental/electric_wire.tscn" id="8_skhi7"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_533bl"]
 size = Vector2(800, 40)
@@ -103,6 +105,13 @@ position = Vector2(1251, 641)
 
 [node name="ExamplePin2" parent="." instance=ExtResource("6_8o83h")]
 position = Vector2(1300, 640)
+
+[node name="PowerSwitch" parent="." instance=ExtResource("7_8xyk8")]
+position = Vector2(742, 638)
+connected_devices = Array[NodePath]([NodePath("../ElectricWire")])
+
+[node name="ElectricWire" parent="." instance=ExtResource("8_skhi7")]
+position = Vector2(679, 637)
 
 [connection signal="timeout" from="Crate/TheClamper" to="Crate" method="_on_the_clamper_timeout"]
 [connection signal="body_entered" from="Crate/PushDetector" to="Crate" method="_on_push_detector_body_entered"]
