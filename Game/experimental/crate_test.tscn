@@ -1,0 +1,98 @@
+[gd_scene load_steps=11 format=3 uid="uid://4vo5kd1v1q8t"]
+
+[ext_resource type="Script" path="res://experimental/crate_test.gd" id="1_yugfp"]
+[ext_resource type="Script" path="res://experimental/crate.gd" id="2_6bv18"]
+[ext_resource type="Script" path="res://experimental/grabby_crate.gd" id="3_kts0i"]
+[ext_resource type="PackedScene" uid="uid://cdgthmg8dm5c3" path="res://experimental/puppet.tscn" id="3_pfixm"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_533bl"]
+size = Vector2(800, 40)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_h3k4r"]
+size = Vector2(800, 40)
+
+[sub_resource type="PhysicsMaterial" id="PhysicsMaterial_5b01w"]
+friction = 0.8
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_d0jgn"]
+size = Vector2(100, 100)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_58d00"]
+size = Vector2(108, 90)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_vmftt"]
+size = Vector2(30, 30)
+
+[node name="CrateTest" type="Node2D"]
+script = ExtResource("1_yugfp")
+
+[node name="Floor" type="StaticBody2D" parent="."]
+position = Vector2(935, 663)
+collision_layer = 2
+collision_mask = 0
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Floor"]
+shape = SubResource("RectangleShape2D_533bl")
+
+[node name="Line2D" type="Line2D" parent="Floor"]
+points = PackedVector2Array(-400, 0, 400, 0)
+width = 40.0
+
+[node name="Wall" type="StaticBody2D" parent="."]
+position = Vector2(508, 691)
+rotation = 1.5708
+collision_layer = 2
+collision_mask = 0
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Wall"]
+shape = SubResource("RectangleShape2D_h3k4r")
+
+[node name="Line2D" type="Line2D" parent="Wall"]
+points = PackedVector2Array(-400, 0, 400, 0)
+width = 40.0
+
+[node name="Crate" type="RigidBody2D" parent="."]
+modulate = Color(0.305882, 1, 1, 1)
+position = Vector2(877, 591)
+collision_layer = 2
+collision_mask = 2
+physics_material_override = SubResource("PhysicsMaterial_5b01w")
+script = ExtResource("2_6bv18")
+
+[node name="TheClamper" type="Timer" parent="Crate"]
+process_callback = 0
+wait_time = 0.1
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Crate"]
+shape = SubResource("RectangleShape2D_d0jgn")
+
+[node name="Polygon2D" type="Polygon2D" parent="Crate"]
+polygon = PackedVector2Array(-50, -50, -50, 50, 50, 50, 50, -50)
+
+[node name="PushDetector" type="Area2D" parent="Crate"]
+collision_layer = 0
+collision_mask = 4
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Crate/PushDetector"]
+shape = SubResource("RectangleShape2D_58d00")
+
+[node name="GrabbyCrate" type="RigidBody2D" parent="."]
+modulate = Color(0.99665, 0.447716, 0.511557, 1)
+position = Vector2(643, 608)
+collision_layer = 0
+collision_mask = 2
+script = ExtResource("3_kts0i")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="GrabbyCrate"]
+shape = SubResource("RectangleShape2D_vmftt")
+
+[node name="Polygon2D" type="Polygon2D" parent="GrabbyCrate"]
+scale = Vector2(0.695, 0.695)
+polygon = PackedVector2Array(20, 20, 20, -20, -20, -20, -20, 20)
+
+[node name="Puppet" parent="." instance=ExtResource("3_pfixm")]
+position = Vector2(1143, 610)
+
+[connection signal="timeout" from="Crate/TheClamper" to="Crate" method="_on_the_clamper_timeout"]
+[connection signal="body_entered" from="Crate/PushDetector" to="Crate" method="_on_push_detector_body_entered"]
+[connection signal="body_exited" from="Crate/PushDetector" to="Crate" method="_on_push_detector_body_exited"]

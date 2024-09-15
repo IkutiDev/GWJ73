@@ -1,0 +1,52 @@
+[gd_scene load_steps=6 format=3 uid="uid://cdgthmg8dm5c3"]
+
+[ext_resource type="Script" path="res://experimental/puppet.gd" id="1_wxnug"]
+[ext_resource type="Script" path="res://experimental/grabber.gd" id="2_atj4x"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_gamod"]
+radius = 30.0
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_87pul"]
+size = Vector2(60, 20)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_m12i1"]
+size = Vector2(60, 60)
+
+[node name="Puppet" type="CharacterBody2D" groups=["player"]]
+collision_layer = 4
+collision_mask = 2
+input_pickable = true
+script = ExtResource("1_wxnug")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("CircleShape2D_gamod")
+
+[node name="CollisionShape2D2" type="CollisionShape2D" parent="."]
+position = Vector2(0, 20)
+shape = SubResource("RectangleShape2D_87pul")
+
+[node name="Line2D" type="Line2D" parent="."]
+points = PackedVector2Array(0, 30, 0, 0)
+width = 60.0
+end_cap_mode = 2
+
+[node name="Grabber" type="Area2D" parent="."]
+collision_layer = 0
+collision_mask = 4
+script = ExtResource("2_atj4x")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Grabber"]
+shape = SubResource("RectangleShape2D_m12i1")
+
+[node name="OverHead" type="Marker2D" parent="Grabber"]
+position = Vector2(0, -45)
+
+[node name="Grab" type="Button" parent="Grabber"]
+offset_left = -23.0
+offset_top = 68.0
+offset_right = 21.0
+offset_bottom = 99.0
+text = "grab"
+
+[connection signal="input_event" from="." to="." method="_on_input_event"]
+[connection signal="pressed" from="Grabber/Grab" to="Grabber" method="_on_grab_pressed"]
