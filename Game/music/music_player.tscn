@@ -8,6 +8,5 @@ script = ExtResource("1_lys57")
 
 [node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
 stream = ExtResource("2_ky0ml")
-pitch_scale = 4.0
 autoplay = true
 parameters/looping = true

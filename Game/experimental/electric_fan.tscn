@@ -1,4 +1,4 @@
-[gd_scene load_steps=4 format=3 uid="uid://cwxpl8yna4ooh"]
+[gd_scene load_steps=10 format=3 uid="uid://cwxpl8yna4ooh"]
 
 [ext_resource type="Script" path="res://experimental/electric_fan.gd" id="1_y4xjb"]
 
@@ -8,6 +8,55 @@ size = Vector2(70, 30)
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_165x3"]
 radius = 24.4541
 height = 80.3493
+
+[sub_resource type="FastNoiseLite" id="FastNoiseLite_1ahdq"]
+frequency = 0.0242
+
+[sub_resource type="NoiseTexture2D" id="NoiseTexture2D_jh0m6"]
+width = 811
+height = 1
+noise = SubResource("FastNoiseLite_1ahdq")
+
+[sub_resource type="Animation" id="Animation_rctp1"]
+resource_name = "turn_on"
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Dust:emitting")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [true]
+}
+
+[sub_resource type="Animation" id="Animation_m6kk2"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Dust:emitting")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [false]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_32hlw"]
+_data = {
+"RESET": SubResource("Animation_m6kk2"),
+"turn_on": SubResource("Animation_rctp1")
+}
+
+[sub_resource type="Gradient" id="Gradient_88v84"]
+interpolation_mode = 2
+offsets = PackedFloat32Array(0, 0.65587, 0.834008)
+colors = PackedColorArray(0.344076, 0.344076, 0.344076, 1, 0.639216, 0.639216, 0.662745, 0.67451, 0.648706, 0.644911, 0.68868, 0)
 
 [node name="ElectricFan" type="StaticBody2D"]
 collision_layer = 2
@@ -20,7 +69,59 @@ shape = SubResource("RectangleShape2D_o72le")
 
 [node name="Wind" type="Area2D" parent="."]
 position = Vector2(0, -60)
+collision_layer = 0
+collision_mask = 4
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Wind"]
 scale = Vector2(1.145, 1.145)
 shape = SubResource("CapsuleShape2D_165x3")
+
+[node name="VelocityUpdate" type="Timer" parent="."]
+process_callback = 0
+wait_time = 0.2
+
+[node name="Line2D" type="Line2D" parent="."]
+points = PackedVector2Array(-24, -10, -24, -30, 24, -30, 24, -10)
+default_color = Color(0, 0.766171, 0.77022, 1)
+texture = SubResource("NoiseTexture2D_jh0m6")
+texture_mode = 2
+joint_mode = 1
+
+[node name="Polygon2D" type="Polygon2D" parent="."]
+color = Color(0.654232, 0.654232, 0.654232, 1)
+polygon = PackedVector2Array(-35, -30, -35, 0, 35, 0, 35, -30)
+
+[node name="FanAnimator" type="AnimationPlayer" parent="."]
+libraries = {
+"": SubResource("AnimationLibrary_32hlw")
+}
+
+[node name="Dust" type="CPUParticles2D" parent="."]
+position = Vector2(0, -31)
+emitting = false
+amount = 16
+lifetime = 1.2
+emission_shape = 3
+emission_rect_extents = Vector2(20, 1)
+direction = Vector2(0, -1)
+spread = 12.0
+gravity = Vector2(0, -120)
+initial_velocity_min = 26.01
+initial_velocity_max = 34.42
+angular_velocity_min = -508.23
+angular_velocity_max = 720.0
+damping_min = 42.887
+damping_max = 59.694
+scale_amount_min = 0.4
+scale_amount_max = 1.9
+color_ramp = SubResource("Gradient_88v84")
+
+[node name="WindMin" type="Marker2D" parent="."]
+position = Vector2(0, -98)
+
+[node name="WindMax" type="Marker2D" parent="."]
+position = Vector2(0, -36)
+
+[connection signal="body_entered" from="Wind" to="." method="_on_wind_body_entered"]
+[connection signal="body_exited" from="Wind" to="." method="_on_wind_body_exited"]
+[connection signal="timeout" from="VelocityUpdate" to="." method="_on_velocity_update_timeout"]

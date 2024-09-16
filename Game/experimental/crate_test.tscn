@@ -1,13 +1,12 @@
-[gd_scene load_steps=13 format=3 uid="uid://4vo5kd1v1q8t"]
+[gd_scene load_steps=12 format=3 uid="uid://4vo5kd1v1q8t"]
 
 [ext_resource type="Script" path="res://experimental/crate_test.gd" id="1_yugfp"]
-[ext_resource type="PackedScene" uid="uid://dmhgqvqymht2c" path="res://experimental/crate.tscn" id="2_pte8s"]
 [ext_resource type="Script" path="res://experimental/grabby_crate.gd" id="3_kts0i"]
 [ext_resource type="PackedScene" uid="uid://cdgthmg8dm5c3" path="res://experimental/puppet.tscn" id="3_pfixm"]
-[ext_resource type="PackedScene" uid="uid://bm668srqcrjd4" path="res://experimental/jumpy_spring.tscn" id="5_clart"]
 [ext_resource type="PackedScene" uid="uid://pd78setlifv6" path="res://experimental/example_pin.tscn" id="6_8o83h"]
 [ext_resource type="PackedScene" uid="uid://c3ba6ngtqm7fj" path="res://experimental/power_switch.tscn" id="7_8xyk8"]
 [ext_resource type="PackedScene" uid="uid://xfwcmndnkomw" path="res://experimental/electric_wire.tscn" id="8_skhi7"]
+[ext_resource type="PackedScene" uid="uid://cwxpl8yna4ooh" path="res://experimental/electric_fan.tscn" id="9_3hjkl"]
 [ext_resource type="PackedScene" uid="uid://ct85pctxsvxat" path="res://experimental/electric_heater.tscn" id="9_w7mvx"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_533bl"]
@@ -47,8 +46,6 @@ shape = SubResource("RectangleShape2D_h3k4r")
 points = PackedVector2Array(-400, 0, 400, 0)
 width = 40.0
 
-[node name="Crate" parent="." instance=ExtResource("2_pte8s")]
-
 [node name="GrabbyCrate" type="RigidBody2D" parent="."]
 modulate = Color(0.99665, 0.447716, 0.511557, 1)
 position = Vector2(643, 608)
@@ -62,9 +59,6 @@ shape = SubResource("RectangleShape2D_vmftt")
 [node name="Polygon2D" type="Polygon2D" parent="GrabbyCrate"]
 scale = Vector2(0.695, 0.695)
 polygon = PackedVector2Array(20, 20, 20, -20, -20, -20, -20, 20)
-
-[node name="JumpySpring" parent="." instance=ExtResource("5_clart")]
-position = Vector2(1026, 642)
 
 [node name="Puppet" parent="." instance=ExtResource("3_pfixm")]
 position = Vector2(1142, 609)
@@ -85,3 +79,6 @@ position = Vector2(615, 627)
 [node name="ElectricHeater" parent="." instance=ExtResource("9_w7mvx")]
 position = Vector2(1416, 680)
 start_powered = false
+
+[node name="ElectricFan" parent="." instance=ExtResource("9_3hjkl")]
+position = Vector2(885, 642)
