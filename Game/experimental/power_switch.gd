@@ -23,7 +23,7 @@ func _ready():
 func toggle():
 	turned_on = !turned_on
 	emit_signal("switch_toggled")
-	print("switch toggled to ",turned_on)
+	#print("switch toggled to ",turned_on)
 	pass
 
 func flip_left():

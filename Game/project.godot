@@ -21,6 +21,7 @@ boot_splash/minimum_display_time=1000
 [autoload]
 
 PhantomCameraManager="*res://addons/phantom_camera/scripts/managers/phantom_camera_manager.gd"
+MusicPlayer="*res://music/music_player.tscn"
 
 [display]
 

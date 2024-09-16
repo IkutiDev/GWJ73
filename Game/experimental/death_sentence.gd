@@ -13,6 +13,7 @@ func _on_body_entered(body: Node2D) -> void:
 				player_visual.death()
 				
 		await get_tree().create_timer(1.0).timeout
-		print("kill player")
-		body.queue_free()
+		#print("kill player")
+		if is_instance_valid(body):
+			body.queue_free()
 	pass # Replace with function body.
