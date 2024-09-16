@@ -82,6 +82,7 @@ follow_mode = 2
 follow_target = NodePath("../PlayerCharacter")
 zoom = Vector2(2, 2)
 tween_resource = SubResource("Resource_lrbyw")
+draw_limits = true
 
 [node name="Camera2D" type="Camera2D" parent="."]
 physics_interpolation_mode = 1

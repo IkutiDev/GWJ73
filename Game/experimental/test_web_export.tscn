@@ -71,6 +71,9 @@ draw_limits = true
 [node name="SpawnPoint" parent="Spawner" index="0"]
 position = Vector2(121, 774)
 
+[node name="CanvasLayer" parent="Spawner" index="2"]
+visible = false
+
 [node name="Floor" type="StaticBody2D" parent="."]
 modulate = Color(0.7924, 0.619521, 0.40382, 1)
 position = Vector2(881, 1123)
