@@ -1,15 +1,15 @@
 [gd_scene load_steps=21 format=3 uid="uid://b6yhr1bv7mjw5"]
 
 [ext_resource type="Script" path="res://experimental/test_web_export.gd" id="1_6og4n"]
-[ext_resource type="PackedScene" uid="uid://cfe7ri5jiti47" path="res://experimental/spawner.tscn" id="1_8sa44"]
 [ext_resource type="Script" path="res://addons/phantom_camera/scripts/phantom_camera/phantom_camera_2d.gd" id="2_xstc8"]
 [ext_resource type="Script" path="res://addons/phantom_camera/scripts/resources/tween_resource.gd" id="3_lbjv6"]
-[ext_resource type="Script" path="res://addons/phantom_camera/scripts/phantom_camera_host/phantom_camera_host.gd" id="5_d0j2j"]
+[ext_resource type="Script" path="res://addons/phantom_camera/scripts/phantom_camera_host/phantom_camera_host.gd" id="4_gpq01"]
 [ext_resource type="PackedScene" uid="uid://dmhgqvqymht2c" path="res://experimental/crate.tscn" id="6_6qi7k"]
 [ext_resource type="PackedScene" uid="uid://c3ba6ngtqm7fj" path="res://experimental/power_switch.tscn" id="7_n0xsn"]
 [ext_resource type="PackedScene" uid="uid://xfwcmndnkomw" path="res://experimental/electric_wire.tscn" id="8_te0cp"]
 [ext_resource type="PackedScene" uid="uid://bm668srqcrjd4" path="res://experimental/jumpy_spring.tscn" id="9_tnr6b"]
 [ext_resource type="PackedScene" uid="uid://pd78setlifv6" path="res://experimental/example_pin.tscn" id="10_52hgi"]
+[ext_resource type="PackedScene" uid="uid://cqh07empuga21" path="res://player_character/player_character.tscn" id="11_qdek7"]
 [ext_resource type="PackedScene" uid="uid://ct85pctxsvxat" path="res://experimental/electric_heater.tscn" id="11_qg6oh"]
 
 [sub_resource type="Resource" id="Resource_lrbyw"]
@@ -57,22 +57,15 @@ point_count = 4
 [node name="TestWebExport" type="Node2D"]
 script = ExtResource("1_6og4n")
 
-[node name="PhantomCamera2D" type="Node2D" parent="."]
-position = Vector2(119, 790)
+[node name="PhantomCamera2D" type="Node2D" parent="." node_paths=PackedStringArray("follow_target")]
+position = Vector2(122, 771)
 script = ExtResource("2_xstc8")
 follow_mode = 2
+follow_target = NodePath("../PlayerCharacter")
 zoom = Vector2(2.8, 2.8)
 tween_resource = SubResource("Resource_lrbyw")
 follow_damping = true
 draw_limits = true
-
-[node name="Spawner" parent="." instance=ExtResource("1_8sa44")]
-
-[node name="SpawnPoint" parent="Spawner" index="0"]
-position = Vector2(121, 774)
-
-[node name="CanvasLayer" parent="Spawner" index="2"]
-visible = false
 
 [node name="Floor" type="StaticBody2D" parent="."]
 modulate = Color(0.7924, 0.619521, 0.40382, 1)
@@ -91,12 +84,12 @@ texture = SubResource("NoiseTexture2D_83185")
 texture_mode = 2
 
 [node name="Camera2D" type="Camera2D" parent="."]
-physics_interpolation_mode = 2
-position = Vector2(119, 790)
+physics_interpolation_mode = 1
+position = Vector2(122, 771)
 zoom = Vector2(2.8, 2.8)
 
 [node name="PhantomCameraHost" type="Node" parent="Camera2D"]
-script = ExtResource("5_d0j2j")
+script = ExtResource("4_gpq01")
 
 [node name="Crate" parent="." instance=ExtResource("6_6qi7k")]
 position = Vector2(715, 1010)
@@ -282,6 +275,5 @@ position = Vector2(2063, 1061)
 connected_devices = Array[NodePath]([NodePath("../ElectricWire2"), NodePath("../ElectricHeater")])
 starting_state = false
 
-[connection signal="player_created" from="Spawner" to="." method="connect_camera_to_player"]
-
-[editable path="Spawner"]
+[node name="PlayerCharacter" parent="." instance=ExtResource("11_qdek7")]
+position = Vector2(122, 771)

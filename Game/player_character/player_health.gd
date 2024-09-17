@@ -4,6 +4,7 @@ extends Node
 signal player_death
 
 @export var health_points := 1
+@export var death_time := 1
 
 var current_health_points := 1
 
@@ -21,3 +22,5 @@ func deal_damage(damage : int = 1) -> void:
 func death() -> void:
 	player_death.emit()
 	is_dead = true
+	await get_tree().create_timer(death_time).timeout
+	LevelManager.reset_current_level()

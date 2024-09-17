@@ -2,7 +2,7 @@
 
 [ext_resource type="Script" path="res://addons/phantom_camera/scripts/phantom_camera/phantom_camera_2d.gd" id="1_yr3wr"]
 [ext_resource type="Script" path="res://addons/phantom_camera/scripts/resources/tween_resource.gd" id="2_6q12q"]
-[ext_resource type="Script" path="res://addons/phantom_camera/scripts/phantom_camera_host/phantom_camera_host.gd" id="3_g51qt"]
+[ext_resource type="Script" path="res://addons/phantom_camera/scripts/phantom_camera_host/phantom_camera_host.gd" id="3_yat58"]
 [ext_resource type="PackedScene" uid="uid://cqh07empuga21" path="res://player_character/player_character.tscn" id="4_mipcv"]
 [ext_resource type="Texture2D" uid="uid://jb8irxai7cph" path="res://platform_base_character/art/Super Basic Tilemap/Basic Tilemap.png" id="5_snonn"]
 
@@ -76,7 +76,7 @@ sources/0 = SubResource("TileSetAtlasSource_ochh4")
 [node name="Sandbox" type="Node2D"]
 
 [node name="PhantomCamera2D" type="Node2D" parent="." node_paths=PackedStringArray("follow_target")]
-position = Vector2(7, -110)
+position = Vector2(168, 0)
 script = ExtResource("1_yr3wr")
 follow_mode = 2
 follow_target = NodePath("../PlayerCharacter")
@@ -86,14 +86,14 @@ draw_limits = true
 
 [node name="Camera2D" type="Camera2D" parent="."]
 physics_interpolation_mode = 1
-position = Vector2(7, -110)
+position = Vector2(168, 0)
 zoom = Vector2(2, 2)
 
 [node name="PhantomCameraHost" type="Node" parent="Camera2D"]
-script = ExtResource("3_g51qt")
+script = ExtResource("3_yat58")
 
 [node name="PlayerCharacter" parent="." instance=ExtResource("4_mipcv")]
-position = Vector2(7, -110)
+position = Vector2(168, 0)
 
 [node name="TileMapLayer" type="TileMapLayer" parent="."]
 texture_filter = 1

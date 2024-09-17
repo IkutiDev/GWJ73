@@ -96,6 +96,7 @@
 [ext_resource type="Texture2D" uid="uid://dvx4df61vihuy" path="res://player_character/art/run/run (19).png" id="42_xjuru"]
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_7monb"]
+radius = 6.0
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_hex30"]
 atlas = ExtResource("1_66ocm")
@@ -621,8 +622,6 @@ texture_filter = 1
 position = Vector2(0, -6.195)
 scale = Vector2(-0.04, 0.04)
 sprite_frames = SubResource("SpriteFrames_cf2wf")
-animation = &"death"
+animation = &"idle"
 autoplay = "idle"
-frame = 13
-frame_progress = 1.0
 offset = Vector2(0, 60)
