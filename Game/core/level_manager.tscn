@@ -1,8 +1,9 @@
-[gd_scene load_steps=8 format=3 uid="uid://vq0iyu8mw23j"]
+[gd_scene load_steps=9 format=3 uid="uid://vq0iyu8mw23j"]
 
 [ext_resource type="Script" path="res://core/level_manager.gd" id="1_v64mb"]
 [ext_resource type="PackedScene" uid="uid://b6yhr1bv7mjw5" path="res://experimental/test_web_export.tscn" id="2_awmws"]
 [ext_resource type="PackedScene" uid="uid://1wvlqiodn4ow" path="res://sandbox_ikuti.tscn" id="3_hbkb1"]
+[ext_resource type="Script" path="res://addons/phantom_camera/scripts/phantom_camera_host/phantom_camera_host.gd" id="7_u0leh"]
 
 [sub_resource type="Animation" id="Animation_ep7fc"]
 length = 0.001
@@ -75,3 +76,11 @@ color = Color(0, 0, 0, 0)
 libraries = {
 "": SubResource("AnimationLibrary_ipmq8")
 }
+
+[node name="Camera2D" type="Camera2D" parent="."]
+physics_interpolation_mode = 2
+position = Vector2(168, 0)
+zoom = Vector2(2, 2)
+
+[node name="PhantomCameraHost" type="Node" parent="Camera2D"]
+script = ExtResource("7_u0leh")

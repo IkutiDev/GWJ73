@@ -35,7 +35,6 @@ func fade_animation_finished(anim : StringName) -> void:
 			get_tree().reload_current_scene()
 		if loading_next_level:
 			creating_next_level_instance()
-		
 		resetting_level = false
 		loading_next_level = false
 		animation_player.play("fade_in")
