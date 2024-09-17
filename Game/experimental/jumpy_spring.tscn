@@ -1,9 +1,12 @@
-[gd_scene load_steps=7 format=3 uid="uid://bm668srqcrjd4"]
+[gd_scene load_steps=8 format=3 uid="uid://bm668srqcrjd4"]
 
 [ext_resource type="Script" path="res://experimental/jumpy_spring.gd" id="1_0tfc5"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_dg6sj"]
-size = Vector2(36, 3)
+size = Vector2(36, 4)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_buf3m"]
+size = Vector2(40, 6)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_vygki"]
 size = Vector2(40, 15)
@@ -114,10 +117,19 @@ collision_layer = 0
 collision_mask = 4
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="LaunchPad/PlayerDetector"]
+position = Vector2(0, -1)
 shape = SubResource("RectangleShape2D_dg6sj")
 
+[node name="StaticBody2D" type="StaticBody2D" parent="LaunchPad"]
+collision_layer = 2
+collision_mask = 4
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="LaunchPad/StaticBody2D"]
+position = Vector2(0, -2)
+shape = SubResource("RectangleShape2D_buf3m")
+
 [node name="SpringSide" type="CollisionShape2D" parent="."]
-position = Vector2(0, -16.5)
+position = Vector2(0, -8)
 shape = SubResource("RectangleShape2D_vygki")
 
 [node name="Base" type="Line2D" parent="."]
@@ -126,17 +138,16 @@ points = PackedVector2Array(20, 0, -20, 0)
 width = 6.0
 default_color = Color(1, 0.572549, 0.368627, 1)
 
-[node name="SpringMax" type="Marker2D" parent="."]
-position = Vector2(0, -16)
-
-[node name="SpringMin" type="Marker2D" parent="."]
-position = Vector2(0, -30)
-
 [node name="CoilAniamtor" type="AnimationPlayer" parent="."]
 libraries = {
 "": SubResource("AnimationLibrary_4lxt0")
 }
 speed_scale = 5.0
 
+[node name="JumpAdjuster" type="Timer" parent="."]
+process_callback = 0
+wait_time = 0.1
+
 [connection signal="body_entered" from="LaunchPad/PlayerDetector" to="." method="_on_player_detector_body_entered"]
 [connection signal="body_exited" from="LaunchPad/PlayerDetector" to="." method="_on_player_detector_body_exited"]
+[connection signal="timeout" from="JumpAdjuster" to="." method="_on_jump_adjuster_timeout"]
