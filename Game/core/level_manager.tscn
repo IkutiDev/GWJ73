@@ -1,0 +1,77 @@
+[gd_scene load_steps=8 format=3 uid="uid://vq0iyu8mw23j"]
+
+[ext_resource type="Script" path="res://core/level_manager.gd" id="1_v64mb"]
+[ext_resource type="PackedScene" uid="uid://b6yhr1bv7mjw5" path="res://experimental/test_web_export.tscn" id="2_awmws"]
+[ext_resource type="PackedScene" uid="uid://1wvlqiodn4ow" path="res://sandbox_ikuti.tscn" id="3_hbkb1"]
+
+[sub_resource type="Animation" id="Animation_ep7fc"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("CanvasLayer/ColorRect:color")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(0, 0, 0, 0)]
+}
+
+[sub_resource type="Animation" id="Animation_24v5g"]
+resource_name = "fade_in"
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("CanvasLayer/ColorRect:color")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 1),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Color(0, 0, 0, 1), Color(0, 0, 0, 0)]
+}
+
+[sub_resource type="Animation" id="Animation_rths1"]
+resource_name = "fade_out"
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("CanvasLayer/ColorRect:color")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 1),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Color(0, 0, 0, 0), Color(0, 0, 0, 1)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_ipmq8"]
+_data = {
+"RESET": SubResource("Animation_ep7fc"),
+"fade_in": SubResource("Animation_24v5g"),
+"fade_out": SubResource("Animation_rths1")
+}
+
+[node name="LevelManager" type="Node" node_paths=PackedStringArray("animation_player")]
+script = ExtResource("1_v64mb")
+animation_player = NodePath("AnimationPlayer")
+gameplay_levels = Array[PackedScene]([ExtResource("2_awmws"), ExtResource("3_hbkb1")])
+
+[node name="CanvasLayer" type="CanvasLayer" parent="."]
+
+[node name="ColorRect" type="ColorRect" parent="CanvasLayer"]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0, 0, 0, 0)
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+libraries = {
+"": SubResource("AnimationLibrary_ipmq8")
+}

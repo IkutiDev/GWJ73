@@ -29,6 +29,7 @@ const MULTIPLIER : float = 10.0
 #@export var ground : PlayerGroundCheck
 @export var character_body_2d : CharacterBody2D
 @export var animated_sprite : AnimatedSprite2D
+@export var player_health : PlayerHealth
 
 #region Calculations
 var direction_x : float
@@ -46,11 +47,16 @@ var pressing_key : bool
 #endregion
 	
 func _input(event: InputEvent) -> void:
+	if player_health.is_dead:
+		return
+	
 	direction_x = Input.get_axis("move_left","move_right")
 	
 	
 func _process(delta: float) -> void:
-	#print(direction_x)
+	
+	if player_health.is_dead:
+		return
 	
 	if direction_x != 0:
 		animated_sprite.flip_h = direction_x < 0
@@ -60,10 +66,13 @@ func _process(delta: float) -> void:
 		
 	desired_velocity = Vector2(direction_x, 0) * max(max_speed - friction, 0.0) * MULTIPLIER
 	
-	#print(desired_velocity)
 
 
 func _physics_process(delta: float) -> void:
+	
+	if player_health.is_dead:
+		return
+	
 	on_ground = character_body_2d.is_on_floor()
 	
 	#print(on_ground)

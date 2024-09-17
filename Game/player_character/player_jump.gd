@@ -23,7 +23,7 @@ signal landed
 @export_group("References")
 #@export var ground : PlayerGroundCheck
 @export var character_body_2d : CharacterBody2D
-
+@export var player_health : PlayerHealth
 const GRAVITY_MULTIPLIER : float = 0.5
 
 var gravity_scale : float
@@ -125,6 +125,10 @@ func calculate_gravity() -> void:
 	
 
 func do_a_jump() -> void:
+	
+	if player_health.is_dead:
+		return
+	
 	if on_ground or (coyote_time_counter > 0.03 and coyote_time_counter < coyote_time) or can_jump_again:
 		desired_jump = false
 		jump_buffer_counter = 0
