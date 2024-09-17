@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://c62k3p3igr22k"
-path="res://.godot/imported/bonus (21).png-adfd35021f94acc58fc3dbcf0322f5a4.ctex"
+uid="uid://dntqqsg53m23c"
+path="res://.godot/imported/idle (25).png-0782f64eee52d9e518a6246ebb562593.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://player_character/art/bonus/bonus (21).png"
-dest_files=["res://.godot/imported/bonus (21).png-adfd35021f94acc58fc3dbcf0322f5a4.ctex"]
+source_file="res://player_character/art/idle/idle (25).png"
+dest_files=["res://.godot/imported/idle (25).png-0782f64eee52d9e518a6246ebb562593.ctex"]
 
 [params]
 
