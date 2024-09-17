@@ -8,7 +8,6 @@ signal player_death
 
 var current_health_points := 1
 
-var is_dead : bool = false
 
 func _enter_tree() -> void:
 	current_health_points = health_points
@@ -21,6 +20,5 @@ func deal_damage(damage : int = 1) -> void:
 
 func death() -> void:
 	player_death.emit()
-	is_dead = true
 	await get_tree().create_timer(death_time).timeout
 	LevelManager.reset_current_level()

@@ -27,9 +27,8 @@ const MULTIPLIER : float = 10.0
 
 @export_group("References")
 #@export var ground : PlayerGroundCheck
-@export var character_body_2d : CharacterBody2D
+@export var character_body_2d : PlayerCharacter
 @export var animated_sprite : AnimatedSprite2D
-@export var player_health : PlayerHealth
 
 #region Calculations
 var direction_x : float
@@ -47,7 +46,7 @@ var pressing_key : bool
 #endregion
 	
 func _input(event: InputEvent) -> void:
-	if player_health.is_dead:
+	if character_body_2d.frozen_movement:
 		return
 	
 	direction_x = Input.get_axis("move_left","move_right")
@@ -55,7 +54,7 @@ func _input(event: InputEvent) -> void:
 	
 func _process(delta: float) -> void:
 	
-	if player_health.is_dead:
+	if character_body_2d.frozen_movement:
 		return
 	
 	if direction_x != 0:
@@ -70,7 +69,7 @@ func _process(delta: float) -> void:
 
 func _physics_process(delta: float) -> void:
 	
-	if player_health.is_dead:
+	if character_body_2d.frozen_movement:
 		return
 	
 	on_ground = character_body_2d.is_on_floor()

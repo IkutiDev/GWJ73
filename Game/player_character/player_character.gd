@@ -4,3 +4,13 @@ extends CharacterBody2D
 @export var player_jump : PlayerJump
 @export var player_move : PlayerMovement
 @export var player_health : PlayerHealth
+
+var frozen_movement : bool = false
+
+func _ready() -> void:
+	player_health.player_death.connect(freeze_movement)
+	
+func freeze_movement() -> void:
+	frozen_movement = true
+func unfreeze_movement() -> void:
+	frozen_movement = false

@@ -582,7 +582,7 @@ player_health = NodePath("Health")
 
 [node name="MovementControl" type="Node" parent="."]
 
-[node name="Movement" type="Node" parent="MovementControl" node_paths=PackedStringArray("character_body_2d", "animated_sprite", "player_health")]
+[node name="Movement" type="Node" parent="MovementControl" node_paths=PackedStringArray("character_body_2d", "animated_sprite")]
 script = ExtResource("1_hvlaj")
 max_speed = 15.0
 max_acceleration = 80.0
@@ -593,9 +593,8 @@ max_air_decceleration = 50.0
 use_acceleration = true
 character_body_2d = NodePath("../..")
 animated_sprite = NodePath("../../PlayerVisual/AnimatedSprite2D")
-player_health = NodePath("../../Health")
 
-[node name="Jump" type="Node" parent="MovementControl" node_paths=PackedStringArray("character_body_2d", "player_health")]
+[node name="Jump" type="Node" parent="MovementControl" node_paths=PackedStringArray("character_body_2d")]
 script = ExtResource("2_qrali")
 jump_height = 35.0
 downward_movement_multiplier = 1.5
@@ -604,7 +603,6 @@ jump_cut_off = 5.0
 speed_limit = 500.0
 coyote_time = 0.3
 character_body_2d = NodePath("../..")
-player_health = NodePath("../../Health")
 
 [node name="Health" type="Node" parent="."]
 script = ExtResource("4_s1v1k")

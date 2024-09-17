@@ -35,7 +35,7 @@ func _process(delta: float) -> void:
 		return
 	if not player_character.is_on_floor():
 		return
-	if player_character.player_move.direction_x != 0:
+	if player_character.player_move.direction_x != 0 and not player_character.frozen_movement:
 		animated_sprite_2d.play("run")
 	else:
 		if (animated_sprite_2d.animation == "land" or animated_sprite_2d.animation == "bonus") and animated_sprite_2d.is_playing():
@@ -44,6 +44,8 @@ func _process(delta: float) -> void:
 
 func pressed_jump() -> void:
 	if disable_animations:
+		return
+	if player_character.frozen_movement:
 		return
 	if player_character.is_on_floor():
 		animated_sprite_2d.play("jump")

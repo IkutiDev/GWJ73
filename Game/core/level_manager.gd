@@ -31,13 +31,19 @@ func _unhandled_input(event: InputEvent) -> void:
 
 func fade_animation_finished(anim : StringName) -> void:
 	if anim == "fade_out":
+		var player_character : PlayerCharacter = get_tree().get_nodes_in_group("player")[0]
 		if resetting_level:
 			get_tree().reload_current_scene()
 		if loading_next_level:
 			creating_next_level_instance()
+		player_character.freeze_movement()
 		resetting_level = false
 		loading_next_level = false
 		animation_player.play("fade_in")
+	
+	if anim == "fade_in":
+		var player_character : PlayerCharacter = get_tree().get_nodes_in_group("player")[0]
+		player_character.unfreeze_movement()
 
 func creating_next_level_instance() -> void:
 	current_gameplay_level_index += 1
