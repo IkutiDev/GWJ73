@@ -1,6 +1,6 @@
 [gd_scene load_steps=5 format=3 uid="uid://dmhgqvqymht2c"]
 
-[ext_resource type="Script" path="res://experimental/crate.gd" id="1_21tix"]
+[ext_resource type="Script" path="res://environment/crate.gd" id="1_21tix"]
 
 [sub_resource type="PhysicsMaterial" id="PhysicsMaterial_5b01w"]
 friction = 0.8

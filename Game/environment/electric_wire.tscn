@@ -1,6 +1,6 @@
 [gd_scene load_steps=11 format=3 uid="uid://xfwcmndnkomw"]
 
-[ext_resource type="Script" path="res://experimental/electric_wire.gd" id="1_rvl3e"]
+[ext_resource type="Script" path="res://environment/electric_wire.gd" id="1_rvl3e"]
 [ext_resource type="PackedScene" uid="uid://dscsbre0lxqrb" path="res://experimental/death_sentence.tscn" id="2_1u6bw"]
 
 [sub_resource type="Curve2D" id="Curve2D_axy07"]

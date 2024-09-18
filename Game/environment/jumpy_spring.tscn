@@ -1,6 +1,6 @@
 [gd_scene load_steps=7 format=3 uid="uid://bm668srqcrjd4"]
 
-[ext_resource type="Script" path="res://experimental/jumpy_spring.gd" id="1_0tfc5"]
+[ext_resource type="Script" path="res://environment/jumpy_spring.gd" id="1_0tfc5"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_dg6sj"]
 size = Vector2(30, 3)

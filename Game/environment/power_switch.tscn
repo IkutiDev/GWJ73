@@ -1,6 +1,6 @@
 [gd_scene load_steps=4 format=3 uid="uid://c3ba6ngtqm7fj"]
 
-[ext_resource type="Script" path="res://experimental/power_switch.gd" id="1_hvciv"]
+[ext_resource type="Script" path="res://environment/power_switch.gd" id="1_hvciv"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_8myfk"]
 size = Vector2(8, 4)
