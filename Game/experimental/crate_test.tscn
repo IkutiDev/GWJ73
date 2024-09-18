@@ -1,12 +1,11 @@
-[gd_scene load_steps=13 format=3 uid="uid://4vo5kd1v1q8t"]
+[gd_scene load_steps=11 format=3 uid="uid://4vo5kd1v1q8t"]
 
 [ext_resource type="Script" path="res://experimental/crate_test.gd" id="1_yugfp"]
 [ext_resource type="PackedScene" uid="uid://dmhgqvqymht2c" path="res://experimental/crate.tscn" id="2_pte8s"]
-[ext_resource type="Script" path="res://experimental/grabby_crate.gd" id="3_kts0i"]
-[ext_resource type="PackedScene" uid="uid://cdgthmg8dm5c3" path="res://experimental/puppet.tscn" id="3_pfixm"]
 [ext_resource type="PackedScene" uid="uid://bm668srqcrjd4" path="res://experimental/jumpy_spring.tscn" id="5_clart"]
 [ext_resource type="PackedScene" uid="uid://pd78setlifv6" path="res://experimental/example_pin.tscn" id="6_8o83h"]
 [ext_resource type="PackedScene" uid="uid://c3ba6ngtqm7fj" path="res://experimental/power_switch.tscn" id="7_8xyk8"]
+[ext_resource type="PackedScene" uid="uid://cqh07empuga21" path="res://player_character/player_character.tscn" id="8_s63ix"]
 [ext_resource type="PackedScene" uid="uid://xfwcmndnkomw" path="res://experimental/electric_wire.tscn" id="8_skhi7"]
 [ext_resource type="PackedScene" uid="uid://ct85pctxsvxat" path="res://experimental/electric_heater.tscn" id="9_w7mvx"]
 
@@ -15,9 +14,6 @@ size = Vector2(800, 40)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_h3k4r"]
 size = Vector2(800, 40)
-
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_vmftt"]
-size = Vector2(30, 30)
 
 [node name="CrateTest" type="Node2D"]
 script = ExtResource("1_yugfp")
@@ -48,26 +44,10 @@ points = PackedVector2Array(-400, 0, 400, 0)
 width = 40.0
 
 [node name="Crate" parent="." instance=ExtResource("2_pte8s")]
-
-[node name="GrabbyCrate" type="RigidBody2D" parent="."]
-modulate = Color(0.99665, 0.447716, 0.511557, 1)
-position = Vector2(643, 608)
-collision_layer = 0
-collision_mask = 2
-script = ExtResource("3_kts0i")
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="GrabbyCrate"]
-shape = SubResource("RectangleShape2D_vmftt")
-
-[node name="Polygon2D" type="Polygon2D" parent="GrabbyCrate"]
-scale = Vector2(0.695, 0.695)
-polygon = PackedVector2Array(20, 20, 20, -20, -20, -20, -20, 20)
+position = Vector2(929, 589)
 
 [node name="JumpySpring" parent="." instance=ExtResource("5_clart")]
 position = Vector2(1026, 642)
-
-[node name="Puppet" parent="." instance=ExtResource("3_pfixm")]
-position = Vector2(1142, 609)
 
 [node name="ExamplePin" parent="." instance=ExtResource("6_8o83h")]
 position = Vector2(1251, 641)
@@ -85,3 +65,9 @@ position = Vector2(615, 627)
 [node name="ElectricHeater" parent="." instance=ExtResource("9_w7mvx")]
 position = Vector2(1416, 680)
 start_powered = false
+
+[node name="PlayerCharacter" parent="." instance=ExtResource("8_s63ix")]
+position = Vector2(811, 637)
+
+[node name="Camera2D" type="Camera2D" parent="."]
+anchor_mode = 0

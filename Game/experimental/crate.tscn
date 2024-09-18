@@ -6,10 +6,10 @@
 friction = 0.8
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_d0jgn"]
-size = Vector2(100, 100)
+size = Vector2(96, 96)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_58d00"]
-size = Vector2(108, 90)
+size = Vector2(104, 48)
 
 [node name="Crate" type="RigidBody2D"]
 collision_layer = 2
@@ -25,13 +25,14 @@ wait_time = 0.1
 shape = SubResource("RectangleShape2D_d0jgn")
 
 [node name="Polygon2D" type="Polygon2D" parent="."]
-polygon = PackedVector2Array(-50, -50, -50, 50, 50, 50, 50, -50)
+polygon = PackedVector2Array(-48, -48, -48, 48, 48, 48, 48, -48)
 
 [node name="PushDetector" type="Area2D" parent="."]
 collision_layer = 0
 collision_mask = 4
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="PushDetector"]
+position = Vector2(0, 22.5)
 shape = SubResource("RectangleShape2D_58d00")
 
 [connection signal="timeout" from="TheClamper" to="." method="_on_the_clamper_timeout"]
