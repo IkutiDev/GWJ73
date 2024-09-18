@@ -737,7 +737,7 @@ character_body_2d = NodePath("../..")
 script = ExtResource("4_mhbyl")
 timed_climbing = true
 grab_time = 2.0
-max_speed = 7.0
+max_speed = 14.0
 character_body_2d = NodePath("../..")
 animated_sprite = NodePath("../../PlayerVisual/AnimatedSprite2D")
 
