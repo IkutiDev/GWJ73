@@ -1,7 +1,7 @@
 extends RigidBody2D
 
 
-var push_force = Vector2(1580,0)
+var push_force = Vector2(1080,0)
 var max_speed = 65
 
 # Called when the node enters the scene tree for the first time.

@@ -2,8 +2,9 @@
 
 [ext_resource type="Script" path="res://environment/crate.gd" id="1_21tix"]
 
-[sub_resource type="PhysicsMaterial" id="PhysicsMaterial_5b01w"]
-friction = 0.8
+[sub_resource type="PhysicsMaterial" id="PhysicsMaterial_w2mcc"]
+friction = 0.4
+bounce = 0.4
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_d0jgn"]
 size = Vector2(96, 96)
@@ -14,7 +15,8 @@ size = Vector2(104, 48)
 [node name="Crate" type="RigidBody2D"]
 collision_layer = 2
 collision_mask = 2
-physics_material_override = SubResource("PhysicsMaterial_5b01w")
+physics_material_override = SubResource("PhysicsMaterial_w2mcc")
+lock_rotation = true
 script = ExtResource("1_21tix")
 
 [node name="TheClamper" type="Timer" parent="."]
