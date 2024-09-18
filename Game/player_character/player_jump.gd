@@ -89,6 +89,11 @@ func set_physics() -> void:
 var falling_down
 
 func calculate_gravity() -> void:
+	if character_body_2d.is_on_wall_only() and character_body_2d.player_climb.is_climbing:
+		if character_body_2d.velocity.y != 0:
+			character_body_2d.velocity.y = 0
+		currently_jumping = false
+		return
 	# if going up
 	if character_body_2d.velocity.y < -0.01:
 		if on_ground:

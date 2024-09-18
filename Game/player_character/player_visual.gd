@@ -21,6 +21,10 @@ func _process(delta: float) -> void:
 	if disable_animations:
 		return
 	
+	if player_character.player_climb.is_climbing and player_character.is_on_wall_only():
+		animated_sprite_2d.play("climb")
+		return
+	
 	if not Input.is_anything_pressed():
 		funny_animation_timer += delta
 		if funny_animation_timer > funny_animation_time:
