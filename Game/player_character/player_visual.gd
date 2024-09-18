@@ -30,8 +30,8 @@ func _process(delta: float) -> void:
 		funny_animation_timer = 0
 	
 	if player_character.velocity.y != 0:
-		if player_character.velocity.y > 0.0 && animated_sprite_2d.animation != "fall":
-			animated_sprite_2d.play("fall")
+		if player_character.velocity.y > 0.0 && animated_sprite_2d.animation != "in_air":
+			animated_sprite_2d.play("in_air")
 		return
 	if not player_character.is_on_floor():
 		return
