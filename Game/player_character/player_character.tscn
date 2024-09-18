@@ -166,7 +166,8 @@
 [ext_resource type="Texture2D" uid="uid://cyvy6f7qsgyfh" path="res://player_character/art/rope_climb/rope_climb (19).png" id="147_mwk6c"]
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_7monb"]
-radius = 6.0
+radius = 12.0
+height = 60.0
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_cf2wf"]
 animations = [{
@@ -734,7 +735,6 @@ character_body_2d = NodePath("../..")
 
 [node name="Climb" type="Node" parent="MovementControl" node_paths=PackedStringArray("character_body_2d", "animated_sprite")]
 script = ExtResource("4_mhbyl")
-enable_climbing = true
 timed_climbing = true
 grab_time = 2.0
 max_speed = 7.0
@@ -745,6 +745,7 @@ animated_sprite = NodePath("../../PlayerVisual/AnimatedSprite2D")
 script = ExtResource("4_s1v1k")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(0, -29)
 shape = SubResource("CapsuleShape2D_7monb")
 
 [node name="PlayerVisual" type="Node2D" parent="." node_paths=PackedStringArray("player_character", "animated_sprite_2d")]
@@ -754,10 +755,9 @@ animated_sprite_2d = NodePath("AnimatedSprite2D")
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="PlayerVisual"]
 texture_filter = 1
-position = Vector2(0, -6.195)
-scale = Vector2(-0.07, 0.07)
+position = Vector2(0, -40)
+scale = Vector2(-0.14, 0.14)
 sprite_frames = SubResource("SpriteFrames_cf2wf")
-animation = &"rope_climb"
+animation = &"idle"
 autoplay = "idle"
-frame_progress = 0.48468
 offset = Vector2(0, 60)

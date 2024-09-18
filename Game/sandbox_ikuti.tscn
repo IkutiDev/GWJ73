@@ -75,7 +75,7 @@ sources/0 = SubResource("TileSetAtlasSource_ochh4")
 [node name="Sandbox" type="Node2D"]
 
 [node name="PhantomCamera2D" type="Node2D" parent="." node_paths=PackedStringArray("follow_target")]
-position = Vector2(168, 0)
+position = Vector2(160, 16)
 script = ExtResource("1_snacs")
 follow_mode = 2
 follow_target = NodePath("../PlayerCharacter")
@@ -84,7 +84,7 @@ tween_resource = SubResource("Resource_26opq")
 draw_limits = true
 
 [node name="PlayerCharacter" parent="." instance=ExtResource("4_mipcv")]
-position = Vector2(168, 0)
+position = Vector2(160, 16)
 
 [node name="TileMapLayer" type="TileMapLayer" parent="."]
 texture_filter = 1
