@@ -1,4 +1,4 @@
-[gd_scene load_steps=8 format=4 uid="uid://bjdtnl552flt"]
+[gd_scene load_steps=9 format=4 uid="uid://bjdtnl552flt"]
 
 [ext_resource type="TileSet" uid="uid://cq4qhq8y4udas" path="res://experimental/level_group_a/sandbox_tileset.tres" id="1_kr87i"]
 [ext_resource type="PackedScene" uid="uid://cqh07empuga21" path="res://player_character/player_character.tscn" id="2_bm6j6"]
@@ -11,6 +11,12 @@ script = ExtResource("4_f3pvr")
 duration = 0.0
 transition = 0
 ease = 2
+
+[sub_resource type="Curve2D" id="Curve2D_gq0tb"]
+_data = {
+"points": PackedVector2Array(0, 0, 0, 0, 72, -8, 26.4583, 0, -26.4583, 0, 0, 64, 0, 0, 0, 0, -32, -8)
+}
+point_count = 3
 
 [sub_resource type="Curve2D" id="Curve2D_mx00c"]
 _data = {
@@ -33,6 +39,7 @@ draw_limits = true
 
 [node name="ElectricWire" parent="." instance=ExtResource("5_studk")]
 position = Vector2(-168, 48)
+curve = SubResource("Curve2D_gq0tb")
 
 [node name="ElectricWire2" parent="." instance=ExtResource("5_studk")]
 position = Vector2(272, 216)
