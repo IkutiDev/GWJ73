@@ -699,7 +699,7 @@ animations = [{
 "speed": 18.0
 }]
 
-[node name="PlayerCharacter" type="CharacterBody2D" node_paths=PackedStringArray("player_jump", "player_move", "player_climb", "player_health") groups=["player"]]
+[node name="PlayerCharacter" type="CharacterBody2D" node_paths=PackedStringArray("player_jump", "player_move", "player_climb", "player_health", "player_visual") groups=["player"]]
 position = Vector2(7, 0)
 collision_layer = 4
 collision_mask = 2
@@ -708,6 +708,7 @@ player_jump = NodePath("MovementControl/Jump")
 player_move = NodePath("MovementControl/Movement")
 player_climb = NodePath("MovementControl/Climb")
 player_health = NodePath("Health")
+player_visual = NodePath("PlayerVisual")
 
 [node name="MovementControl" type="Node" parent="."]
 
@@ -735,6 +736,7 @@ character_body_2d = NodePath("../..")
 
 [node name="Climb" type="Node" parent="MovementControl" node_paths=PackedStringArray("character_body_2d", "animated_sprite")]
 script = ExtResource("4_mhbyl")
+enable_climbing = true
 timed_climbing = true
 grab_time = 2.0
 max_speed = 14.0
@@ -755,7 +757,7 @@ animated_sprite_2d = NodePath("AnimatedSprite2D")
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="PlayerVisual"]
 texture_filter = 1
-position = Vector2(0, -40)
+position = Vector2(3, -40)
 scale = Vector2(-0.14, 0.14)
 sprite_frames = SubResource("SpriteFrames_cf2wf")
 animation = &"idle"

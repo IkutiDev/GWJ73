@@ -22,7 +22,10 @@ func _process(delta: float) -> void:
 		return
 	
 	if player_character.player_climb.is_climbing and player_character.is_on_wall_only():
-		animated_sprite_2d.play("climb")
+		if player_character.velocity.y == 0:
+			animated_sprite_2d.stop()
+		else:
+			animated_sprite_2d.play("climb")
 		return
 	
 	if not Input.is_anything_pressed():
@@ -58,6 +61,14 @@ func landed() -> void:
 	if disable_animations:
 		return
 	animated_sprite_2d.play("land")
+
+func play_push_animation() -> void:
+	animated_sprite_2d.play("push")
+	disable_animations = true
+
+func stop_push_animation() -> void:
+	animated_sprite_2d.stop()
+	disable_animations = false
 
 func death() -> void:
 	animated_sprite_2d.play("death")

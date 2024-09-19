@@ -10,7 +10,7 @@ bounce = 0.4
 size = Vector2(96, 96)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_58d00"]
-size = Vector2(104, 48)
+size = Vector2(120, 48)
 
 [node name="Crate" type="RigidBody2D"]
 collision_layer = 2

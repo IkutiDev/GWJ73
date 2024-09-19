@@ -1,8 +1,10 @@
-[gd_scene load_steps=9 format=3 uid="uid://vq0iyu8mw23j"]
+[gd_scene load_steps=11 format=3 uid="uid://vq0iyu8mw23j"]
 
 [ext_resource type="Script" path="res://core/level_manager.gd" id="1_v64mb"]
-[ext_resource type="PackedScene" uid="uid://b6yhr1bv7mjw5" path="res://experimental/test_web_export.tscn" id="2_awmws"]
-[ext_resource type="PackedScene" uid="uid://1wvlqiodn4ow" path="res://sandbox_ikuti.tscn" id="3_hbkb1"]
+[ext_resource type="PackedScene" uid="uid://bb2gsnet7dj26" path="res://experimental/level_group_a/spikes_1.tscn" id="2_dxwtd"]
+[ext_resource type="PackedScene" uid="uid://d1qv0gm04wjvb" path="res://experimental/level_group_a/spikes_2.tscn" id="3_gy581"]
+[ext_resource type="PackedScene" uid="uid://e7ubem06wcup" path="res://experimental/level_group_a/spikes_3.tscn" id="4_7j03k"]
+[ext_resource type="PackedScene" uid="uid://dx3gx0utf5koo" path="res://experimental/level_group_a/spikes_4.tscn" id="5_ohbmn"]
 [ext_resource type="Script" path="res://addons/phantom_camera/scripts/phantom_camera_host/phantom_camera_host.gd" id="7_u0leh"]
 
 [sub_resource type="Animation" id="Animation_ep7fc"]
@@ -60,7 +62,7 @@ _data = {
 [node name="LevelManager" type="Node" node_paths=PackedStringArray("animation_player")]
 script = ExtResource("1_v64mb")
 animation_player = NodePath("AnimationPlayer")
-gameplay_levels = Array[PackedScene]([ExtResource("2_awmws"), ExtResource("3_hbkb1")])
+gameplay_levels = Array[PackedScene]([ExtResource("2_dxwtd"), ExtResource("3_gy581"), ExtResource("4_7j03k"), ExtResource("5_ohbmn")])
 
 [node name="CanvasLayer" type="CanvasLayer" parent="."]
 
@@ -79,7 +81,7 @@ libraries = {
 
 [node name="Camera2D" type="Camera2D" parent="."]
 physics_interpolation_mode = 2
-position = Vector2(168, 0)
+position = Vector2(1050.69, 22.1553)
 zoom = Vector2(2, 2)
 
 [node name="PhantomCameraHost" type="Node" parent="Camera2D"]

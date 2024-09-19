@@ -1,4 +1,4 @@
-[gd_scene load_steps=8 format=4 uid="uid://dx3gx0utf5koo"]
+[gd_scene load_steps=9 format=4 uid="uid://dx3gx0utf5koo"]
 
 [ext_resource type="TileSet" uid="uid://cq4qhq8y4udas" path="res://experimental/level_group_a/sandbox_tileset.tres" id="1_jg3lj"]
 [ext_resource type="PackedScene" uid="uid://cqh07empuga21" path="res://player_character/player_character.tscn" id="2_pc0vi"]
@@ -6,6 +6,7 @@
 [ext_resource type="Script" path="res://addons/phantom_camera/scripts/resources/tween_resource.gd" id="4_p1bhj"]
 [ext_resource type="PackedScene" uid="uid://pd78setlifv6" path="res://environment/example_pin.tscn" id="5_43v2x"]
 [ext_resource type="PackedScene" uid="uid://dmhgqvqymht2c" path="res://environment/crate.tscn" id="6_fdgdu"]
+[ext_resource type="PackedScene" uid="uid://bmou427kup6vh" path="res://environment/finish.tscn" id="7_bluw6"]
 
 [sub_resource type="Resource" id="Resource_26opq"]
 script = ExtResource("4_p1bhj")
@@ -60,8 +61,12 @@ position = Vector2(312, -96)
 position = Vector2(-48, 200)
 
 [node name="Label" type="Label" parent="."]
+visible = false
 offset_left = -256.0
 offset_top = -136.0
 offset_right = -216.0
 offset_bottom = -113.0
 text = "EXIT"
+
+[node name="FinishPoint" parent="." instance=ExtResource("7_bluw6")]
+position = Vector2(-240, -104)

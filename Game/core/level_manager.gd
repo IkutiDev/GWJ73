@@ -55,3 +55,4 @@ func creating_next_level_instance() -> void:
 	get_tree().current_scene.queue_free()
 	var level_instance = gameplay_levels[current_gameplay_level_index].instantiate()
 	get_tree().root.add_child(level_instance)
+	get_tree().current_scene = level_instance

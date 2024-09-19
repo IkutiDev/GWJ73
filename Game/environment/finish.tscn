@@ -1,0 +1,22 @@
+[gd_scene load_steps=3 format=3 uid="uid://bmou427kup6vh"]
+
+[ext_resource type="Script" path="res://environment/finish_point.gd" id="1_di8kr"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_col1s"]
+size = Vector2(32, 32)
+
+[node name="FinishPoint" type="Area2D"]
+collision_layer = 0
+collision_mask = 4
+monitorable = false
+script = ExtResource("1_di8kr")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("RectangleShape2D_col1s")
+
+[node name="Label" type="Label" parent="."]
+offset_left = -17.0
+offset_top = -33.0
+offset_right = 16.0
+offset_bottom = -10.0
+text = "EXIT"

@@ -32,11 +32,16 @@ func _on_the_clamper_timeout() -> void:
 func _on_push_detector_body_entered(body: Node2D) -> void:
 	if body.is_in_group("player"):
 		var push_direction = sign(global_position.x - body.global_position.x)
-
+		var player_character : PlayerCharacter = body
+		if player_character != null:
+			player_character.player_visual.play_push_animation()
 		push_start(push_direction)
 	pass # Replace with function body.
 
 
 func _on_push_detector_body_exited(body: Node2D) -> void:
+	var player_character : PlayerCharacter = body
+	if player_character != null:
+		player_character.player_visual.stop_push_animation()
 	push_end()
 	pass # Replace with function body.

@@ -5,7 +5,7 @@ extends CharacterBody2D
 @export var player_move : PlayerMovement
 @export var player_climb : PlayerClimb
 @export var player_health : PlayerHealth
-
+@export var player_visual : PlayerVisual
 var frozen_movement : bool = false
 
 func _ready() -> void:
