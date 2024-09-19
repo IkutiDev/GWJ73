@@ -5,9 +5,9 @@
 
 [sub_resource type="Curve2D" id="Curve2D_axy07"]
 _data = {
-"points": PackedVector2Array(0, 0, 0, 0, 16, 32)
+"points": PackedVector2Array(0, 0, 0, 0, 32, -16, 63.6424, 25.7145, -63.6424, -25.7145, 0, 48, 0, 0, 0, 0, -16, -8)
 }
-point_count = 1
+point_count = 3
 
 [sub_resource type="Gradient" id="Gradient_1inha"]
 interpolation_mode = 1
