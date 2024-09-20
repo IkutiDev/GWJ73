@@ -1,0 +1,19 @@
+[remap]
+
+importer="mp3"
+type="AudioStreamMP3"
+uid="uid://6qpd1a0ek7ba"
+path="res://.godot/imported/A Quest For A Hero Music_Loop.mp3-868072f106deec4946e2f6a8b08f2d3f.mp3str"
+
+[deps]
+
+source_file="res://music/A Quest For A Hero Music_Loop.mp3"
+dest_files=["res://.godot/imported/A Quest For A Hero Music_Loop.mp3-868072f106deec4946e2f6a8b08f2d3f.mp3str"]
+
+[params]
+
+loop=true
+loop_offset=0
+bpm=0
+beat_count=0
+bar_beats=4

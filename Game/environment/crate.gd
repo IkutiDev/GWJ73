@@ -14,16 +14,20 @@ func _ready() -> void:
 
 func push_start(direction : int):
 	$TheClamper.start()
+	$AudioFade.play("RESET")
 	add_constant_central_force(direction * push_force)
 
 func push_end():
 	$TheClamper.stop()
 	constant_force.x = 0
+	$AudioFade.play("fade_out")
 	pass
 
 
 func _on_the_clamper_timeout() -> void:
-	
+	if !$Drag.playing and abs(linear_velocity.x) > max_speed:
+		$Drag.play()
+
 	if abs(linear_velocity.x) > max_speed :
 		linear_velocity.x = clamp(linear_velocity.x,-max_speed,max_speed)
 	pass # Replace with function body.
