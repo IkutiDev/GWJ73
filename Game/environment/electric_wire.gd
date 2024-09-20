@@ -4,6 +4,8 @@ extends Path2D
 
 var length_to_spark_ratio = 89.0
 
+var zap_wait_time = 1.2
+
 @export var start_powered = true
 
 var powered = false
@@ -35,7 +37,13 @@ func _ready() -> void:
 	
 	$Isolation.visible = true
 	$SparkMover.visible = true
-	
+	zap_wait_time = (length_to_spark_ratio * zap_wait_time) / wire_length
 	if start_powered:
 		toggle_power()
+	pass # Replace with function body.
+
+
+func _on_zapper_finished() -> void:
+	await get_tree().create_timer(zap_wait_time + randf() * 0.5).timeout
+	$SparkMover/Zapper.play()
 	pass # Replace with function body.

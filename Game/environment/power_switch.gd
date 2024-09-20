@@ -18,6 +18,8 @@ func _ready():
 		flip_left()
 	else:
 		flip_right()
+	await $Click.finished
+	$Click.volume_db = -6
 	pass
 
 func toggle():
@@ -31,6 +33,9 @@ func flip_left():
 	$RightSwitch/CollisionShape2D.set_deferred("disabled",false)
 	$RightSwitch.visible = true
 	$LeftSwitch.visible = false
+	$Click.global_position = $LeftSwitch.global_position
+	$Click.pitch_scale = 1.18
+	$Click.play()
 	pass
 
 func flip_right():
@@ -38,6 +43,9 @@ func flip_right():
 	$RightSwitch/CollisionShape2D.set_deferred("disabled",true)
 	$RightSwitch.visible = false
 	$LeftSwitch.visible = true
+	$Click.global_position = $RightSwitch.global_position
+	$Click.pitch_scale = 1.12
+	$Click.play()
 	pass
 
 func _on_right_switch_body_entered(body: Node2D) -> void:

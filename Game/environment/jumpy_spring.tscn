@@ -1,6 +1,8 @@
-[gd_scene load_steps=7 format=3 uid="uid://bm668srqcrjd4"]
+[gd_scene load_steps=11 format=3 uid="uid://bm668srqcrjd4"]
 
 [ext_resource type="Script" path="res://environment/jumpy_spring.gd" id="1_0tfc5"]
+[ext_resource type="AudioStream" uid="uid://dbgg04n8ewqtl" path="res://sfx/slide whistle 1.wav" id="2_c8sue"]
+[ext_resource type="AudioStream" uid="uid://b0cxrkjlkp46r" path="res://sfx/slide whistle 16.wav" id="3_788ds"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_dg6sj"]
 size = Vector2(30, 3)
@@ -83,12 +85,36 @@ tracks/2/keys = {
 "method": &"apply_jump_boost"
 }]
 }
+tracks/3/type = "method"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("Bend")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"values": [{
+"args": [0.0],
+"method": &"play"
+}]
+}
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_4lxt0"]
 _data = {
 "RESET": SubResource("Animation_xfn75"),
 "coiling": SubResource("Animation_2x8gn")
 }
+
+[sub_resource type="AudioStreamRandomizer" id="AudioStreamRandomizer_sx2d5"]
+random_pitch = 1.2
+streams_count = 1
+stream_0/stream = ExtResource("2_c8sue")
+
+[sub_resource type="AudioStreamRandomizer" id="AudioStreamRandomizer_eepf7"]
+random_pitch = 1.2
+streams_count = 1
+stream_0/stream = ExtResource("3_788ds")
 
 [node name="JumpySpring" type="StaticBody2D"]
 collision_layer = 2
@@ -139,6 +165,18 @@ libraries = {
 "": SubResource("AnimationLibrary_4lxt0")
 }
 speed_scale = 5.0
+
+[node name="Bend" type="AudioStreamPlayer2D" parent="."]
+stream = SubResource("AudioStreamRandomizer_sx2d5")
+volume_db = -6.0
+pitch_scale = 1.5
+bus = &"SFX"
+
+[node name="Release" type="AudioStreamPlayer2D" parent="."]
+stream = SubResource("AudioStreamRandomizer_eepf7")
+volume_db = -6.0
+pitch_scale = 1.5
+bus = &"SFX"
 
 [connection signal="body_entered" from="LaunchPad/PlayerDetector" to="." method="_on_player_detector_body_entered"]
 [connection signal="body_exited" from="LaunchPad/PlayerDetector" to="." method="_on_player_detector_body_exited"]

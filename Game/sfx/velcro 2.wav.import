@@ -1,0 +1,24 @@
+[remap]
+
+importer="wav"
+type="AudioStreamWAV"
+uid="uid://d2b82ebxp148y"
+path="res://.godot/imported/velcro 2.wav-3d2e2ff96ee1eb8a455fa63b12e22d60.sample"
+
+[deps]
+
+source_file="res://sfx/velcro 2.wav"
+dest_files=["res://.godot/imported/velcro 2.wav-3d2e2ff96ee1eb8a455fa63b12e22d60.sample"]
+
+[params]
+
+force/8_bit=false
+force/mono=false
+force/max_rate=false
+force/max_rate_hz=44100
+edit/trim=false
+edit/normalize=false
+edit/loop_mode=0
+edit/loop_begin=0
+edit/loop_end=-1
+compress/mode=0

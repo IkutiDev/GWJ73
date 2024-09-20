@@ -1,15 +1,18 @@
 [gd_scene load_steps=3 format=3 uid="uid://uxfsho27iaow"]
 
 [ext_resource type="Script" path="res://music/music_player.gd" id="1_lys57"]
-[ext_resource type="AudioStream" uid="uid://dniab43ph1gfh" path="res://A Quest For A Hero.ogg" id="2_ky0ml"]
+[ext_resource type="AudioStream" uid="uid://b0d4vhft3dnoy" path="res://music/A Quest For A Hero Music_Start.mp3" id="2_pkq6t"]
 
 [node name="MusicPlayer" type="Node" node_paths=PackedStringArray("background_music_player")]
 script = ExtResource("1_lys57")
 mute_in_editor = true
-background_music_player = NodePath("AudioStreamPlayer")
+background_music_player = NodePath("Music")
 
-[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
-stream = ExtResource("2_ky0ml")
-pitch_scale = 4.0
+[node name="Music" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("2_pkq6t")
 autoplay = true
+bus = &"Music"
+playback_type = 1
 parameters/looping = true
+
+[connection signal="finished" from="Music" to="." method="_on_music_finished"]
