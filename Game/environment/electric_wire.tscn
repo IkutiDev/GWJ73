@@ -3,12 +3,6 @@
 [ext_resource type="Script" path="res://environment/electric_wire.gd" id="1_rvl3e"]
 [ext_resource type="PackedScene" uid="uid://dscsbre0lxqrb" path="res://experimental/death_sentence.tscn" id="2_1u6bw"]
 
-[sub_resource type="Curve2D" id="Curve2D_axy07"]
-_data = {
-"points": PackedVector2Array(0, 0, 0, 0, 16, 32)
-}
-point_count = 1
-
 [sub_resource type="Gradient" id="Gradient_1inha"]
 interpolation_mode = 1
 offsets = PackedFloat32Array(0.183099, 0.697183)
@@ -88,8 +82,10 @@ _data = {
 "new_animation": SubResource("Animation_r3r5c")
 }
 
+[sub_resource type="CircleShape2D" id="CircleShape2D_fbwkt"]
+radius = 9.0
+
 [node name="ElectricWire" type="Path2D"]
-curve = SubResource("Curve2D_axy07")
 script = ExtResource("1_rvl3e")
 
 [node name="Isolation" type="Line2D" parent="."]
@@ -100,7 +96,7 @@ texture_mode = 2
 
 [node name="SparkMover" type="PathFollow2D" parent="."]
 visible = false
-position = Vector2(16, 32)
+position = Vector2(32, -16)
 rotates = false
 
 [node name="SparkEmitter" type="CPUParticles2D" parent="SparkMover"]
@@ -126,3 +122,8 @@ libraries = {
 speed_scale = 5.0
 
 [node name="DeathSentence" parent="SparkMover" instance=ExtResource("2_1u6bw")]
+
+[node name="CollisionShape2D" parent="SparkMover/DeathSentence" index="0"]
+shape = SubResource("CircleShape2D_fbwkt")
+
+[editable path="SparkMover/DeathSentence"]
