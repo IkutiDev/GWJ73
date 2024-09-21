@@ -23,6 +23,7 @@ boot_splash/minimum_display_time=1000
 PhantomCameraManager="*res://addons/phantom_camera/scripts/managers/phantom_camera_manager.gd"
 MusicPlayer="*res://music/music_player.tscn"
 LevelManager="*res://core/level_manager.tscn"
+SettingsTracker="*res://core/settings_tracker.tscn"
 
 [display]
 
