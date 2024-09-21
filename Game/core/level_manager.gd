@@ -4,11 +4,16 @@ extends Node
 
 @export var gameplay_levels : Array[PackedScene]
 
+@export var pause_menu_spawn_slot : CanvasLayer
+@export var pause_menu_scene : PackedScene
+
 var current_gameplay_level_index := 0
 var latest_index_level := 0
 
 var resetting_level := false
 var loading_level := false
+
+var paused := false
 
 func _enter_tree() -> void:
 	animation_player.animation_finished.connect(fade_animation_finished)
@@ -29,11 +34,39 @@ func load_next_level() -> void:
 	animation_player.play("fade_out")
 	
 func reset_current_level() -> void:
+	var player_character : PlayerCharacter = null
+	if get_tree().get_nodes_in_group("player").size() > 0:
+		player_character = get_tree().get_nodes_in_group("player")[0]
+	if player_character != null:
+		player_character.freeze_movement()
 	resetting_level = true
 	animation_player.play("fade_out")
 	
+func open_pause_menu() -> void:
+	Engine.time_scale = 0
+	var pause_menu_instance = pause_menu_scene.instantiate()
+	pause_menu_spawn_slot.add_child(pause_menu_instance)
+	paused = true
+	
+func close_pause_menu() -> void:
+	paused = false
+	pause_menu_spawn_slot.get_child(0).queue_free()
+	Engine.time_scale = 1
+	
 	
 func _unhandled_input(event: InputEvent) -> void:
+	
+	if event.is_action_pressed("pause"):
+		if get_tree().current_scene.name == "MainMenu":
+			return
+		if resetting_level or loading_level:
+			return
+		if not animation_player.current_animation == "":
+			return
+		if paused:
+			close_pause_menu()
+		else:
+			open_pause_menu()
 	
 	if OS.has_feature("standalone"):
 		return
@@ -56,8 +89,9 @@ func fade_animation_finished(anim : StringName) -> void:
 		animation_player.play("fade_in")
 	
 	if anim == "fade_in":
-		var player_character : PlayerCharacter = get_tree().get_nodes_in_group("player")[0]
-		player_character.unfreeze_movement()
+		if get_tree().get_nodes_in_group("player").size() > 0:
+			var player_character : PlayerCharacter = get_tree().get_nodes_in_group("player")[0]
+			player_character.unfreeze_movement()
 
 func creating_next_level_instance() -> void:
 	var config = ConfigFile.new()

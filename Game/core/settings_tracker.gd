@@ -36,11 +36,15 @@ func save_input_map():
 func load_input_map():
 	#First erase all since we have predefined saved
 	for a in InputMap.get_actions():
+		if not settings_file.has_section("Input/"+a):
+			continue
 		InputMap.action_erase_events(a)
 		
 	#Now load all
 	
 	for a in InputMap.get_actions():
+		if not settings_file.has_section("Input/"+a):
+			continue
 		var input_events =settings_file.get_section_keys("Input/"+a)
 		
 		for i in input_events:
