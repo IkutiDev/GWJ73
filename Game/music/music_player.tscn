@@ -11,7 +11,6 @@ background_music_player = NodePath("Music")
 [node name="Music" type="AudioStreamPlayer" parent="."]
 stream = ExtResource("2_pkq6t")
 autoplay = true
-bus = &"Music"
 playback_type = 1
 parameters/looping = true
 

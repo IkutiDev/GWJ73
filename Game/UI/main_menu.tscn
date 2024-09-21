@@ -1,0 +1,212 @@
+[gd_scene load_steps=6 format=3 uid="uid://chba2t7asi7i5"]
+
+[ext_resource type="Script" path="res://UI/main_menu.gd" id="1_u6r0i"]
+[ext_resource type="Script" path="res://addons/phantom_camera/scripts/phantom_camera/phantom_camera_2d.gd" id="2_0am62"]
+[ext_resource type="PackedScene" uid="uid://c5in1fk0ygbw7" path="res://UI/level_select_button.tscn" id="2_fv8f5"]
+[ext_resource type="Script" path="res://addons/phantom_camera/scripts/resources/tween_resource.gd" id="3_xufhe"]
+
+[sub_resource type="Resource" id="Resource_pnu62"]
+script = ExtResource("3_xufhe")
+duration = 0.0
+transition = 0
+ease = 2
+
+[node name="MainMenu" type="Control" node_paths=PackedStringArray("new_game_button", "credits_button", "exit_game_button", "level_selection_button", "title_screen_panel", "credits_panel", "level_select_panel", "level_select_buttons_list")]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+script = ExtResource("1_u6r0i")
+new_game_button = NodePath("TitleScreen/MainMenuButtons/NewGame")
+credits_button = NodePath("TitleScreen/MainMenuButtons/Credits")
+exit_game_button = NodePath("TitleScreen/MainMenuButtons/Exit")
+level_selection_button = NodePath("TitleScreen/MainMenuButtons/LevelSelect")
+title_screen_panel = NodePath("TitleScreen")
+credits_panel = NodePath("Credits")
+level_select_panel = NodePath("LevelSelect")
+level_select_button = ExtResource("2_fv8f5")
+level_select_buttons_list = NodePath("LevelSelect/ScrollContainer/VBoxContainer")
+
+[node name="TitleScreen" type="Control" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+
+[node name="Title" type="Label" parent="TitleScreen"]
+layout_mode = 1
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -619.0
+offset_right = 715.0
+offset_bottom = 361.0
+grow_horizontal = 2
+theme_override_font_sizes/font_size = 120
+text = "Little Mouse that could"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="MainMenuButtons" type="VBoxContainer" parent="TitleScreen"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -185.0
+offset_top = -241.0
+offset_right = 186.0
+offset_bottom = 541.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+theme_override_constants/separation = 35
+alignment = 1
+
+[node name="NewGame" type="Button" parent="TitleScreen/MainMenuButtons"]
+layout_mode = 2
+text = "New Game"
+
+[node name="LevelSelect" type="Button" parent="TitleScreen/MainMenuButtons"]
+layout_mode = 2
+text = "Level Select
+"
+
+[node name="Settings" type="Button" parent="TitleScreen/MainMenuButtons"]
+layout_mode = 2
+text = "Settings"
+
+[node name="Credits" type="Button" parent="TitleScreen/MainMenuButtons"]
+layout_mode = 2
+text = "Credits
+"
+
+[node name="Exit" type="Button" parent="TitleScreen/MainMenuButtons"]
+layout_mode = 2
+text = "Exit
+"
+
+[node name="Settings" type="Control" parent="."]
+anchors_preset = 0
+offset_right = 40.0
+offset_bottom = 40.0
+
+[node name="LevelSelect" type="Control" parent="."]
+visible = false
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="Title" type="Label" parent="LevelSelect"]
+layout_mode = 1
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -619.0
+offset_right = 715.0
+offset_bottom = 361.0
+grow_horizontal = 2
+theme_override_font_sizes/font_size = 120
+text = "Little Mouse that could"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="ScrollContainer" type="ScrollContainer" parent="LevelSelect"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -185.0
+offset_top = -82.0
+offset_right = 186.0
+offset_bottom = 372.0
+grow_horizontal = 2
+grow_vertical = 2
+horizontal_scroll_mode = 0
+vertical_scroll_mode = 2
+
+[node name="VBoxContainer" type="VBoxContainer" parent="LevelSelect/ScrollContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+theme_override_constants/separation = 15
+alignment = 1
+
+[node name="Credits" type="Control" parent="."]
+visible = false
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="Panel" type="Panel" parent="Credits"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -437.0
+offset_top = -433.0
+offset_right = 433.0
+offset_bottom = 437.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="BackButton" type="Button" parent="Credits/Panel"]
+layout_mode = 1
+anchors_preset = 7
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = -75.0
+offset_top = -97.0
+offset_right = 75.0
+offset_bottom = -38.0
+grow_horizontal = 2
+grow_vertical = 0
+text = "Back"
+
+[node name="Title" type="Label" parent="Credits/Panel"]
+layout_mode = 1
+anchors_preset = 10
+anchor_right = 1.0
+offset_bottom = 23.0
+grow_horizontal = 2
+theme_override_font_sizes/font_size = 121
+text = "CREDITS"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Label" type="Label" parent="Credits/Panel"]
+layout_mode = 0
+offset_top = 166.0
+offset_right = 870.0
+offset_bottom = 773.0
+text = "Programmers: Ikuti and Ktosox
+Art: Lutra
+Music: Eduardo"
+horizontal_alignment = 1
+
+[node name="PhantomCamera2D" type="Node2D" parent="."]
+position = Vector2(960, 540)
+script = ExtResource("2_0am62")
+tween_resource = SubResource("Resource_pnu62")
+draw_limits = true
+
+[connection signal="pressed" from="Credits/Panel/BackButton" to="." method="hide_current_subpanel"]
