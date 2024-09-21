@@ -1,4 +1,4 @@
-[gd_scene load_steps=15 format=3 uid="uid://vq0iyu8mw23j"]
+[gd_scene load_steps=23 format=3 uid="uid://vq0iyu8mw23j"]
 
 [ext_resource type="Script" path="res://core/level_manager.gd" id="1_v64mb"]
 [ext_resource type="PackedScene" uid="uid://bb2gsnet7dj26" path="res://experimental/level_group_a/spikes_1.tscn" id="2_dxwtd"]
@@ -7,9 +7,17 @@
 [ext_resource type="PackedScene" uid="uid://e7ubem06wcup" path="res://experimental/level_group_a/spikes_3.tscn" id="4_7j03k"]
 [ext_resource type="PackedScene" uid="uid://b2kb078w3ek37" path="res://levels/spikes_ikuti_1.tscn" id="4_yt2bq"]
 [ext_resource type="PackedScene" uid="uid://dx3gx0utf5koo" path="res://experimental/level_group_a/spikes_4.tscn" id="5_ohbmn"]
-[ext_resource type="PackedScene" uid="uid://cag0wsyxfnmw0" path="res://levels/spikes_ikuti_2.tscn" id="6_6f735"]
+[ext_resource type="PackedScene" uid="uid://b5o4n5on821rv" path="res://levels/spikes_ikuti_3.tscn" id="7_o4s8s"]
 [ext_resource type="Script" path="res://addons/phantom_camera/scripts/phantom_camera_host/phantom_camera_host.gd" id="7_u0leh"]
 [ext_resource type="PackedScene" uid="uid://d1xsqfcpndium" path="res://levels/crate_ikuti_0.tscn" id="8_vclmn"]
+[ext_resource type="PackedScene" uid="uid://djpgnv853u7mb" path="res://experimental/level_group_a/crate_1.tscn" id="9_42ted"]
+[ext_resource type="PackedScene" uid="uid://cgljokawar1ig" path="res://levels/crate_ikuti_1.tscn" id="11_jnag2"]
+[ext_resource type="PackedScene" uid="uid://d17veu10vekgh" path="res://experimental/level_group_a/crate_2.tscn" id="12_bybfg"]
+[ext_resource type="PackedScene" uid="uid://exla4tnq58g8" path="res://experimental/level_group_a/spring_1.tscn" id="13_n65ql"]
+[ext_resource type="PackedScene" uid="uid://b2nk5mqipojqf" path="res://experimental/level_group_a/wire_1.tscn" id="14_xtmw4"]
+[ext_resource type="PackedScene" uid="uid://dkblh5gik6wjw" path="res://experimental/level_group_a/wire_2.tscn" id="15_2gymo"]
+[ext_resource type="PackedScene" uid="uid://cqly05tixwgmy" path="res://experimental/level_group_a/switch_1.tscn" id="16_0hiwh"]
+[ext_resource type="PackedScene" uid="uid://bdjrfdmaj0s8l" path="res://experimental/level_group_a/switch_2.tscn" id="17_pxgmh"]
 
 [sub_resource type="Animation" id="Animation_ep7fc"]
 length = 0.001
@@ -66,7 +74,7 @@ _data = {
 [node name="LevelManager" type="Node" node_paths=PackedStringArray("animation_player")]
 script = ExtResource("1_v64mb")
 animation_player = NodePath("AnimationPlayer")
-gameplay_levels = Array[PackedScene]([ExtResource("2_tcwfs"), ExtResource("2_dxwtd"), ExtResource("4_yt2bq"), ExtResource("3_gy581"), ExtResource("6_6f735"), ExtResource("4_7j03k"), ExtResource("8_vclmn"), ExtResource("8_vclmn"), ExtResource("5_ohbmn")])
+gameplay_levels = Array[PackedScene]([ExtResource("2_tcwfs"), ExtResource("2_dxwtd"), ExtResource("4_yt2bq"), ExtResource("3_gy581"), ExtResource("4_7j03k"), ExtResource("7_o4s8s"), ExtResource("8_vclmn"), ExtResource("9_42ted"), ExtResource("5_ohbmn"), ExtResource("11_jnag2"), ExtResource("12_bybfg"), ExtResource("13_n65ql"), ExtResource("14_xtmw4"), ExtResource("15_2gymo"), ExtResource("16_0hiwh"), ExtResource("17_pxgmh")])
 
 [node name="CanvasLayer" type="CanvasLayer" parent="."]
 
@@ -86,6 +94,7 @@ libraries = {
 
 [node name="Camera2D" type="Camera2D" parent="."]
 physics_interpolation_mode = 2
+position = Vector2(1104.24, -138.408)
 zoom = Vector2(2, 2)
 
 [node name="PhantomCameraHost" type="Node" parent="Camera2D"]
