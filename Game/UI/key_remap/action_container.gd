@@ -42,6 +42,7 @@ func _input(event: InputEvent) -> void:
 	if listen_for_input and event.is_class("InputEventKey"):
 		add_input_event(event)
 		listen_for_input = false
+		SettingsTracker.save_input_map()
 		#print(InputMap.action_get_events(linked_action))
 
 
