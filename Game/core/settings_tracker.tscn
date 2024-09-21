@@ -1,0 +1,6 @@
+[gd_scene load_steps=2 format=3 uid="uid://dbjryo2k74u3n"]
+
+[ext_resource type="Script" path="res://core/settings_tracker.gd" id="1_bv55p"]
+
+[node name="SettingsTracker" type="Node"]
+script = ExtResource("1_bv55p")

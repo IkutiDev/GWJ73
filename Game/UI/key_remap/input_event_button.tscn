@@ -1,0 +1,8 @@
+[gd_scene load_steps=2 format=3 uid="uid://bh7lyxctikj0g"]
+
+[ext_resource type="Script" path="res://UI/key_remap/input_event_button.gd" id="1_0gxio"]
+
+[node name="Button" type="Button"]
+script = ExtResource("1_0gxio")
+
+[connection signal="pressed" from="." to="." method="_on_pressed"]

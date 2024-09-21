@@ -1,0 +1,43 @@
+[gd_scene load_steps=3 format=3 uid="uid://c86jmxxbxy3ka"]
+
+[ext_resource type="Script" path="res://UI/key_remap/change_keys.gd" id="1_v83x3"]
+[ext_resource type="PackedScene" uid="uid://3n0l7dfggn4" path="res://UI/key_remap/action_container.tscn" id="2_12741"]
+
+[node name="ChangeKeys" type="CanvasLayer"]
+script = ExtResource("1_v83x3")
+
+[node name="ButtonLayout" type="HBoxContainer" parent="."]
+anchors_preset = 10
+anchor_right = 1.0
+offset_top = 130.0
+offset_bottom = 577.0
+grow_horizontal = 2
+
+[node name="Left" parent="ButtonLayout" instance=ExtResource("2_12741")]
+layout_mode = 2
+action = 0
+
+[node name="Jump" parent="ButtonLayout" instance=ExtResource("2_12741")]
+layout_mode = 2
+action = 2
+
+[node name="Right" parent="ButtonLayout" instance=ExtResource("2_12741")]
+layout_mode = 2
+
+[node name="Label" type="Label" parent="."]
+offset_left = 880.0
+offset_top = 272.0
+offset_right = 1002.0
+offset_bottom = 295.0
+text = "in game actions"
+
+[node name="Label2" type="Label" parent="."]
+offset_left = 860.0
+offset_top = 845.0
+offset_right = 1086.0
+offset_bottom = 868.0
+text = "buttons connected to actions"
+
+[connection signal="setting_input" from="ButtonLayout/Left" to="." method="un_set_other_buttons"]
+[connection signal="setting_input" from="ButtonLayout/Jump" to="." method="un_set_other_buttons"]
+[connection signal="setting_input" from="ButtonLayout/Right" to="." method="un_set_other_buttons"]
