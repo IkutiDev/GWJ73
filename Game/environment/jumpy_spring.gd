@@ -22,6 +22,8 @@ func _on_player_detector_body_entered(body: Node2D) -> void:
 
 func _on_player_detector_body_exited(body: Node2D) -> void:
 	$CoilAniamtor.play("RESET")
+	if $Bend.playing:
+		$Bend.stop()
 	$Release.play()
 	apply_jump_boost(0.0)
 	pass # Replace with function body.
