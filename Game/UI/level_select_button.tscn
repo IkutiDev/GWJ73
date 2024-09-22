@@ -1,6 +1,7 @@
-[gd_scene load_steps=2 format=3 uid="uid://c5in1fk0ygbw7"]
+[gd_scene load_steps=3 format=3 uid="uid://c5in1fk0ygbw7"]
 
 [ext_resource type="Script" path="res://UI/level_select_button.gd" id="1_g3oxb"]
+[ext_resource type="AudioStream" uid="uid://bhren1m46r4s0" path="res://sfx/UI.ogg" id="2_ev35c"]
 
 [node name="LevelSelectButton" type="Button"]
 custom_minimum_size = Vector2(100, 96)
@@ -8,3 +9,6 @@ offset_right = 8.0
 offset_bottom = 8.0
 text = "Level 1"
 script = ExtResource("1_g3oxb")
+
+[node name="Click" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("2_ev35c")

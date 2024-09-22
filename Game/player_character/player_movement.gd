@@ -87,7 +87,7 @@ func _physics_process(delta: float) -> void:
 			run_with_acceleration(delta)
 	
 	#print("Actual velocity "+str(character_body_2d.velocity))
-	character_body_2d.move_and_slide()	
+	character_body_2d.move_and_slide()
 		
 func run_with_acceleration(delta : float) -> void:
 	acceleration = max_acceleration if on_ground else max_air_acceleration
