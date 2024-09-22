@@ -3,10 +3,13 @@ extends Node
 @export var animation_player : AnimationPlayer
 
 @export var gameplay_levels : Array[PackedScene]
+@export var end_game_screen : PackedScene
 
 @export var pause_menu_spawn_slot : CanvasLayer
 @export var pause_menu_scene : PackedScene
 @export var pause_menu_button : TextureButton
+
+@export var main_menu : PackedScene
 
 var current_gameplay_level_index := 0
 var latest_index_level := 0
@@ -59,12 +62,22 @@ func open_pause_menu() -> void:
 	
 func close_pause_menu() -> void:
 	paused = false
-	pause_menu_spawn_slot.get_child(1).queue_free()
+	
+	for c in pause_menu_spawn_slot.get_children():
+		if c is PauseMenu:
+			c.queue_free()
+			break
 	Engine.time_scale = 1
 	
+func open_main_menu() -> void:
+	close_pause_menu()
+	get_tree().current_scene.queue_free()
+	var main_menu_instance = main_menu.instantiate()
+	get_tree().root.add_child(main_menu_instance)
+	get_tree().current_scene = main_menu_instance
 	
 func _process(delta: float) -> void:
-	var is_main_menu : bool = get_tree().current_scene.name == "MainMenu"
+	var is_main_menu : bool = get_tree().current_scene.name == "MainMenu" or get_tree().current_scene.name == "WinGameScreen"
 	
 	pause_menu_button.disabled = is_main_menu
 	if is_main_menu:
@@ -75,7 +88,7 @@ func _process(delta: float) -> void:
 func _unhandled_input(event: InputEvent) -> void:
 	
 	if event.is_action_pressed("pause"):
-		if get_tree().current_scene.name == "MainMenu":
+		if get_tree().current_scene.name == "MainMenu" or get_tree().current_scene.name == "WinGameScreen":
 			return
 		if resetting_level or loading_level:
 			return
@@ -121,11 +134,12 @@ func creating_next_level_instance() -> void:
 		latest_index_level = current_gameplay_level_index
 		config.set_value("Player", "levelIndex", latest_index_level)
 		config.save("user://save.cfg")
-	if current_gameplay_level_index >= gameplay_levels.size():
-		push_error("Trying to load level index that's out of bounds! "+str(current_gameplay_level_index))
-		return
-	
+		
 	get_tree().current_scene.queue_free()
-	var level_instance = gameplay_levels[current_gameplay_level_index].instantiate()
-	get_tree().root.add_child(level_instance)
-	get_tree().current_scene = level_instance
+	var scene_instance
+	if current_gameplay_level_index >= gameplay_levels.size():
+		scene_instance = end_game_screen.instantiate()
+	else:
+		scene_instance = gameplay_levels[current_gameplay_level_index].instantiate()
+	get_tree().root.add_child(scene_instance)
+	get_tree().current_scene = scene_instance

@@ -63,7 +63,7 @@ tile_set = ExtResource("3_bvuwe")
 collision_visibility_mode = 1
 
 [node name="PlayerCharacter" parent="." instance=ExtResource("4_env0s")]
-position = Vector2(-120, 80)
+position = Vector2(-120, 88)
 
 [node name="Spikes" type="Node2D" parent="."]
 position = Vector2(8, 40)

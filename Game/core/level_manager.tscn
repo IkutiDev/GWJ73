@@ -1,4 +1,4 @@
-[gd_scene load_steps=28 format=3 uid="uid://vq0iyu8mw23j"]
+[gd_scene load_steps=30 format=3 uid="uid://vq0iyu8mw23j"]
 
 [ext_resource type="Script" path="res://core/level_manager.gd" id="1_v64mb"]
 [ext_resource type="PackedScene" uid="uid://bb2gsnet7dj26" path="res://experimental/level_group_a/spikes_1.tscn" id="2_dxwtd"]
@@ -20,7 +20,9 @@
 [ext_resource type="PackedScene" uid="uid://cqly05tixwgmy" path="res://experimental/level_group_a/switch_1.tscn" id="16_0hiwh"]
 [ext_resource type="PackedScene" uid="uid://bdjrfdmaj0s8l" path="res://experimental/level_group_a/switch_2.tscn" id="17_pxgmh"]
 [ext_resource type="PackedScene" uid="uid://dm8f0m8grqiiv" path="res://UI/pause_menu.tscn" id="18_qdvq2"]
+[ext_resource type="PackedScene" uid="uid://c02cpkj64d5i1" path="res://UI/win_game_screen.tscn" id="19_wcqje"]
 [ext_resource type="Texture2D" uid="uid://0y67gpc7pdsq" path="res://UI/Double/pause.png" id="21_4qy44"]
+[ext_resource type="PackedScene" uid="uid://chba2t7asi7i5" path="res://UI/main_menu.tscn" id="21_md0p6"]
 [ext_resource type="Texture2D" uid="uid://dtdqi402pedcj" path="res://UI/Double/panel_brown_damaged_dark.png" id="21_pssb8"]
 [ext_resource type="Texture2D" uid="uid://4mvp4pqhv7es" path="res://UI/Double/panel_brown_dark_corners_b.png" id="22_blifo"]
 
@@ -80,34 +82,12 @@ _data = {
 script = ExtResource("1_v64mb")
 animation_player = NodePath("AnimationPlayer")
 gameplay_levels = Array[PackedScene]([ExtResource("2_tcwfs"), ExtResource("2_dxwtd"), ExtResource("4_yt2bq"), ExtResource("3_gy581"), ExtResource("6_6f735"), ExtResource("4_7j03k"), ExtResource("7_o4s8s"), ExtResource("8_vclmn"), ExtResource("9_42ted"), ExtResource("5_ohbmn"), ExtResource("11_jnag2"), ExtResource("12_bybfg"), ExtResource("13_n65ql"), ExtResource("14_xtmw4"), ExtResource("15_2gymo"), ExtResource("16_0hiwh"), ExtResource("17_pxgmh")])
+end_game_screen = ExtResource("19_wcqje")
 pause_menu_spawn_slot = NodePath("PauseMenuCanvas")
 pause_menu_scene = ExtResource("18_qdvq2")
 pause_menu_button = NodePath("PauseMenuCanvas/TextureButton")
+main_menu = ExtResource("21_md0p6")
 metadata/_edit_vertical_guides_ = [2197.0, 2352.0]
-
-[node name="FadeCanvas" type="CanvasLayer" parent="."]
-
-[node name="ColorRect" type="ColorRect" parent="FadeCanvas"]
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
-grow_horizontal = 2
-grow_vertical = 2
-mouse_filter = 2
-color = Color(0, 0, 0, 0)
-
-[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
-libraries = {
-"": SubResource("AnimationLibrary_ipmq8")
-}
-
-[node name="Camera2D" type="Camera2D" parent="."]
-physics_interpolation_mode = 2
-position = Vector2(2380.74, 784.187)
-zoom = Vector2(2, 2)
-
-[node name="PhantomCameraHost" type="Node" parent="Camera2D"]
-script = ExtResource("7_u0leh")
 
 [node name="PauseMenuCanvas" type="CanvasLayer" parent="."]
 
@@ -132,5 +112,28 @@ grow_horizontal = 2
 grow_vertical = 2
 texture = ExtResource("21_4qy44")
 expand_mode = 1
+
+[node name="FadeCanvas" type="CanvasLayer" parent="."]
+
+[node name="ColorRect" type="ColorRect" parent="FadeCanvas"]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+color = Color(0, 0, 0, 0)
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+libraries = {
+"": SubResource("AnimationLibrary_ipmq8")
+}
+
+[node name="Camera2D" type="Camera2D" parent="."]
+physics_interpolation_mode = 2
+position = Vector2(3036.19, 734.077)
+
+[node name="PhantomCameraHost" type="Node" parent="Camera2D"]
+script = ExtResource("7_u0leh")
 
 [connection signal="pressed" from="PauseMenuCanvas/TextureButton" to="." method="open_pause_menu"]

@@ -5,7 +5,7 @@
 [ext_resource type="PackedScene" uid="uid://c5in1fk0ygbw7" path="res://UI/level_select_button.tscn" id="2_fv8f5"]
 [ext_resource type="Theme" uid="uid://d2luyiqyrk76m" path="res://UI/new_theme.tres" id="3_jldl5"]
 [ext_resource type="Script" path="res://addons/phantom_camera/scripts/resources/tween_resource.gd" id="3_xufhe"]
-[ext_resource type="Theme" uid="uid://s8urb4gjuhb3" path="res://UI/new_theme_2.tres" id="4_pqrs8"]
+[ext_resource type="Theme" uid="uid://s8urb4gjuhb3" path="res://environment/new_theme_2.tres" id="4_pqrs8"]
 
 [sub_resource type="Resource" id="Resource_pnu62"]
 script = ExtResource("3_xufhe")

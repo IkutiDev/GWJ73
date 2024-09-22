@@ -28,6 +28,8 @@ func _enter_tree() -> void:
 		level_button_instance.level_index = i
 		if LevelManager.latest_index_level < i:
 			level_button_instance.disabled = true
+			level_button_instance.focus_mode = Control.FOCUS_NONE
+			level_button_instance.text = ""
 		else:	
 			level_button_instance.text = LevelManager.gameplay_levels[i].instantiate().name
 		level_select_buttons_list.add_child(level_button_instance)
