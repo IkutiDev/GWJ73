@@ -44,6 +44,7 @@ func exit_game() -> void:
 	get_tree().quit()
 
 func start_new_game() -> void:
+	$Click.play()
 	LevelManager.start_new_game()
 
 

@@ -1,4 +1,4 @@
-[gd_scene load_steps=167 format=3 uid="uid://cqh07empuga21"]
+[gd_scene load_steps=174 format=3 uid="uid://cqh07empuga21"]
 
 [ext_resource type="Script" path="res://player_character/player_character.gd" id="1_5vaq2"]
 [ext_resource type="Script" path="res://player_character/player_movement.gd" id="1_hvlaj"]
@@ -164,6 +164,8 @@
 [ext_resource type="Texture2D" uid="uid://bkbrhq3xig8ej" path="res://player_character/art/rope_climb/rope_climb (17).png" id="145_gkpnx"]
 [ext_resource type="Texture2D" uid="uid://cqb2snahs1xxm" path="res://player_character/art/rope_climb/rope_climb (18).png" id="146_wt6r5"]
 [ext_resource type="Texture2D" uid="uid://cyvy6f7qsgyfh" path="res://player_character/art/rope_climb/rope_climb (19).png" id="147_mwk6c"]
+[ext_resource type="AudioStream" uid="uid://cku7i7fwli5q8" path="res://sfx/steps1.ogg" id="165_puukc"]
+[ext_resource type="AudioStream" uid="uid://dejjp2i63ufr1" path="res://sfx/steps2.ogg" id="166_e3ett"]
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_7monb"]
 radius = 12.0
@@ -699,6 +701,105 @@ animations = [{
 "speed": 18.0
 }]
 
+[sub_resource type="AudioStreamRandomizer" id="AudioStreamRandomizer_86is5"]
+random_pitch = 1.2
+random_volume_offset_db = 4.0
+streams_count = 2
+stream_0/stream = ExtResource("165_puukc")
+stream_1/stream = ExtResource("166_e3ett")
+
+[sub_resource type="Animation" id="Animation_us1s7"]
+resource_name = "start"
+length = 4.0
+capture_included = true
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Steps:playing")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [true]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Steps:volume_db")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0.2),
+"transitions": PackedFloat32Array(1),
+"update": 2,
+"values": [-6.0]
+}
+
+[sub_resource type="Animation" id="Animation_vi5mj"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Steps:playing")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [false]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Steps:volume_db")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [-80.0]
+}
+
+[sub_resource type="Animation" id="Animation_51700"]
+resource_name = "stop"
+length = 0.5
+capture_included = true
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Steps:playing")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0.5),
+"transitions": PackedFloat32Array(1),
+"update": 2,
+"values": [false]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Steps:volume_db")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.4),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [-6.0, -80.0]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_0abjb"]
+_data = {
+"RESET": SubResource("Animation_vi5mj"),
+"start": SubResource("Animation_us1s7"),
+"stop": SubResource("Animation_51700")
+}
+
 [node name="PlayerCharacter" type="CharacterBody2D" node_paths=PackedStringArray("player_jump", "player_move", "player_climb", "player_health", "player_visual") groups=["player"]]
 position = Vector2(7, 0)
 collision_layer = 4
@@ -763,3 +864,16 @@ sprite_frames = SubResource("SpriteFrames_cf2wf")
 animation = &"idle"
 autoplay = "idle"
 offset = Vector2(0, 60)
+
+[node name="Steps" type="AudioStreamPlayer2D" parent="PlayerVisual"]
+stream = SubResource("AudioStreamRandomizer_86is5")
+volume_db = -80.0
+bus = &"SFX"
+playback_type = 1
+
+[node name="StepAdjuster" type="AnimationPlayer" parent="PlayerVisual"]
+libraries = {
+"": SubResource("AnimationLibrary_0abjb")
+}
+
+[connection signal="animation_changed" from="PlayerVisual/AnimatedSprite2D" to="PlayerVisual" method="_on_animated_sprite_2d_animation_changed"]

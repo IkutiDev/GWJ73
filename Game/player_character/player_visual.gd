@@ -76,3 +76,12 @@ func death() -> void:
 
 func respawn() -> void:
 	disable_animations = false
+
+
+func _on_animated_sprite_2d_animation_changed() -> void:
+	var current_aniamtion = $AnimatedSprite2D.animation
+	if current_aniamtion == "run":
+		$StepAdjuster.play("start")
+	else:
+		$StepAdjuster.play("stop")
+	pass # Replace with function body.
