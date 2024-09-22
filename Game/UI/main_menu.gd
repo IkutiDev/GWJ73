@@ -25,6 +25,9 @@ func _enter_tree() -> void:
 	new_game_button.pressed.connect(start_new_game)
 	level_selection_button.pressed.connect(show_level_select)
 	
+	if LevelManager.latest_index_level == 0:
+		level_selection_button.disabled = true
+	
 	for i in LevelManager.gameplay_levels.size():
 		var level_button_instance = level_select_button.instantiate() as LevelSelectButton
 		level_button_instance.level_index = i

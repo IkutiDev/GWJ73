@@ -108,10 +108,10 @@ func _unhandled_input(event: InputEvent) -> void:
 		else:
 			open_pause_menu()
 	
-	if OS.has_feature("standalone"):
-		return
-	if event.is_action_pressed("cheat_go_next_level"):
-		load_next_level()
+	#if OS.has_feature("standalone"):
+		#return
+	#if event.is_action_pressed("cheat_go_next_level"):
+		#load_next_level()
 
 func fade_animation_finished(anim : StringName) -> void:
 	if anim == "fade_out":

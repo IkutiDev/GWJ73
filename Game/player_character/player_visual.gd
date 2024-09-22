@@ -71,6 +71,8 @@ func stop_push_animation() -> void:
 	disable_animations = false
 
 func death() -> void:
+	if animated_sprite_2d.animation == "death":
+		return
 	animated_sprite_2d.play("death")
 	disable_animations = true
 

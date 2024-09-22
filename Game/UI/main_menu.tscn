@@ -239,7 +239,7 @@ offset_bottom = 773.0
 text = "Programming and level design: Ikuti and Ktosox
 Art: Lutra
 UI Art: Kenney
-Music and sound effects: Edoardo "
+Music and sound effects: Edoardo Ardizzone"
 horizontal_alignment = 1
 
 [node name="PhantomCamera2D" type="Node2D" parent="."]
