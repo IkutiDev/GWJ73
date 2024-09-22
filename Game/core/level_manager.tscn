@@ -79,7 +79,7 @@ _data = {
 "fade_out": SubResource("Animation_rths1")
 }
 
-[node name="LevelManager" type="Node" node_paths=PackedStringArray("animation_player", "pause_menu_spawn_slot", "pause_menu_button")]
+[node name="LevelManager" type="Node" node_paths=PackedStringArray("animation_player", "pause_menu_spawn_slot", "pause_menu_button", "curent_timer_label", "best_time_label", "timer_canvas")]
 script = ExtResource("1_v64mb")
 animation_player = NodePath("AnimationPlayer")
 gameplay_levels = Array[PackedScene]([ExtResource("2_tcwfs"), ExtResource("2_dxwtd"), ExtResource("4_yt2bq"), ExtResource("3_gy581"), ExtResource("6_6f735"), ExtResource("4_7j03k"), ExtResource("7_o4s8s"), ExtResource("8_vclmn"), ExtResource("9_42ted"), ExtResource("5_ohbmn"), ExtResource("11_jnag2"), ExtResource("12_bybfg"), ExtResource("13_n65ql"), ExtResource("14_xtmw4"), ExtResource("15_2gymo"), ExtResource("16_0hiwh"), ExtResource("17_pxgmh")])
@@ -89,7 +89,43 @@ pause_menu_scene = ExtResource("18_qdvq2")
 pause_menu_button = NodePath("PauseMenuCanvas/TextureButton")
 main_menu = ExtResource("21_md0p6")
 intro_scene = ExtResource("22_jntm4")
+curent_timer_label = NodePath("CanvasLayer/Label3")
+best_time_label = NodePath("CanvasLayer/Label4")
+timer_canvas = NodePath("CanvasLayer")
 metadata/_edit_vertical_guides_ = [2197.0, 2352.0]
+
+[node name="CanvasLayer" type="CanvasLayer" parent="."]
+visible = false
+
+[node name="Label5" type="Label" parent="CanvasLayer"]
+offset_top = 60.0
+offset_right = 88.0
+offset_bottom = 106.0
+theme_override_font_sizes/font_size = 33
+text = "Time:"
+
+[node name="Label3" type="Label" parent="CanvasLayer"]
+offset_left = 93.0
+offset_top = 60.0
+offset_right = 234.0
+offset_bottom = 106.0
+theme_override_font_sizes/font_size = 33
+text = "99999.00"
+
+[node name="Label4" type="Label" parent="CanvasLayer"]
+offset_left = 164.0
+offset_top = 4.0
+offset_right = 305.0
+offset_bottom = 50.0
+theme_override_font_sizes/font_size = 33
+text = "99999.00"
+
+[node name="Label2" type="Label" parent="CanvasLayer"]
+offset_top = 4.0
+offset_right = 160.0
+offset_bottom = 50.0
+theme_override_font_sizes/font_size = 33
+text = "Best time:"
 
 [node name="PauseMenuCanvas" type="CanvasLayer" parent="."]
 

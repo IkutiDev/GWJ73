@@ -22,27 +22,48 @@ var playing_intro := false
 
 var paused := false
 
+var playing_level := false
+
+@export var curent_timer_label : Label
+@export var best_time_label : Label
+@export var timer_canvas : CanvasLayer
+var timer := 0.0
+
+var save_file : ConfigFile
+
 func _enter_tree() -> void:
+	best_time_label.text = "0.00"
 	animation_player.animation_finished.connect(fade_animation_finished)
-	var config = ConfigFile.new()
-	var err = config.load("user://save.cfg")
+	save_file = ConfigFile.new()
+	var err = save_file.load("user://save.cfg")
 
 	if err == OK:
-		latest_index_level = config.get_value("Player", "levelIndex", TYPE_INT)
+		latest_index_level = save_file.get_value("Player", "levelIndex", TYPE_INT)
 	
 func start_new_game() -> void:
 	current_gameplay_level_index = 0
 	playing_intro = true
+	playing_level = false
 	animation_player.play("fade_out")
 	
 func load_level_by_index(index : int) -> void:
 	current_gameplay_level_index = index
 	loading_level = true
+	playing_level = false
 	animation_player.play("fade_out")
 
 func load_next_level() -> void:
 	current_gameplay_level_index += 1
 	loading_level = true
+	playing_level = false
+	var err = save_file.load("user://save.cfg")
+	if err == OK:
+		var best_time := INF
+		if save_file.has_section_key("Player", get_tree().current_scene.name):
+			best_time = save_file.get_value("Player", get_tree().current_scene.name, TYPE_FLOAT)
+		if best_time > timer:
+			save_file.set_value("Player", get_tree().current_scene.name, timer)
+			save_file.save("user://save.cfg")
 	animation_player.play("fade_out")
 	
 func reset_current_level() -> void:
@@ -52,6 +73,7 @@ func reset_current_level() -> void:
 	if player_character != null:
 		player_character.freeze_movement()
 	resetting_level = true
+	playing_level = false
 	animation_player.play("fade_out")
 	
 func open_pause_menu() -> void:
@@ -78,6 +100,7 @@ func close_pause_menu() -> void:
 	Engine.time_scale = 1
 	
 func open_main_menu() -> void:
+	timer_canvas.hide()
 	close_pause_menu()
 	get_tree().current_scene.queue_free()
 	var main_menu_instance = main_menu.instantiate()
@@ -92,6 +115,10 @@ func _process(delta: float) -> void:
 		pause_menu_button.hide()
 	else:
 		pause_menu_button.show()
+		
+	if playing_level:
+		timer += delta
+		curent_timer_label.text = ("%.2f"%timer)
 	
 func _unhandled_input(event: InputEvent) -> void:
 	
@@ -115,6 +142,8 @@ func _unhandled_input(event: InputEvent) -> void:
 
 func fade_animation_finished(anim : StringName) -> void:
 	if anim == "fade_out":
+		curent_timer_label.text = "0.00"
+		timer = 0
 		var player_character : PlayerCharacter = null
 		if get_tree().get_nodes_in_group("player").size() > 0:
 			player_character = get_tree().get_nodes_in_group("player")[0]
@@ -123,6 +152,7 @@ func fade_animation_finished(anim : StringName) -> void:
 		if loading_level:
 			if get_tree().current_scene.name == "Intro":
 				get_tree().current_scene.queue_free()
+			timer_canvas.show()
 			creating_next_level_instance()
 		if playing_intro:
 			play_intro()
@@ -135,6 +165,7 @@ func fade_animation_finished(anim : StringName) -> void:
 	if anim == "fade_in":
 		if playing_intro:
 			return
+		playing_level = true
 		if get_tree().get_nodes_in_group("player").size() > 0:
 			var player_character : PlayerCharacter = get_tree().get_nodes_in_group("player")[0]
 			player_character.unfreeze_movement()
@@ -169,3 +200,9 @@ func creating_next_level_instance() -> void:
 		scene_instance = gameplay_levels[current_gameplay_level_index].instantiate()
 	get_tree().root.add_child(scene_instance)
 	get_tree().current_scene = scene_instance
+	
+	print(get_tree().current_scene.name)
+	if save_file.has_section_key("Player", get_tree().current_scene.name):
+		best_time_label.text = ("%.2f"%config.get_value("Player", get_tree().current_scene.name, TYPE_FLOAT)) 
+	else:
+		best_time_label.text ="0.00"
