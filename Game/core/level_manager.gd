@@ -6,6 +6,7 @@ extends Node
 
 @export var pause_menu_spawn_slot : CanvasLayer
 @export var pause_menu_scene : PackedScene
+@export var pause_menu_button : TextureButton
 
 var current_gameplay_level_index := 0
 var latest_index_level := 0
@@ -43,6 +44,14 @@ func reset_current_level() -> void:
 	animation_player.play("fade_out")
 	
 func open_pause_menu() -> void:
+	
+	if get_tree().current_scene.name == "MainMenu":
+		return
+	if resetting_level or loading_level:
+		return
+	if not animation_player.current_animation == "":
+		return
+	
 	Engine.time_scale = 0
 	var pause_menu_instance = pause_menu_scene.instantiate()
 	pause_menu_spawn_slot.add_child(pause_menu_instance)
@@ -50,9 +59,18 @@ func open_pause_menu() -> void:
 	
 func close_pause_menu() -> void:
 	paused = false
-	pause_menu_spawn_slot.get_child(0).queue_free()
+	pause_menu_spawn_slot.get_child(1).queue_free()
 	Engine.time_scale = 1
 	
+	
+func _process(delta: float) -> void:
+	var is_main_menu : bool = get_tree().current_scene.name == "MainMenu"
+	
+	pause_menu_button.disabled = is_main_menu
+	if is_main_menu:
+		pause_menu_button.hide()
+	else:
+		pause_menu_button.show()
 	
 func _unhandled_input(event: InputEvent) -> void:
 	

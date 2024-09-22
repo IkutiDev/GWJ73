@@ -1,7 +1,8 @@
-[gd_scene load_steps=3 format=3 uid="uid://dm8f0m8grqiiv"]
+[gd_scene load_steps=4 format=3 uid="uid://dm8f0m8grqiiv"]
 
 [ext_resource type="Script" path="res://UI/pause_menu.gd" id="1_4ocke"]
 [ext_resource type="PackedScene" uid="uid://chba2t7asi7i5" path="res://UI/main_menu.tscn" id="2_5wpqd"]
+[ext_resource type="Theme" uid="uid://d2luyiqyrk76m" path="res://UI/new_theme.tres" id="3_e8w62"]
 
 [node name="PauseMenu" type="ColorRect"]
 anchors_preset = 15
@@ -9,7 +10,6 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
-mouse_filter = 2
 color = Color(0.0745098, 0.0745098, 0.0745098, 0.498039)
 script = ExtResource("1_4ocke")
 main_menu_scene = ExtResource("2_5wpqd")
@@ -24,21 +24,27 @@ offset_left = -240.0
 offset_right = 240.0
 grow_horizontal = 2
 grow_vertical = 2
+theme = ExtResource("3_e8w62")
+theme_override_constants/separation = 75
 alignment = 1
 
 [node name="BackToGame" type="Button" parent="VBoxContainer"]
+custom_minimum_size = Vector2(0, 96)
 layout_mode = 2
 text = "Back to Game"
 
 [node name="Button2" type="Button" parent="VBoxContainer"]
+custom_minimum_size = Vector2(0, 96)
 layout_mode = 2
 text = "Settings"
 
 [node name="Reset" type="Button" parent="VBoxContainer"]
+custom_minimum_size = Vector2(0, 96)
 layout_mode = 2
 text = "Reset Level"
 
 [node name="Button4" type="Button" parent="VBoxContainer"]
+custom_minimum_size = Vector2(0, 96)
 layout_mode = 2
 text = "Main Menu"
 
