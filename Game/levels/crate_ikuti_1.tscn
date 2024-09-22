@@ -48,9 +48,6 @@ collision_visibility_mode = 1
 [node name="PlayerCharacter" parent="." instance=ExtResource("5_kijbh")]
 position = Vector2(-208, 224)
 
-[node name="Crate" parent="." instance=ExtResource("6_ft17k")]
-position = Vector2(8, -192)
-
 [node name="ExamplePin" parent="." instance=ExtResource("7_w00b3")]
 position = Vector2(72, 192)
 
@@ -107,3 +104,6 @@ position = Vector2(344, 192)
 
 [node name="ExamplePin19" parent="." instance=ExtResource("7_w00b3")]
 position = Vector2(360, 192)
+
+[node name="Crate" parent="." instance=ExtResource("6_ft17k")]
+position = Vector2(8, -192)

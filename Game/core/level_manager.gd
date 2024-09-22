@@ -134,7 +134,6 @@ func fade_animation_finished(anim : StringName) -> void:
 	
 	if anim == "fade_in":
 		if playing_intro:
-			end_intro()
 			return
 		if get_tree().get_nodes_in_group("player").size() > 0:
 			var player_character : PlayerCharacter = get_tree().get_nodes_in_group("player")[0]
@@ -142,13 +141,13 @@ func fade_animation_finished(anim : StringName) -> void:
 
 func play_intro() -> void:
 	get_tree().current_scene.queue_free()
-	var intro_instance := intro_scene.instantiate()
+	var intro_instance := intro_scene.instantiate() as Intro
 	get_tree().root.add_child(intro_instance)
 	get_tree().current_scene = intro_instance
+	intro_instance.intro_finished.connect(end_intro)
 
 func end_intro() -> void:
 	playing_intro = false
-	await get_tree().create_timer(5.0).timeout
 	load_level_by_index(0)
 
 func creating_next_level_instance() -> void:

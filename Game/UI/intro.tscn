@@ -1,14 +1,28 @@
-[gd_scene format=3 uid="uid://4jg4v2vbs8f6"]
+[gd_scene load_steps=6 format=3 uid="uid://4jg4v2vbs8f6"]
 
-[node name="Intro" type="Control"]
+[ext_resource type="Script" path="res://UI/intro.gd" id="1_yhged"]
+[ext_resource type="VideoStream" path="res://UI/in.ogv" id="1_yutih"]
+[ext_resource type="Script" path="res://addons/phantom_camera/scripts/phantom_camera/phantom_camera_2d.gd" id="2_nbtw4"]
+[ext_resource type="Script" path="res://addons/phantom_camera/scripts/resources/tween_resource.gd" id="3_ewsdp"]
+
+[sub_resource type="Resource" id="Resource_s2yq7"]
+script = ExtResource("3_ewsdp")
+duration = 0.0
+transition = 0
+ease = 2
+
+[node name="Intro" type="Control" node_paths=PackedStringArray("video_player")]
 layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
+script = ExtResource("1_yhged")
+video_player = NodePath("VideoStreamPlayer")
 
 [node name="ColorRect" type="ColorRect" parent="."]
+visible = false
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
@@ -32,3 +46,22 @@ grow_vertical = 2
 theme_override_colors/font_color = Color(0, 0, 0, 1)
 theme_override_font_sizes/font_size = 321
 text = "INTRO"
+
+[node name="VideoStreamPlayer" type="VideoStreamPlayer" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+stream = ExtResource("1_yutih")
+volume_db = -80.0
+autoplay = true
+bus = &"SFX"
+
+[node name="PhantomCamera2D" type="Node2D" parent="."]
+position = Vector2(960, 540)
+script = ExtResource("2_nbtw4")
+zoom = Vector2(0.5, 0.5)
+tween_resource = SubResource("Resource_s2yq7")
+draw_limits = true

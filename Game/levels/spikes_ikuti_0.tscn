@@ -32,11 +32,6 @@ position = Vector2(160, 16)
 scale = Vector2(0.5, 0.5)
 texture = ExtResource("2_eo073")
 
-[node name="Ground" type="Sprite2D" parent="."]
-position = Vector2(160, 16)
-scale = Vector2(0.5, 0.5)
-texture = ExtResource("7_wbd57")
-
 [node name="FinishPoint" parent="." instance=ExtResource("6_s8h6u")]
 position = Vector2(448, 72)
 
@@ -61,6 +56,11 @@ collision_visibility_mode = 1
 
 [node name="PlayerCharacter" parent="." instance=ExtResource("4_env0s")]
 position = Vector2(-120, 88)
+
+[node name="Ground" type="Sprite2D" parent="."]
+position = Vector2(160, 16)
+scale = Vector2(0.5, 0.5)
+texture = ExtResource("7_wbd57")
 
 [node name="Spikes" type="Node2D" parent="."]
 position = Vector2(8, 40)
