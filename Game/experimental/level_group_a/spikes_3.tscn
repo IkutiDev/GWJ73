@@ -34,7 +34,7 @@ tile_set = ExtResource("1_yfu8q")
 collision_visibility_mode = 1
 
 [node name="PlayerCharacter" parent="." instance=ExtResource("2_81iwe")]
-position = Vector2(576, 248)
+position = Vector2(576, 256)
 
 [node name="PhantomCamera2D" type="Node2D" parent="."]
 position = Vector2(160, 16)

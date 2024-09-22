@@ -1,4 +1,4 @@
-[gd_scene load_steps=16 format=4 uid="uid://cqly05tixwgmy"]
+[gd_scene load_steps=17 format=4 uid="uid://cqly05tixwgmy"]
 
 [ext_resource type="TileSet" uid="uid://cq4qhq8y4udas" path="res://experimental/level_group_a/sandbox_tileset.tres" id="1_la0nn"]
 [ext_resource type="Texture2D" uid="uid://b44xr6hdvqgnl" path="res://levels/art/new/level15/tlo.png" id="1_oan06"]
@@ -10,6 +10,7 @@
 [ext_resource type="PackedScene" uid="uid://c3ba6ngtqm7fj" path="res://environment/power_switch.tscn" id="5_31t7y"]
 [ext_resource type="PackedScene" uid="uid://xfwcmndnkomw" path="res://environment/electric_wire.tscn" id="5_ya4qa"]
 [ext_resource type="PackedScene" uid="uid://bmou427kup6vh" path="res://environment/finish.tscn" id="7_xo5jt"]
+[ext_resource type="PackedScene" uid="uid://pd78setlifv6" path="res://environment/example_pin.tscn" id="11_54bs0"]
 
 [sub_resource type="Curve2D" id="Curve2D_qrtp5"]
 _data = {
@@ -70,7 +71,7 @@ scale = Vector2(0.5, 0.5)
 texture = ExtResource("3_kleiu")
 
 [node name="PlayerCharacter" parent="." instance=ExtResource("2_7apm2")]
-position = Vector2(200, 224)
+position = Vector2(200, 240)
 
 [node name="PhantomCamera2D" type="Node2D" parent="."]
 position = Vector2(160, 16)
@@ -105,5 +106,14 @@ position = Vector2(424, 224)
 [node name="CollisionShape2D" parent="FinishPoint" index="0"]
 position = Vector2(1, -32)
 shape = SubResource("RectangleShape2D_krr22")
+
+[node name="ExamplePin10" parent="." instance=ExtResource("11_54bs0")]
+position = Vector2(32, -80)
+
+[node name="ExamplePin11" parent="." instance=ExtResource("11_54bs0")]
+position = Vector2(360, -80)
+
+[node name="ExamplePin12" parent="." instance=ExtResource("11_54bs0")]
+position = Vector2(584, 272)
 
 [editable path="FinishPoint"]

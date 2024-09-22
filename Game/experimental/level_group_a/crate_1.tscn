@@ -34,7 +34,7 @@ tile_set = ExtResource("1_m8grs")
 collision_visibility_mode = 1
 
 [node name="PlayerCharacter" parent="." instance=ExtResource("2_bvr5p")]
-position = Vector2(104, 256)
+position = Vector2(-32, 256)
 
 [node name="PhantomCamera2D" type="Node2D" parent="."]
 position = Vector2(160, 16)
@@ -45,10 +45,10 @@ tween_resource = SubResource("Resource_26opq")
 draw_limits = true
 
 [node name="Crate" parent="." instance=ExtResource("5_woum7")]
-position = Vector2(304, 206)
+position = Vector2(304, 176)
 
 [node name="Crate2" parent="." instance=ExtResource("5_woum7")]
-position = Vector2(320, -2)
+position = Vector2(320, -24)
 
 [node name="Label" type="Label" parent="."]
 visible = false

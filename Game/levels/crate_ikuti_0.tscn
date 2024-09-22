@@ -55,9 +55,9 @@ collision_visibility_mode = 1
 position = Vector2(-208, 224)
 
 [node name="Crate" parent="." instance=ExtResource("6_5518e")]
-position = Vector2(-104, 168)
+position = Vector2(-104, 144)
 
 [node name="Crate2" parent="." instance=ExtResource("6_5518e")]
-position = Vector2(400, 168)
+position = Vector2(400, 144)
 
 [editable path="FinishPoint"]

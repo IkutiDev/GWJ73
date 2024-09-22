@@ -49,7 +49,7 @@ collision_visibility_mode = 1
 position = Vector2(-208, 224)
 
 [node name="Crate" parent="." instance=ExtResource("6_ft17k")]
-position = Vector2(8, -160)
+position = Vector2(8, -192)
 
 [node name="ExamplePin" parent="." instance=ExtResource("7_w00b3")]
 position = Vector2(72, 192)

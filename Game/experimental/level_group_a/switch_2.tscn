@@ -52,7 +52,7 @@ scale = Vector2(0.5, 0.5)
 texture = ExtResource("2_xsxcp")
 
 [node name="PlayerCharacter" parent="." instance=ExtResource("2_g10jt")]
-position = Vector2(336, 240)
+position = Vector2(336, 256)
 
 [node name="PhantomCamera2D" type="Node2D" parent="."]
 position = Vector2(160, 16)
@@ -69,17 +69,32 @@ connected_devices = Array[NodePath]([NodePath("../ElectricWire"), NodePath("../E
 [node name="ExamplePin" parent="." instance=ExtResource("6_gh88u")]
 position = Vector2(-40, 272)
 
+[node name="ExamplePin10" parent="." instance=ExtResource("6_gh88u")]
+position = Vector2(128, 272)
+
 [node name="ExamplePin2" parent="." instance=ExtResource("6_gh88u")]
 position = Vector2(249.14, 256)
 
 [node name="ExamplePin4" parent="." instance=ExtResource("6_gh88u")]
 position = Vector2(8, -93.445)
 
+[node name="ExamplePin8" parent="." instance=ExtResource("6_gh88u")]
+position = Vector2(-216, -93)
+
 [node name="ExamplePin5" parent="." instance=ExtResource("6_gh88u")]
 position = Vector2(360, -109.97)
 
+[node name="ExamplePin9" parent="." instance=ExtResource("6_gh88u")]
+position = Vector2(232, -110)
+
 [node name="ExamplePin3" parent="." instance=ExtResource("6_gh88u")]
 position = Vector2(424, 49.975)
+
+[node name="ExamplePin6" parent="." instance=ExtResource("6_gh88u")]
+position = Vector2(296, 50)
+
+[node name="ExamplePin7" parent="." instance=ExtResource("6_gh88u")]
+position = Vector2(184, 50)
 
 [node name="TileMapLayer" type="TileMapLayer" parent="."]
 visible = false
@@ -88,7 +103,7 @@ tile_set = ExtResource("1_fyx03")
 collision_visibility_mode = 1
 
 [node name="Crate" parent="." instance=ExtResource("8_fl21c")]
-position = Vector2(24, 0)
+position = Vector2(24, -8)
 
 [node name="FinishPoint" parent="." instance=ExtResource("9_6pnw0")]
 position = Vector2(560, -144)

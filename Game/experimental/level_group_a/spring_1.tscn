@@ -35,7 +35,7 @@ tile_set = ExtResource("1_4r21w")
 collision_visibility_mode = 1
 
 [node name="PlayerCharacter" parent="." instance=ExtResource("2_amovi")]
-position = Vector2(107, 217)
+position = Vector2(168, 255)
 
 [node name="PhantomCamera2D" type="Node2D" parent="."]
 position = Vector2(160, 16)
@@ -68,6 +68,22 @@ position = Vector2(408, 256)
 
 [node name="ExamplePin5" parent="." instance=ExtResource("6_cf6o5")]
 position = Vector2(-248, 96)
+
+[node name="ExamplePin9" parent="." instance=ExtResource("6_cf6o5")]
+position = Vector2(-76, 96)
+
+[node name="ExamplePin6" parent="." instance=ExtResource("6_cf6o5")]
+position = Vector2(-176, -48)
+
+[node name="ExamplePin7" parent="." instance=ExtResource("6_cf6o5")]
+position = Vector2(-24, -48)
+
+[node name="ExamplePin8" parent="." instance=ExtResource("6_cf6o5")]
+position = Vector2(112, 0)
+
+[node name="ExamplePin10" parent="." instance=ExtResource("6_cf6o5")]
+position = Vector2(448, -243)
+rotation = 3.14159
 
 [node name="FinishPoint" parent="." instance=ExtResource("7_735yj")]
 position = Vector2(616, -128)

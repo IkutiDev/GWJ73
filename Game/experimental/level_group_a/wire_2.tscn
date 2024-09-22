@@ -69,7 +69,7 @@ scale = Vector2(0.5, 0.5)
 texture = ExtResource("2_kktu3")
 
 [node name="PlayerCharacter" parent="." instance=ExtResource("2_h5nji")]
-position = Vector2(-160, 216)
+position = Vector2(-160, 240)
 
 [node name="PhantomCamera2D" type="Node2D" parent="."]
 position = Vector2(160, 16)
@@ -86,7 +86,7 @@ tile_set = ExtResource("1_q73gx")
 collision_visibility_mode = 1
 
 [node name="Crate" parent="." instance=ExtResource("6_mn44b")]
-position = Vector2(-16, 206)
+position = Vector2(-16, 184)
 
 [node name="Label" type="Label" parent="."]
 visible = false
