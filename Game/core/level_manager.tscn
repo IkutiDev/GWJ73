@@ -96,7 +96,6 @@ timer_canvas = NodePath("CanvasLayer")
 metadata/_edit_vertical_guides_ = [2197.0, 2352.0]
 
 [node name="CanvasLayer" type="CanvasLayer" parent="."]
-visible = false
 
 [node name="Panel" type="Panel" parent="CanvasLayer"]
 offset_right = 317.0
@@ -118,9 +117,9 @@ theme_override_font_sizes/font_size = 33
 text = "99999.00"
 
 [node name="Label4" type="Label" parent="CanvasLayer"]
-offset_left = 164.0
+offset_left = 168.0
 offset_top = 51.0
-offset_right = 305.0
+offset_right = 309.0
 offset_bottom = 97.0
 theme_override_font_sizes/font_size = 33
 text = "99999.00"
