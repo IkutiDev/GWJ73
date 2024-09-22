@@ -96,6 +96,7 @@ timer_canvas = NodePath("CanvasLayer")
 metadata/_edit_vertical_guides_ = [2197.0, 2352.0]
 
 [node name="CanvasLayer" type="CanvasLayer" parent="."]
+visible = false
 
 [node name="Panel" type="Panel" parent="CanvasLayer"]
 offset_right = 317.0
