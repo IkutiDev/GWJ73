@@ -1,9 +1,10 @@
-[gd_scene load_steps=5 format=3 uid="uid://uxfsho27iaow"]
+[gd_scene load_steps=6 format=3 uid="uid://uxfsho27iaow"]
 
 [ext_resource type="Script" path="res://music/music_player.gd" id="1_lys57"]
 [ext_resource type="AudioStream" uid="uid://b0d4vhft3dnoy" path="res://music/A Quest For A Hero Music_Start.mp3" id="2_pkq6t"]
 [ext_resource type="AudioStream" uid="uid://dt4e3bcpukx73" path="res://music/Death-GameOver.ogg" id="3_5y30e"]
 [ext_resource type="AudioStream" uid="uid://b0n2w2wxofr83" path="res://music/Victory.ogg" id="4_x5jj4"]
+[ext_resource type="AudioStream" uid="uid://bg4kf1a76fjhb" path="res://music/Forest Night.ogg" id="5_f88wq"]
 
 [node name="MusicPlayer" type="Node"]
 script = ExtResource("1_lys57")
@@ -25,5 +26,12 @@ playback_type = 1
 stream = ExtResource("4_x5jj4")
 volume_db = -4.0
 bus = &"Death"
+
+[node name="Background" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("5_f88wq")
+volume_db = -18.0
+autoplay = true
+bus = &"SFX"
+playback_type = 1
 
 [connection signal="finished" from="Music" to="." method="_on_music_finished"]

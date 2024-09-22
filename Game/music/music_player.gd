@@ -33,7 +33,6 @@ func play_death():
 	$Music.play(music_position)
 	var sound_tween = get_tree().create_tween()
 	sound_tween.tween_property($Music,"volume_db",0,1.0)
-
 	pass
 
 func _on_music_finished() -> void:
