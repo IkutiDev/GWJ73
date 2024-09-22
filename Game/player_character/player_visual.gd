@@ -81,7 +81,17 @@ func respawn() -> void:
 func _on_animated_sprite_2d_animation_changed() -> void:
 	var current_aniamtion = $AnimatedSprite2D.animation
 	if current_aniamtion == "run":
+		$Steps.play()
 		$StepAdjuster.play("start")
 	else:
 		$StepAdjuster.play("stop")
+	if current_aniamtion == "land":
+		$Land.play()
+	pass # Replace with function body.
+
+
+func _on_steps_finished() -> void:
+	#await get_tree().create_timer(0.2).timeout
+	if $AnimatedSprite2D.animation == "run":
+		$Steps.play()
 	pass # Replace with function body.
