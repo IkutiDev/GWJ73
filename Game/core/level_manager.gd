@@ -85,7 +85,7 @@ func open_main_menu() -> void:
 	get_tree().current_scene = main_menu_instance
 	
 func _process(delta: float) -> void:
-	var is_main_menu : bool = get_tree().current_scene.name == "MainMenu" or get_tree().current_scene.name == "WinGameScreen"
+	var is_main_menu : bool = get_tree().current_scene.name == "MainMenu" or get_tree().current_scene.name == "WinGameScreen" or get_tree().current_scene.name == "Intro"
 	
 	pause_menu_button.disabled = is_main_menu
 	if is_main_menu:
@@ -96,7 +96,8 @@ func _process(delta: float) -> void:
 func _unhandled_input(event: InputEvent) -> void:
 	
 	if event.is_action_pressed("pause"):
-		if get_tree().current_scene.name == "MainMenu" or get_tree().current_scene.name == "WinGameScreen":
+		var current_scene_name := get_tree().current_scene.name
+		if current_scene_name == "MainMenu" or current_scene_name == "WinGameScreen" or current_scene_name == "Intro":
 			return
 		if resetting_level or loading_level:
 			return
