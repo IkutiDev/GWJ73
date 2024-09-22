@@ -26,6 +26,7 @@ var playing_level := false
 
 @export var curent_timer_label : Label
 @export var best_time_label : Label
+@export var level_name_label : Label
 @export var timer_canvas : CanvasLayer
 var timer := 0.0
 
@@ -202,6 +203,7 @@ func creating_next_level_instance() -> void:
 	get_tree().current_scene = scene_instance
 	
 	print(get_tree().current_scene.name)
+	level_name_label.text = get_tree().current_scene.name
 	if save_file.has_section_key("Player", get_tree().current_scene.name):
 		best_time_label.text = ("%.2f"%config.get_value("Player", get_tree().current_scene.name, TYPE_FLOAT)) 
 	else:
