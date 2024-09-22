@@ -91,7 +91,7 @@ func _on_animated_sprite_2d_animation_changed() -> void:
 
 
 func _on_steps_finished() -> void:
-	#await get_tree().create_timer(0.2).timeout
+	await get_tree().create_timer(0.1).timeout
 	if $AnimatedSprite2D.animation == "run":
 		$Steps.play()
 	pass # Replace with function body.
