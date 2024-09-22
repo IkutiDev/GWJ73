@@ -17,12 +17,22 @@ script = ExtResource("1_ie2nd")
 music_volume_slider = NodePath("HSlider")
 sfx_volume_slider = NodePath("HSlider2")
 
+[node name="ColorRect" type="ColorRect" parent="."]
+layout_mode = 0
+offset_left = 230.0
+offset_top = 12.0
+offset_right = 1732.0
+offset_bottom = 1028.0
+color = Color(0, 0.388235, 0.388235, 0.921569)
+
 [node name="ButtonLayout" type="HBoxContainer" parent="."]
 layout_mode = 1
 anchors_preset = 10
 anchor_right = 1.0
-offset_top = -92.0
-offset_bottom = 355.0
+offset_left = 271.0
+offset_top = -19.0
+offset_right = -226.0
+offset_bottom = 312.0
 grow_horizontal = 2
 script = ExtResource("2_860ot")
 
@@ -137,6 +147,22 @@ offset_top = -4.0
 offset_right = -13.0
 offset_bottom = 19.0
 text = "SFX Volume"
+
+[node name="Label3" type="Label" parent="."]
+layout_mode = 0
+offset_left = 987.0
+offset_top = 152.0
+offset_right = 1662.0
+offset_bottom = 175.0
+text = "press one of these yellow (action buttons) to ADD A KEY the the selected action"
+
+[node name="Label4" type="Label" parent="."]
+layout_mode = 0
+offset_left = 270.0
+offset_top = 429.0
+offset_right = 889.0
+offset_bottom = 452.0
+text = "press one of these white (input buttons) to REMOVE a key from the action above"
 
 [connection signal="pressed" from="BackButton" to="." method="_on_back_button_pressed"]
 [connection signal="value_changed" from="HSlider" to="." method="_on_h_slider_value_changed_music"]
