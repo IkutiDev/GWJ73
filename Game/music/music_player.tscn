@@ -4,9 +4,8 @@
 [ext_resource type="AudioStream" uid="uid://b0d4vhft3dnoy" path="res://music/A Quest For A Hero Music_Start.mp3" id="2_pkq6t"]
 [ext_resource type="AudioStream" uid="uid://dt4e3bcpukx73" path="res://music/Death-GameOver.ogg" id="3_5y30e"]
 
-[node name="MusicPlayer" type="Node" node_paths=PackedStringArray("background_music_player")]
+[node name="MusicPlayer" type="Node"]
 script = ExtResource("1_lys57")
-background_music_player = NodePath("Music")
 
 [node name="Music" type="AudioStreamPlayer" parent="."]
 stream = ExtResource("2_pkq6t")
