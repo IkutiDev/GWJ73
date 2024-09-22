@@ -1,4 +1,4 @@
-[gd_scene load_steps=10 format=4 uid="uid://d1xsqfcpndium"]
+[gd_scene load_steps=11 format=4 uid="uid://d1xsqfcpndium"]
 
 [ext_resource type="PackedScene" uid="uid://bmou427kup6vh" path="res://environment/finish.tscn" id="1_di0xr"]
 [ext_resource type="Texture2D" uid="uid://2tbd5hlak3rh" path="res://levels/art/level6/tlo.png" id="1_son6g"]
@@ -8,6 +8,9 @@
 [ext_resource type="TileSet" uid="uid://cq4qhq8y4udas" path="res://experimental/level_group_a/sandbox_tileset.tres" id="4_1bohp"]
 [ext_resource type="PackedScene" uid="uid://cqh07empuga21" path="res://player_character/player_character.tscn" id="5_pem2b"]
 [ext_resource type="PackedScene" uid="uid://dmhgqvqymht2c" path="res://environment/crate.tscn" id="6_5518e"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_nykf3"]
+size = Vector2(112, 184)
 
 [sub_resource type="Resource" id="Resource_wfarn"]
 script = ExtResource("3_l0gsa")
@@ -29,6 +32,10 @@ texture = ExtResource("2_y03ck")
 
 [node name="FinishPoint" parent="." instance=ExtResource("1_di0xr")]
 position = Vector2(160, 16)
+
+[node name="CollisionShape2D" parent="FinishPoint" index="0"]
+position = Vector2(0, -76)
+shape = SubResource("RectangleShape2D_nykf3")
 
 [node name="PhantomCamera2D" type="Node2D" parent="."]
 position = Vector2(160, 16)
@@ -52,3 +59,5 @@ position = Vector2(-104, 168)
 
 [node name="Crate2" parent="." instance=ExtResource("6_5518e")]
 position = Vector2(400, 168)
+
+[editable path="FinishPoint"]
