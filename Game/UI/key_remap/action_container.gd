@@ -30,8 +30,8 @@ func _ready() -> void:
 
 
 func add_input_event(event : InputEventKey):
-	var new_input_event_button = input_event_button_scene.instantiate()
 	InputMap.action_add_event(linked_action,event)
+	var new_input_event_button = input_event_button_scene.instantiate()
 	new_input_event_button.text = event.as_text()
 	new_input_event_button.linked_action = linked_action
 	new_input_event_button.linked_input_event = event
@@ -40,6 +40,8 @@ func add_input_event(event : InputEventKey):
 
 func _input(event: InputEvent) -> void:
 	if listen_for_input and event.is_class("InputEventKey"):
+		if InputMap.action_get_events(linked_action).size() > 5:
+			return
 		add_input_event(event)
 		listen_for_input = false
 		SettingsTracker.save_input_map()

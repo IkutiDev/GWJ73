@@ -4,7 +4,7 @@ const FILE_PATH = "user://settings.cfg"
 
 var settings_file : ConfigFile
 
-func _ready():
+func _enter_tree() -> void:
 
 	settings_file = ConfigFile.new()
 	var err = settings_file.load(FILE_PATH)

@@ -2,13 +2,14 @@ extends Control
 @export_group("Buttons")
 @export var new_game_button : Button
 @export var credits_button : Button
+@export var settings_button : Button
 @export var exit_game_button : Button
 @export var level_selection_button : Button
 @export_group("Panels")
 @export var title_screen_panel : Control
 @export var credits_panel : Control
 @export var level_select_panel : Control
-
+@export var settings_panel : Control
 @export_group("Spawnables")
 @export var level_select_button : PackedScene
 @export var level_select_buttons_list : Control
@@ -20,6 +21,7 @@ func _enter_tree() -> void:
 	else:
 		exit_game_button.pressed.connect(exit_game)
 	credits_button.pressed.connect(show_credits)
+	settings_button.pressed.connect(show_settings)
 	new_game_button.pressed.connect(start_new_game)
 	level_selection_button.pressed.connect(show_level_select)
 	
@@ -47,6 +49,9 @@ func start_new_game() -> void:
 
 func show_credits() -> void:
 	show_subpanel(credits_panel)
+
+func show_settings() -> void:
+	show_subpanel(settings_panel)
 
 func show_level_select() -> void:
 	show_subpanel(level_select_panel)
