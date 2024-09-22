@@ -236,9 +236,10 @@ layout_mode = 0
 offset_top = 319.0
 offset_right = 870.0
 offset_bottom = 773.0
-text = "Programmers: Ikuti and Ktosox
+text = "Programming and level design: Ikuti and Ktosox
 Art: Lutra
-Music: Eduardo"
+UI Art: Kenney
+Music and sound effects: Edoardo "
 horizontal_alignment = 1
 
 [node name="PhantomCamera2D" type="Node2D" parent="."]

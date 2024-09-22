@@ -1,5 +1,6 @@
-[gd_resource type="Theme" load_steps=11 format=3 uid="uid://d2luyiqyrk76m"]
+[gd_resource type="Theme" load_steps=12 format=3 uid="uid://d2luyiqyrk76m"]
 
+[ext_resource type="FontFile" uid="uid://cislvcok3lf7e" path="res://UI/Cambria Math.ttf" id="1_awmxi"]
 [ext_resource type="Texture2D" uid="uid://bji5cp7g508nd" path="res://UI/Double/button_grey.png" id="1_gw5ep"]
 [ext_resource type="Texture2D" uid="uid://shc4ifs064q7" path="res://UI/Double/button_grey_close.png" id="1_yxxby"]
 [ext_resource type="Texture2D" uid="uid://dykggkn3hljsy" path="res://UI/Double/button_red.png" id="2_ewlv1"]
@@ -24,6 +25,7 @@ texture = ExtResource("2_ewlv1")
 texture = ExtResource("4_c3uaf")
 
 [resource]
+Button/fonts/font = ExtResource("1_awmxi")
 Button/styles/disabled = SubResource("StyleBoxTexture_ap1fc")
 Button/styles/focus = SubResource("StyleBoxTexture_c77s1")
 Button/styles/hover = SubResource("StyleBoxTexture_v07vd")

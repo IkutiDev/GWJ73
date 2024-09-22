@@ -1,8 +1,9 @@
-[gd_scene load_steps=4 format=3 uid="uid://ccp474g3icvaf"]
+[gd_scene load_steps=5 format=3 uid="uid://ccp474g3icvaf"]
 
 [ext_resource type="Script" path="res://UI/settings.gd" id="1_ie2nd"]
 [ext_resource type="Script" path="res://UI/key_remap/change_keys.gd" id="2_860ot"]
 [ext_resource type="PackedScene" uid="uid://3n0l7dfggn4" path="res://UI/key_remap/action_container.tscn" id="3_81plc"]
+[ext_resource type="Theme" uid="uid://d2luyiqyrk76m" path="res://UI/new_theme.tres" id="4_h3o4b"]
 
 [node name="Settings" type="Control" node_paths=PackedStringArray("music_volume_slider", "sfx_volume_slider")]
 visible = false
@@ -52,6 +53,7 @@ offset_right = 78.0
 offset_bottom = -95.0
 grow_horizontal = 2
 grow_vertical = 0
+theme = ExtResource("4_h3o4b")
 text = "Back"
 
 [node name="Label" type="Label" parent="."]
