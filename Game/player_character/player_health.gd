@@ -20,5 +20,6 @@ func deal_damage(damage : int = 1) -> void:
 
 func death() -> void:
 	player_death.emit()
+	MusicPlayer.play_death()
 	await get_tree().create_timer(death_time).timeout
 	LevelManager.reset_current_level()
