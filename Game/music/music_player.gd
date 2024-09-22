@@ -2,7 +2,6 @@ extends Node
 
 @export var mute_in_editor := false
 @export_group("References")
-@export var background_music_player : AudioStreamPlayer
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
 	if not OS.has_feature("editor"):

@@ -1,5 +1,6 @@
-[gd_scene load_steps=6 format=3 uid="uid://pd78setlifv6"]
+[gd_scene load_steps=7 format=3 uid="uid://pd78setlifv6"]
 
+[ext_resource type="Texture2D" uid="uid://byoppvao5ux0f" path="res://levels/art/kolec.png" id="1_4m2c5"]
 [ext_resource type="PackedScene" uid="uid://dscsbre0lxqrb" path="res://experimental/death_sentence.tscn" id="1_dmp82"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_yov5g"]
@@ -19,6 +20,11 @@ size = Vector2(6, 15)
 collision_layer = 2
 collision_mask = 4
 
+[node name="Sprite2D" type="Sprite2D" parent="."]
+position = Vector2(1, -16)
+scale = Vector2(0.21, 0.21)
+texture = ExtResource("1_4m2c5")
+
 [node name="DeathSentence" parent="." instance=ExtResource("1_dmp82")]
 position = Vector2(0, -28)
 
@@ -27,19 +33,21 @@ position = Vector2(0, -1)
 shape = SubResource("CircleShape2D_yov5g")
 
 [node name="Line2D" type="Line2D" parent="."]
+visible = false
 points = PackedVector2Array(0, 0, 0, -15, 0, -32)
 width = 6.0
 width_curve = SubResource("Curve_66cyj")
 default_color = Color(0.61339, 0.61339, 0.61339, 1)
 
 [node name="Line2D2" type="Line2D" parent="."]
+visible = false
 position = Vector2(0, -3)
 points = PackedVector2Array(8, 0, -8, 0)
 width = 6.0
 default_color = Color(0.219608, 1, 0.458824, 1)
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
-position = Vector2(0, -3)
+position = Vector2(1, -3)
 shape = SubResource("RectangleShape2D_hdh4y")
 
 [node name="CollisionShape2D2" type="CollisionShape2D" parent="."]
