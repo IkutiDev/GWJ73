@@ -1,0 +1,61 @@
+[gd_scene load_steps=4 format=3 uid="uid://dm8f0m8grqiiv"]
+
+[ext_resource type="Script" path="res://UI/pause_menu.gd" id="1_4ocke"]
+[ext_resource type="PackedScene" uid="uid://ccp474g3icvaf" path="res://UI/settings.tscn" id="2_nr1kk"]
+[ext_resource type="Theme" uid="uid://d2luyiqyrk76m" path="res://UI/new_theme.tres" id="3_e8w62"]
+
+[node name="PauseMenu" type="ColorRect" node_paths=PackedStringArray("settings_panel", "buttons")]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0.0745098, 0.0745098, 0.0745098, 0.498039)
+script = ExtResource("1_4ocke")
+settings_panel = NodePath("Settings")
+buttons = NodePath("VBoxContainer")
+
+[node name="Settings" parent="." instance=ExtResource("2_nr1kk")]
+layout_mode = 1
+
+[node name="VBoxContainer" type="VBoxContainer" parent="."]
+layout_mode = 1
+anchors_preset = 13
+anchor_left = 0.5
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = -240.0
+offset_right = 240.0
+grow_horizontal = 2
+grow_vertical = 2
+theme = ExtResource("3_e8w62")
+theme_override_constants/separation = 75
+alignment = 1
+
+[node name="BackToGame" type="Button" parent="VBoxContainer"]
+custom_minimum_size = Vector2(0, 96)
+layout_mode = 2
+text = "Back to Game"
+
+[node name="Settings" type="Button" parent="VBoxContainer"]
+custom_minimum_size = Vector2(0, 96)
+layout_mode = 2
+text = "Settings"
+
+[node name="Reset" type="Button" parent="VBoxContainer"]
+custom_minimum_size = Vector2(0, 96)
+layout_mode = 2
+text = "Reset Level"
+
+[node name="MainMenu" type="Button" parent="VBoxContainer"]
+custom_minimum_size = Vector2(0, 96)
+layout_mode = 2
+text = "Main Menu"
+
+[connection signal="pressed" from="Settings/BackButton" to="." method="hide_settings"]
+[connection signal="pressed" from="VBoxContainer/BackToGame" to="." method="back_to_game"]
+[connection signal="pressed" from="VBoxContainer/Settings" to="." method="show_settings"]
+[connection signal="pressed" from="VBoxContainer/Reset" to="." method="reset_level"]
+[connection signal="pressed" from="VBoxContainer/MainMenu" to="." method="main_menu"]
+
+[editable path="Settings"]

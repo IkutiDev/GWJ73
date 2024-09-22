@@ -1,0 +1,141 @@
+[gd_scene load_steps=4 format=3 uid="uid://ccp474g3icvaf"]
+
+[ext_resource type="Script" path="res://UI/settings.gd" id="1_ie2nd"]
+[ext_resource type="Script" path="res://UI/key_remap/change_keys.gd" id="2_860ot"]
+[ext_resource type="PackedScene" uid="uid://3n0l7dfggn4" path="res://UI/key_remap/action_container.tscn" id="3_81plc"]
+
+[node name="Settings" type="Control" node_paths=PackedStringArray("music_volume_slider", "sfx_volume_slider")]
+visible = false
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_ie2nd")
+music_volume_slider = NodePath("HSlider")
+sfx_volume_slider = NodePath("HSlider2")
+
+[node name="ButtonLayout" type="HBoxContainer" parent="."]
+layout_mode = 1
+anchors_preset = 10
+anchor_right = 1.0
+offset_top = -92.0
+offset_bottom = 355.0
+grow_horizontal = 2
+script = ExtResource("2_860ot")
+
+[node name="Left" parent="ButtonLayout" instance=ExtResource("3_81plc")]
+layout_mode = 2
+alignment = 2
+action = 0
+
+[node name="Jump" parent="ButtonLayout" instance=ExtResource("3_81plc")]
+layout_mode = 2
+alignment = 2
+action = 2
+
+[node name="Right" parent="ButtonLayout" instance=ExtResource("3_81plc")]
+layout_mode = 2
+alignment = 2
+
+[node name="BackButton" type="Button" parent="."]
+layout_mode = 1
+anchors_preset = 7
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = -72.0
+offset_top = -154.0
+offset_right = 78.0
+offset_bottom = -95.0
+grow_horizontal = 2
+grow_vertical = 0
+text = "Back"
+
+[node name="Label" type="Label" parent="."]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -183.5
+offset_top = -537.0
+offset_right = 183.5
+offset_bottom = -446.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_font_sizes/font_size = 66
+text = "CONTROLS:"
+
+[node name="Label2" type="Label" parent="."]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -183.5
+offset_top = -90.0
+offset_right = 183.5
+offset_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_font_sizes/font_size = 66
+text = "AUDIO:"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="HSlider" type="HSlider" parent="."]
+custom_minimum_size = Vector2(200, 0)
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -112.0
+offset_top = 26.0
+offset_right = 88.0
+offset_bottom = 42.0
+grow_horizontal = 2
+grow_vertical = 2
+max_value = 200.0
+
+[node name="Label" type="Label" parent="HSlider"]
+layout_mode = 0
+offset_left = -122.0
+offset_top = -4.0
+offset_right = -13.0
+offset_bottom = 19.0
+text = "Music Volume"
+
+[node name="HSlider2" type="HSlider" parent="."]
+custom_minimum_size = Vector2(200, 0)
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -112.0
+offset_top = 67.0
+offset_right = 88.0
+offset_bottom = 83.0
+grow_horizontal = 2
+grow_vertical = 2
+max_value = 200.0
+
+[node name="Label" type="Label" parent="HSlider2"]
+layout_mode = 0
+offset_left = -122.0
+offset_top = -4.0
+offset_right = -13.0
+offset_bottom = 19.0
+text = "SFX Volume"
+
+[connection signal="pressed" from="BackButton" to="." method="_on_back_button_pressed"]
+[connection signal="value_changed" from="HSlider" to="." method="_on_h_slider_value_changed_music"]
+[connection signal="value_changed" from="HSlider2" to="." method="_on_h_slider_value_changed_sfx"]

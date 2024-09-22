@@ -1,6 +1,7 @@
-[gd_scene load_steps=12 format=3 uid="uid://dmhgqvqymht2c"]
+[gd_scene load_steps=13 format=3 uid="uid://dmhgqvqymht2c"]
 
 [ext_resource type="Script" path="res://environment/crate.gd" id="1_21tix"]
+[ext_resource type="Texture2D" uid="uid://dtbyqik5tqal2" path="res://levels/art/Untitled-1.png" id="2_jf0bq"]
 [ext_resource type="AudioStream" uid="uid://n3inm1fbwa4x" path="res://sfx/drag1.ogg" id="2_t6yjy"]
 [ext_resource type="AudioStream" uid="uid://bu46awehfuy1q" path="res://sfx/drag2.ogg" id="3_b5axo"]
 [ext_resource type="AudioStream" uid="uid://ypqfo87ccsql" path="res://sfx/drag3.ogg" id="4_548h7"]
@@ -66,6 +67,10 @@ physics_material_override = SubResource("PhysicsMaterial_w2mcc")
 lock_rotation = true
 script = ExtResource("1_21tix")
 
+[node name="Sprite2D" type="Sprite2D" parent="."]
+scale = Vector2(0.25, 0.25)
+texture = ExtResource("2_jf0bq")
+
 [node name="TheClamper" type="Timer" parent="."]
 process_callback = 0
 wait_time = 0.1
@@ -74,6 +79,7 @@ wait_time = 0.1
 shape = SubResource("RectangleShape2D_d0jgn")
 
 [node name="Polygon2D" type="Polygon2D" parent="."]
+visible = false
 polygon = PackedVector2Array(-48, -48, -48, 48, 48, 48, 48, -48)
 
 [node name="PushDetector" type="Area2D" parent="."]

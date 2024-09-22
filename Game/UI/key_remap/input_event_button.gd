@@ -16,5 +16,6 @@ func _process(delta: float) -> void:
 
 func _on_pressed() -> void:
 	InputMap.action_erase_event(linked_action,linked_input_event)
+	SettingsTracker.save_input_map()
 	queue_free()
 	pass # Replace with function body.

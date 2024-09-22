@@ -20,7 +20,7 @@ duration = 0.0
 transition = 0
 ease = 2
 
-[node name="Level 1" type="Node2D"]
+[node name="Courtyard" type="Node2D"]
 
 [node name="Sky" type="Sprite2D" parent="."]
 position = Vector2(160, 16)
@@ -44,9 +44,6 @@ position = Vector2(448, 72)
 position = Vector2(1, -64)
 shape = SubResource("RectangleShape2D_atlb2")
 
-[node name="Label" parent="FinishPoint" index="1"]
-visible = false
-
 [node name="PhantomCamera2D" type="Node2D" parent="."]
 position = Vector2(160, 16)
 script = ExtResource("1_y4arx")
@@ -63,7 +60,7 @@ tile_set = ExtResource("3_bvuwe")
 collision_visibility_mode = 1
 
 [node name="PlayerCharacter" parent="." instance=ExtResource("4_env0s")]
-position = Vector2(-120, 80)
+position = Vector2(-120, 88)
 
 [node name="Spikes" type="Node2D" parent="."]
 position = Vector2(8, 40)

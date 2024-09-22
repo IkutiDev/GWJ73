@@ -1,4 +1,4 @@
-extends CanvasLayer
+extends Control
 
 
 # Called when the node enters the scene tree for the first time.
@@ -7,7 +7,7 @@ func _ready() -> void:
 
 
 func un_set_other_buttons(node):
-	for child in $ButtonLayout.get_children():
+	for child in get_children():
 		if child != node:
 			child.listen_for_input = false
 	pass
