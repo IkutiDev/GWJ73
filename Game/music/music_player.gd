@@ -10,16 +10,6 @@ func _ready() -> void:
 	else:
 		AudioServer.set_bus_mute(1,true) if mute_in_editor else 0
 
-func play_victory():
-	var music_position = $Music.get_playback_position()
-	$Music.stop()
-	$Music.volume_db = -80
-	$Victory.play()
-	await get_tree().create_timer(8).timeout
-	$Music.play(music_position)
-	var sound_tween = get_tree().create_tween()
-	sound_tween.tween_property($Music,"volume_db",0,1.0)
-	pass
 
 func play_death():
 	if $Death.playing:
