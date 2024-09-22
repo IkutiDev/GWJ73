@@ -65,16 +65,16 @@ position = Vector2(568, 0)
 position = Vector2(88, 256)
 
 [node name="ExamplePin7" parent="Pins" instance=ExtResource("5_06trs")]
-position = Vector2(-152, 224)
+position = Vector2(-152, 225.155)
 
 [node name="ExamplePin8" parent="Pins" instance=ExtResource("5_06trs")]
-position = Vector2(-136, 224)
+position = Vector2(-136, 225.155)
 
 [node name="ExamplePin9" parent="Pins" instance=ExtResource("5_06trs")]
-position = Vector2(-120, 224)
+position = Vector2(-120, 225.155)
 
 [node name="ExamplePin10" parent="Pins" instance=ExtResource("5_06trs")]
-position = Vector2(-104, 224)
+position = Vector2(-104, 225.155)
 
 [node name="ExamplePin5" parent="Pins" instance=ExtResource("5_06trs")]
 position = Vector2(104, 256)
@@ -96,8 +96,5 @@ position = Vector2(-288, -144)
 [node name="CollisionShape2D" parent="FinishPoint" index="0"]
 position = Vector2(2, 32)
 shape = SubResource("RectangleShape2D_g4v61")
-
-[node name="Label" parent="FinishPoint" index="1"]
-visible = false
 
 [editable path="FinishPoint"]

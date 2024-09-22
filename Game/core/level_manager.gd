@@ -11,11 +11,14 @@ extends Node
 
 @export var main_menu : PackedScene
 
+@export var intro_scene : PackedScene
+
 var current_gameplay_level_index := 0
 var latest_index_level := 0
 
 var resetting_level := false
 var loading_level := false
+var playing_intro := false
 
 var paused := false
 
@@ -26,6 +29,11 @@ func _enter_tree() -> void:
 
 	if err == OK:
 		latest_index_level = config.get_value("Player", "levelIndex", TYPE_INT)
+	
+func start_new_game() -> void:
+	current_gameplay_level_index = 0
+	playing_intro = true
+	animation_player.play("fade_out")
 	
 func load_level_by_index(index : int) -> void:
 	current_gameplay_level_index = index
@@ -112,7 +120,11 @@ func fade_animation_finished(anim : StringName) -> void:
 		if resetting_level:
 			get_tree().reload_current_scene()
 		if loading_level:
+			if get_tree().current_scene.name == "Intro":
+				get_tree().current_scene.queue_free()
 			creating_next_level_instance()
+		if playing_intro:
+			play_intro()
 		if player_character != null:
 			player_character.freeze_movement()
 		resetting_level = false
@@ -120,9 +132,23 @@ func fade_animation_finished(anim : StringName) -> void:
 		animation_player.play("fade_in")
 	
 	if anim == "fade_in":
+		if playing_intro:
+			end_intro()
+			return
 		if get_tree().get_nodes_in_group("player").size() > 0:
 			var player_character : PlayerCharacter = get_tree().get_nodes_in_group("player")[0]
 			player_character.unfreeze_movement()
+
+func play_intro() -> void:
+	get_tree().current_scene.queue_free()
+	var intro_instance := intro_scene.instantiate()
+	get_tree().root.add_child(intro_instance)
+	get_tree().current_scene = intro_instance
+
+func end_intro() -> void:
+	playing_intro = false
+	await get_tree().create_timer(5.0).timeout
+	load_level_by_index(0)
 
 func creating_next_level_instance() -> void:
 	var config = ConfigFile.new()

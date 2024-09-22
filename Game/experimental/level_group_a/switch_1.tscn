@@ -11,12 +11,6 @@
 [ext_resource type="PackedScene" uid="uid://xfwcmndnkomw" path="res://environment/electric_wire.tscn" id="5_ya4qa"]
 [ext_resource type="PackedScene" uid="uid://bmou427kup6vh" path="res://environment/finish.tscn" id="7_xo5jt"]
 
-[sub_resource type="Resource" id="Resource_26opq"]
-script = ExtResource("4_yb6vg")
-duration = 0.0
-transition = 0
-ease = 2
-
 [sub_resource type="Curve2D" id="Curve2D_qrtp5"]
 _data = {
 "points": PackedVector2Array(41.6222, 152.218, -41.6222, -152.218, 48, -24, 52.3251, 29.1356, -52.3251, -29.1356, -64, -16, 21.4057, 50.5413, -21.4057, -50.5413, -152, 40, 0, 0, 0, 0, -88, -248, -130.218, -71.3524, 130.218, 71.3524, 88, -96)
@@ -35,6 +29,12 @@ _data = {
 }
 point_count = 5
 
+[sub_resource type="Resource" id="Resource_26opq"]
+script = ExtResource("4_yb6vg")
+duration = 0.0
+transition = 0
+ease = 2
+
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_krr22"]
 size = Vector2(46, 160)
 
@@ -44,6 +44,20 @@ size = Vector2(46, 160)
 position = Vector2(160, 16)
 scale = Vector2(0.5, 0.5)
 texture = ExtResource("1_oan06")
+
+[node name="ElectricWire" parent="." instance=ExtResource("5_ya4qa")]
+position = Vector2(-160, 192)
+curve = SubResource("Curve2D_qrtp5")
+
+[node name="ElectricWire2" parent="." instance=ExtResource("5_ya4qa")]
+position = Vector2(464, 192)
+curve = SubResource("Curve2D_iewdp")
+start_powered = false
+
+[node name="ElectricWire3" parent="." instance=ExtResource("5_ya4qa")]
+position = Vector2(456, 192)
+curve = SubResource("Curve2D_q7fs2")
+start_powered = false
 
 [node name="Ground" type="Sprite2D" parent="."]
 position = Vector2(160, 16)
@@ -70,20 +84,6 @@ draw_limits = true
 position = Vector2(-56, 256)
 connected_devices = Array[NodePath]([NodePath("../ElectricWire"), NodePath("../ElectricWire2"), NodePath("../ElectricWire3")])
 left_flipped = false
-
-[node name="ElectricWire" parent="." instance=ExtResource("5_ya4qa")]
-position = Vector2(-160, 192)
-curve = SubResource("Curve2D_qrtp5")
-
-[node name="ElectricWire2" parent="." instance=ExtResource("5_ya4qa")]
-position = Vector2(464, 192)
-curve = SubResource("Curve2D_iewdp")
-start_powered = false
-
-[node name="ElectricWire3" parent="." instance=ExtResource("5_ya4qa")]
-position = Vector2(456, 192)
-curve = SubResource("Curve2D_q7fs2")
-start_powered = false
 
 [node name="TileMapLayer" type="TileMapLayer" parent="."]
 visible = false

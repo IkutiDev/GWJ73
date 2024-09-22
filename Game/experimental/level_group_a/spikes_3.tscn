@@ -47,71 +47,71 @@ draw_limits = true
 [node name="Spikes" type="Node2D" parent="."]
 
 [node name="ExamplePin" parent="Spikes" instance=ExtResource("5_bxsf5")]
-position = Vector2(-168, 256)
+position = Vector2(-168, 259.94)
 
 [node name="ExamplePin2" parent="Spikes" instance=ExtResource("5_bxsf5")]
-position = Vector2(-152, 256)
+position = Vector2(-152, 259.94)
 
 [node name="ExamplePin3" parent="Spikes" instance=ExtResource("5_bxsf5")]
-position = Vector2(-136, 256)
+position = Vector2(-136, 259.94)
 
 [node name="ExamplePin4" parent="Spikes" instance=ExtResource("5_bxsf5")]
-position = Vector2(-120, 256)
+position = Vector2(-120, 259.94)
 
 [node name="ExamplePin5" parent="Spikes" instance=ExtResource("5_bxsf5")]
-position = Vector2(-72, 256)
+position = Vector2(-72, 259.94)
 
 [node name="ExamplePin6" parent="Spikes" instance=ExtResource("5_bxsf5")]
-position = Vector2(-56, 256)
+position = Vector2(-56, 259.94)
 
 [node name="ExamplePin7" parent="Spikes" instance=ExtResource("5_bxsf5")]
-position = Vector2(-40, 256)
+position = Vector2(-40, 259.94)
 
 [node name="ExamplePin8" parent="Spikes" instance=ExtResource("5_bxsf5")]
-position = Vector2(-24, 256)
+position = Vector2(-24, 259.94)
 
 [node name="ExamplePin9" parent="Spikes" instance=ExtResource("5_bxsf5")]
-position = Vector2(24, 256)
+position = Vector2(24, 259.94)
 
 [node name="ExamplePin10" parent="Spikes" instance=ExtResource("5_bxsf5")]
-position = Vector2(40, 256)
+position = Vector2(40, 259.94)
 
 [node name="ExamplePin11" parent="Spikes" instance=ExtResource("5_bxsf5")]
-position = Vector2(56, 256)
+position = Vector2(56, 259.94)
 
 [node name="ExamplePin12" parent="Spikes" instance=ExtResource("5_bxsf5")]
-position = Vector2(72, 256)
+position = Vector2(72, 259.94)
 
 [node name="ExamplePin13" parent="Spikes" instance=ExtResource("5_bxsf5")]
-position = Vector2(120, 256)
+position = Vector2(120, 259.94)
 
 [node name="ExamplePin14" parent="Spikes" instance=ExtResource("5_bxsf5")]
-position = Vector2(136, 256)
+position = Vector2(136, 259.94)
 
 [node name="ExamplePin15" parent="Spikes" instance=ExtResource("5_bxsf5")]
-position = Vector2(152, 256)
+position = Vector2(152, 259.94)
 
 [node name="ExamplePin16" parent="Spikes" instance=ExtResource("5_bxsf5")]
-position = Vector2(168, 256)
+position = Vector2(168, 259.94)
 
 [node name="ExamplePin17" parent="Spikes" instance=ExtResource("5_bxsf5")]
-position = Vector2(216, 256)
+position = Vector2(216, 259.94)
 
 [node name="ExamplePin18" parent="Spikes" instance=ExtResource("5_bxsf5")]
-position = Vector2(232, 256)
+position = Vector2(232, 259.94)
 
 [node name="ExamplePin19" parent="Spikes" instance=ExtResource("5_bxsf5")]
-position = Vector2(248, 256)
+position = Vector2(248, 259.94)
 
 [node name="ExamplePin20" parent="Spikes" instance=ExtResource("5_bxsf5")]
-position = Vector2(264, 256)
+position = Vector2(264, 259.94)
 
 [node name="ExamplePin21" parent="Spikes" instance=ExtResource("5_bxsf5")]
-position = Vector2(-88, 64)
+position = Vector2(-86.58, 64)
 rotation = 3.14159
 
 [node name="ExamplePin22" parent="Spikes" instance=ExtResource("5_bxsf5")]
-position = Vector2(184, 0)
+position = Vector2(184, 2.46)
 
 [node name="ExamplePin23" parent="Spikes" instance=ExtResource("5_bxsf5")]
 position = Vector2(360, 16)

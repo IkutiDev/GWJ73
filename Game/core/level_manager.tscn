@@ -1,4 +1,4 @@
-[gd_scene load_steps=30 format=3 uid="uid://vq0iyu8mw23j"]
+[gd_scene load_steps=31 format=3 uid="uid://vq0iyu8mw23j"]
 
 [ext_resource type="Script" path="res://core/level_manager.gd" id="1_v64mb"]
 [ext_resource type="PackedScene" uid="uid://bb2gsnet7dj26" path="res://experimental/level_group_a/spikes_1.tscn" id="2_dxwtd"]
@@ -25,6 +25,7 @@
 [ext_resource type="PackedScene" uid="uid://chba2t7asi7i5" path="res://UI/main_menu.tscn" id="21_md0p6"]
 [ext_resource type="Texture2D" uid="uid://dtdqi402pedcj" path="res://UI/Double/panel_brown_damaged_dark.png" id="21_pssb8"]
 [ext_resource type="Texture2D" uid="uid://4mvp4pqhv7es" path="res://UI/Double/panel_brown_dark_corners_b.png" id="22_blifo"]
+[ext_resource type="PackedScene" uid="uid://4jg4v2vbs8f6" path="res://UI/intro.tscn" id="22_jntm4"]
 
 [sub_resource type="Animation" id="Animation_ep7fc"]
 length = 0.001
@@ -87,6 +88,7 @@ pause_menu_spawn_slot = NodePath("PauseMenuCanvas")
 pause_menu_scene = ExtResource("18_qdvq2")
 pause_menu_button = NodePath("PauseMenuCanvas/TextureButton")
 main_menu = ExtResource("21_md0p6")
+intro_scene = ExtResource("22_jntm4")
 metadata/_edit_vertical_guides_ = [2197.0, 2352.0]
 
 [node name="PauseMenuCanvas" type="CanvasLayer" parent="."]

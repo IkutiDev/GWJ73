@@ -50,20 +50,20 @@ position = Vector2(-224, 224)
 [node name="Spikes" type="Node2D" parent="."]
 
 [node name="ExamplePin" parent="Spikes" instance=ExtResource("6_ioch7")]
-position = Vector2(-248, 112)
+position = Vector2(-248, 112.84)
 
 [node name="ExamplePin6" parent="Spikes" instance=ExtResource("6_ioch7")]
-position = Vector2(-184, 112)
+position = Vector2(-184, 112.84)
 
 [node name="ExamplePin7" parent="Spikes" instance=ExtResource("6_ioch7")]
 position = Vector2(-40, 32)
 
 [node name="ExamplePin9" parent="Spikes" instance=ExtResource("6_ioch7")]
-position = Vector2(-80, -88)
+position = Vector2(-83.54, -86.27)
 rotation = -1.5708
 
 [node name="ExamplePin2" parent="Spikes" instance=ExtResource("6_ioch7")]
-position = Vector2(-40, 80)
+position = Vector2(-40, 80.605)
 rotation = 3.14159
 
 [node name="ExamplePin3" parent="Spikes" instance=ExtResource("6_ioch7")]

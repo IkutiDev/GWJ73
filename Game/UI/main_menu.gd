@@ -44,7 +44,7 @@ func exit_game() -> void:
 	get_tree().quit()
 
 func start_new_game() -> void:
-	LevelManager.load_level_by_index(0)
+	LevelManager.start_new_game()
 
 
 func show_credits() -> void:

@@ -9,12 +9,6 @@
 [ext_resource type="PackedScene" uid="uid://xfwcmndnkomw" path="res://environment/electric_wire.tscn" id="5_studk"]
 [ext_resource type="PackedScene" uid="uid://bmou427kup6vh" path="res://environment/finish.tscn" id="6_0tycb"]
 
-[sub_resource type="Resource" id="Resource_26opq"]
-script = ExtResource("4_f3pvr")
-duration = 0.0
-transition = 0
-ease = 2
-
 [sub_resource type="Curve2D" id="Curve2D_gq0tb"]
 _data = {
 "points": PackedVector2Array(0, 0, 0, 0, 72, -8, 26.4583, 0, -26.4583, 0, 0, 64, 0, 0, 0, 0, -32, -8)
@@ -27,12 +21,26 @@ _data = {
 }
 point_count = 6
 
+[sub_resource type="Resource" id="Resource_26opq"]
+script = ExtResource("4_f3pvr")
+duration = 0.0
+transition = 0
+ease = 2
+
 [node name="Astrologist Alcove" type="Node2D"]
 
 [node name="Background" type="Sprite2D" parent="."]
 position = Vector2(160, 16)
 scale = Vector2(0.5, 0.5)
 texture = ExtResource("1_w8oha")
+
+[node name="ElectricWire" parent="." instance=ExtResource("5_studk")]
+position = Vector2(-168, 48)
+curve = SubResource("Curve2D_gq0tb")
+
+[node name="ElectricWire2" parent="." instance=ExtResource("5_studk")]
+position = Vector2(272, 216)
+curve = SubResource("Curve2D_mx00c")
 
 [node name="Ground" type="Sprite2D" parent="."]
 position = Vector2(160, 16)
@@ -49,14 +57,6 @@ follow_mode = 2
 zoom = Vector2(2, 2)
 tween_resource = SubResource("Resource_26opq")
 draw_limits = true
-
-[node name="ElectricWire" parent="." instance=ExtResource("5_studk")]
-position = Vector2(-168, 48)
-curve = SubResource("Curve2D_gq0tb")
-
-[node name="ElectricWire2" parent="." instance=ExtResource("5_studk")]
-position = Vector2(272, 216)
-curve = SubResource("Curve2D_mx00c")
 
 [node name="TileMapLayer" type="TileMapLayer" parent="."]
 visible = false
