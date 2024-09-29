@@ -1,19 +1,11 @@
-[gd_scene load_steps=10 format=4 uid="uid://b5o4n5on821rv"]
+[gd_scene load_steps=7 format=4 uid="uid://b5o4n5on821rv"]
 
 [ext_resource type="PackedScene" uid="uid://bmou427kup6vh" path="res://environment/finish.tscn" id="1_4srsb"]
 [ext_resource type="Texture2D" uid="uid://ccrdrfwewwv5q" path="res://levels/art/level8/tlo.png" id="1_amrwd"]
 [ext_resource type="Texture2D" uid="uid://carqo7pojs0ts" path="res://levels/art/level8/podloga.png" id="2_gdiyt"]
-[ext_resource type="Script" path="res://addons/phantom_camera/scripts/phantom_camera/phantom_camera_2d.gd" id="2_jnwvs"]
-[ext_resource type="Script" path="res://addons/phantom_camera/scripts/resources/tween_resource.gd" id="3_bjdjv"]
 [ext_resource type="TileSet" uid="uid://cq4qhq8y4udas" path="res://experimental/level_group_a/sandbox_tileset.tres" id="4_fsygi"]
 [ext_resource type="PackedScene" uid="uid://cqh07empuga21" path="res://player_character/player_character.tscn" id="5_b2wnu"]
 [ext_resource type="PackedScene" uid="uid://pd78setlifv6" path="res://environment/example_pin.tscn" id="6_ioch7"]
-
-[sub_resource type="Resource" id="Resource_wfarn"]
-script = ExtResource("3_bjdjv")
-duration = 0.0
-transition = 0
-ease = 2
 
 [node name="Forgotten Chamber" type="Node2D"]
 
@@ -24,14 +16,6 @@ texture = ExtResource("1_amrwd")
 
 [node name="FinishPoint" parent="." instance=ExtResource("1_4srsb")]
 position = Vector2(112, 112)
-
-[node name="PhantomCamera2D" type="Node2D" parent="."]
-position = Vector2(160, 16)
-script = ExtResource("2_jnwvs")
-follow_mode = 2
-zoom = Vector2(2, 2)
-tween_resource = SubResource("Resource_wfarn")
-draw_limits = true
 
 [node name="TileMapLayer" type="TileMapLayer" parent="."]
 visible = false
@@ -85,3 +69,7 @@ scale = Vector2(1, 2)
 [node name="ExamplePin5" parent="Spikes" instance=ExtResource("6_ioch7")]
 position = Vector2(280, 240)
 scale = Vector2(1, 2)
+
+[node name="Camera2D" type="Camera2D" parent="."]
+position = Vector2(160, 16)
+zoom = Vector2(2, 2)

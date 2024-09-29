@@ -1,11 +1,9 @@
-[gd_scene load_steps=15 format=4 uid="uid://bdjrfdmaj0s8l"]
+[gd_scene load_steps=12 format=4 uid="uid://bdjrfdmaj0s8l"]
 
 [ext_resource type="Texture2D" uid="uid://b3cad55n25ar1" path="res://levels/art/new/level16/tlo.png" id="1_0b81r"]
 [ext_resource type="TileSet" uid="uid://cq4qhq8y4udas" path="res://experimental/level_group_a/sandbox_tileset.tres" id="1_fyx03"]
 [ext_resource type="PackedScene" uid="uid://cqh07empuga21" path="res://player_character/player_character.tscn" id="2_g10jt"]
 [ext_resource type="Texture2D" uid="uid://bnk2n3e40310n" path="res://levels/art/new/level16/podloga.png" id="2_xsxcp"]
-[ext_resource type="Script" path="res://addons/phantom_camera/scripts/phantom_camera/phantom_camera_2d.gd" id="3_q843k"]
-[ext_resource type="Script" path="res://addons/phantom_camera/scripts/resources/tween_resource.gd" id="4_lnl51"]
 [ext_resource type="PackedScene" uid="uid://c3ba6ngtqm7fj" path="res://environment/power_switch.tscn" id="5_8pwyt"]
 [ext_resource type="PackedScene" uid="uid://pd78setlifv6" path="res://environment/example_pin.tscn" id="6_gh88u"]
 [ext_resource type="PackedScene" uid="uid://xfwcmndnkomw" path="res://environment/electric_wire.tscn" id="7_0qwx3"]
@@ -23,12 +21,6 @@ _data = {
 "points": PackedVector2Array(39.8474, 58.368, -39.8474, -58.368, 128, -104, -158.267, 19.0819, 158.267, -19.0819, 88, 32, -61.7354, 14.0308, 61.7354, -14.0308, 120, 184, 0, 0, 0, 0, 216, 40)
 }
 point_count = 4
-
-[sub_resource type="Resource" id="Resource_26opq"]
-script = ExtResource("4_lnl51")
-duration = 0.0
-transition = 0
-ease = 2
 
 [node name="The Top" type="Node2D"]
 
@@ -53,14 +45,6 @@ position = Vector2(336, 256)
 position = Vector2(160, 16)
 scale = Vector2(0.5, 0.5)
 texture = ExtResource("2_xsxcp")
-
-[node name="PhantomCamera2D" type="Node2D" parent="."]
-position = Vector2(160, 16)
-script = ExtResource("3_q843k")
-follow_mode = 2
-zoom = Vector2(2, 2)
-tween_resource = SubResource("Resource_26opq")
-draw_limits = true
 
 [node name="PowerSwitch" parent="." instance=ExtResource("5_8pwyt")]
 position = Vector2(8, 272)
@@ -107,3 +91,7 @@ position = Vector2(24, -8)
 
 [node name="FinishPoint" parent="." instance=ExtResource("9_6pnw0")]
 position = Vector2(560, -144)
+
+[node name="Camera2D" type="Camera2D" parent="."]
+position = Vector2(160, 16)
+zoom = Vector2(2, 2)

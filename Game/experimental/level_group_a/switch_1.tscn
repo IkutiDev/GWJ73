@@ -1,12 +1,10 @@
-[gd_scene load_steps=18 format=4 uid="uid://cqly05tixwgmy"]
+[gd_scene load_steps=15 format=4 uid="uid://cqly05tixwgmy"]
 
 [ext_resource type="TileSet" uid="uid://cq4qhq8y4udas" path="res://experimental/level_group_a/sandbox_tileset.tres" id="1_la0nn"]
 [ext_resource type="Texture2D" uid="uid://b44xr6hdvqgnl" path="res://levels/art/new/level15/tlo.png" id="1_oan06"]
 [ext_resource type="PackedScene" uid="uid://cqh07empuga21" path="res://player_character/player_character.tscn" id="2_7apm2"]
 [ext_resource type="Texture2D" uid="uid://c2oiijhnge8j8" path="res://levels/art/new/level15/podloga.png" id="2_s6paf"]
 [ext_resource type="Texture2D" uid="uid://bbu0pp5bv12xp" path="res://levels/art/new/level15/na gore.png" id="3_kleiu"]
-[ext_resource type="Script" path="res://addons/phantom_camera/scripts/phantom_camera/phantom_camera_2d.gd" id="3_wt3l5"]
-[ext_resource type="Script" path="res://addons/phantom_camera/scripts/resources/tween_resource.gd" id="4_yb6vg"]
 [ext_resource type="PackedScene" uid="uid://c3ba6ngtqm7fj" path="res://environment/power_switch.tscn" id="5_31t7y"]
 [ext_resource type="PackedScene" uid="uid://xfwcmndnkomw" path="res://environment/electric_wire.tscn" id="5_ya4qa"]
 [ext_resource type="PackedScene" uid="uid://bmou427kup6vh" path="res://environment/finish.tscn" id="7_xo5jt"]
@@ -30,12 +28,6 @@ _data = {
 "points": PackedVector2Array(54.7653, 124.611, -54.7653, -124.611, -120, -248, 5.5559, -22.2236, -5.5559, 22.2236, -224, -120, -42.0661, -12.6992, 42.0661, 12.6992, 16, -32, 56.3527, 14.2866, -56.3527, -14.2866, 40, -208, 4.7622, -83.3385, -4.7622, 83.3385, 88, -48)
 }
 point_count = 5
-
-[sub_resource type="Resource" id="Resource_26opq"]
-script = ExtResource("4_yb6vg")
-duration = 0.0
-transition = 0
-ease = 2
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_krr22"]
 size = Vector2(46, 160)
@@ -74,14 +66,6 @@ texture = ExtResource("3_kleiu")
 [node name="PlayerCharacter" parent="." instance=ExtResource("2_7apm2")]
 position = Vector2(200, 240)
 
-[node name="PhantomCamera2D" type="Node2D" parent="."]
-position = Vector2(160, 16)
-script = ExtResource("3_wt3l5")
-follow_mode = 2
-zoom = Vector2(2, 2)
-tween_resource = SubResource("Resource_26opq")
-draw_limits = true
-
 [node name="PowerSwitch" parent="." instance=ExtResource("5_31t7y")]
 position = Vector2(-56, 256)
 connected_devices = Array[NodePath]([NodePath("../ElectricWire"), NodePath("../ElectricWire2"), NodePath("../ElectricWire3")])
@@ -119,5 +103,9 @@ position = Vector2(584, 272)
 
 [node name="JumpySpring" parent="." instance=ExtResource("12_ty77v")]
 position = Vector2(-104, 96)
+
+[node name="Camera2D" type="Camera2D" parent="."]
+position = Vector2(160, 16)
+zoom = Vector2(2, 2)
 
 [editable path="FinishPoint"]

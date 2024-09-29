@@ -1,23 +1,15 @@
-[gd_scene load_steps=12 format=4 uid="uid://dx3gx0utf5koo"]
+[gd_scene load_steps=9 format=4 uid="uid://dx3gx0utf5koo"]
 
 [ext_resource type="Texture2D" uid="uid://n0m7i4s31sfk" path="res://levels/art/level7/tlo.png" id="1_3ntgx"]
 [ext_resource type="TileSet" uid="uid://cq4qhq8y4udas" path="res://experimental/level_group_a/sandbox_tileset.tres" id="1_jg3lj"]
 [ext_resource type="Texture2D" uid="uid://bl5qq4i04srrr" path="res://levels/art/level7/podloga.png" id="2_e0wk2"]
 [ext_resource type="PackedScene" uid="uid://cqh07empuga21" path="res://player_character/player_character.tscn" id="2_pc0vi"]
-[ext_resource type="Script" path="res://addons/phantom_camera/scripts/phantom_camera/phantom_camera_2d.gd" id="3_01vo0"]
-[ext_resource type="Script" path="res://addons/phantom_camera/scripts/resources/tween_resource.gd" id="4_p1bhj"]
 [ext_resource type="PackedScene" uid="uid://pd78setlifv6" path="res://environment/example_pin.tscn" id="5_43v2x"]
 [ext_resource type="PackedScene" uid="uid://dmhgqvqymht2c" path="res://environment/crate.tscn" id="6_fdgdu"]
 [ext_resource type="PackedScene" uid="uid://bmou427kup6vh" path="res://environment/finish.tscn" id="7_bluw6"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_py800"]
 size = Vector2(40, 104)
-
-[sub_resource type="Resource" id="Resource_26opq"]
-script = ExtResource("4_p1bhj")
-duration = 0.0
-transition = 0
-ease = 2
 
 [node name="Mirrors Sanctum" type="Node2D"]
 
@@ -46,14 +38,6 @@ collision_visibility_mode = 1
 
 [node name="PlayerCharacter" parent="." instance=ExtResource("2_pc0vi")]
 position = Vector2(-208, 240)
-
-[node name="PhantomCamera2D" type="Node2D" parent="."]
-position = Vector2(160, 16)
-script = ExtResource("3_01vo0")
-follow_mode = 2
-zoom = Vector2(2, 2)
-tween_resource = SubResource("Resource_26opq")
-draw_limits = true
 
 [node name="Spikes" type="Node2D" parent="."]
 
@@ -90,5 +74,9 @@ offset_top = -136.0
 offset_right = -216.0
 offset_bottom = -113.0
 text = "EXIT"
+
+[node name="Camera2D" type="Camera2D" parent="."]
+position = Vector2(160, 16)
+zoom = Vector2(2, 2)
 
 [editable path="FinishPoint"]

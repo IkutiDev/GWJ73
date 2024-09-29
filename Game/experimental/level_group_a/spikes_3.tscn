@@ -1,19 +1,11 @@
-[gd_scene load_steps=10 format=4 uid="uid://e7ubem06wcup"]
+[gd_scene load_steps=7 format=4 uid="uid://e7ubem06wcup"]
 
 [ext_resource type="Texture2D" uid="uid://wdt8fpki8gah" path="res://levels/art/new/level17/1.png" id="1_a8gg8"]
 [ext_resource type="TileSet" uid="uid://cq4qhq8y4udas" path="res://experimental/level_group_a/sandbox_tileset.tres" id="1_yfu8q"]
 [ext_resource type="PackedScene" uid="uid://cqh07empuga21" path="res://player_character/player_character.tscn" id="2_81iwe"]
 [ext_resource type="Texture2D" uid="uid://b1lw4rigc8fs6" path="res://levels/art/new/level17/ff.png" id="2_rue3e"]
-[ext_resource type="Script" path="res://addons/phantom_camera/scripts/phantom_camera/phantom_camera_2d.gd" id="3_c5o5n"]
-[ext_resource type="Script" path="res://addons/phantom_camera/scripts/resources/tween_resource.gd" id="4_ir48b"]
 [ext_resource type="PackedScene" uid="uid://pd78setlifv6" path="res://environment/example_pin.tscn" id="5_bxsf5"]
 [ext_resource type="PackedScene" uid="uid://bmou427kup6vh" path="res://environment/finish.tscn" id="6_7tdrk"]
-
-[sub_resource type="Resource" id="Resource_26opq"]
-script = ExtResource("4_ir48b")
-duration = 0.0
-transition = 0
-ease = 2
 
 [node name="Dinning Hall" type="Node2D"]
 
@@ -35,14 +27,6 @@ collision_visibility_mode = 1
 
 [node name="PlayerCharacter" parent="." instance=ExtResource("2_81iwe")]
 position = Vector2(576, 256)
-
-[node name="PhantomCamera2D" type="Node2D" parent="."]
-position = Vector2(160, 16)
-script = ExtResource("3_c5o5n")
-follow_mode = 2
-zoom = Vector2(2, 2)
-tween_resource = SubResource("Resource_26opq")
-draw_limits = true
 
 [node name="Spikes" type="Node2D" parent="."]
 
@@ -129,3 +113,7 @@ text = "EXIT"
 
 [node name="FinishPoint" parent="." instance=ExtResource("6_7tdrk")]
 position = Vector2(608, -64)
+
+[node name="Camera2D" type="Camera2D" parent="."]
+position = Vector2(160, 16)
+zoom = Vector2(2, 2)

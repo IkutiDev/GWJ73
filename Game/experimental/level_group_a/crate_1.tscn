@@ -1,19 +1,11 @@
-[gd_scene load_steps=10 format=4 uid="uid://djpgnv853u7mb"]
+[gd_scene load_steps=7 format=4 uid="uid://djpgnv853u7mb"]
 
 [ext_resource type="Texture2D" uid="uid://dktp731fa5v2q" path="res://levels/art/level9/tlo.png" id="1_6exhq"]
 [ext_resource type="TileSet" uid="uid://cq4qhq8y4udas" path="res://experimental/level_group_a/sandbox_tileset.tres" id="1_m8grs"]
 [ext_resource type="PackedScene" uid="uid://cqh07empuga21" path="res://player_character/player_character.tscn" id="2_bvr5p"]
 [ext_resource type="Texture2D" uid="uid://dcymm7es5k7gr" path="res://levels/art/level9/podloga.png" id="2_tyr7d"]
-[ext_resource type="Script" path="res://addons/phantom_camera/scripts/phantom_camera/phantom_camera_2d.gd" id="3_2i157"]
-[ext_resource type="Script" path="res://addons/phantom_camera/scripts/resources/tween_resource.gd" id="4_7dqmr"]
 [ext_resource type="PackedScene" uid="uid://dmhgqvqymht2c" path="res://environment/crate.tscn" id="5_woum7"]
 [ext_resource type="PackedScene" uid="uid://bmou427kup6vh" path="res://environment/finish.tscn" id="6_6uo6d"]
-
-[sub_resource type="Resource" id="Resource_26opq"]
-script = ExtResource("4_7dqmr")
-duration = 0.0
-transition = 0
-ease = 2
 
 [node name="Old Pantry" type="Node2D"]
 
@@ -36,14 +28,6 @@ collision_visibility_mode = 1
 [node name="PlayerCharacter" parent="." instance=ExtResource("2_bvr5p")]
 position = Vector2(-32, 256)
 
-[node name="PhantomCamera2D" type="Node2D" parent="."]
-position = Vector2(160, 16)
-script = ExtResource("3_2i157")
-follow_mode = 2
-zoom = Vector2(2, 2)
-tween_resource = SubResource("Resource_26opq")
-draw_limits = true
-
 [node name="Crate" parent="." instance=ExtResource("5_woum7")]
 position = Vector2(304, 176)
 
@@ -61,3 +45,7 @@ text = "EIXT
 
 [node name="FinishPoint" parent="." instance=ExtResource("6_6uo6d")]
 position = Vector2(-280, -192)
+
+[node name="Camera2D" type="Camera2D" parent="."]
+position = Vector2(160, 16)
+zoom = Vector2(2, 2)

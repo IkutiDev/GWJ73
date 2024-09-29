@@ -1,9 +1,7 @@
-[gd_scene load_steps=11 format=4 uid="uid://cag0wsyxfnmw0"]
+[gd_scene load_steps=8 format=4 uid="uid://cag0wsyxfnmw0"]
 
 [ext_resource type="Texture2D" uid="uid://bupex4fpx4xmk" path="res://levels/art/level5/tlo.png" id="1_htarv"]
-[ext_resource type="Script" path="res://addons/phantom_camera/scripts/phantom_camera/phantom_camera_2d.gd" id="1_t350j"]
 [ext_resource type="Texture2D" uid="uid://cffx5n76ec3su" path="res://levels/art/level5/podloga.png" id="2_mmiqu"]
-[ext_resource type="Script" path="res://addons/phantom_camera/scripts/resources/tween_resource.gd" id="2_nm0sb"]
 [ext_resource type="TileSet" uid="uid://cq4qhq8y4udas" path="res://experimental/level_group_a/sandbox_tileset.tres" id="3_pybq3"]
 [ext_resource type="PackedScene" uid="uid://cqh07empuga21" path="res://player_character/player_character.tscn" id="4_4sqbm"]
 [ext_resource type="PackedScene" uid="uid://pd78setlifv6" path="res://environment/example_pin.tscn" id="5_onskm"]
@@ -11,12 +9,6 @@
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_40qgi"]
 size = Vector2(44, 96)
-
-[sub_resource type="Resource" id="Resource_wfarn"]
-script = ExtResource("2_nm0sb")
-duration = 0.0
-transition = 0
-ease = 2
 
 [node name="Hazardous Hall" type="Node2D"]
 
@@ -35,14 +27,6 @@ position = Vector2(560, -144)
 
 [node name="CollisionShape2D" parent="FinishPoint" index="0"]
 shape = SubResource("RectangleShape2D_40qgi")
-
-[node name="PhantomCamera2D" type="Node2D" parent="."]
-position = Vector2(160, 16)
-script = ExtResource("1_t350j")
-follow_mode = 2
-zoom = Vector2(2, 2)
-tween_resource = SubResource("Resource_wfarn")
-draw_limits = true
 
 [node name="TileMapLayer" type="TileMapLayer" parent="."]
 visible = false
@@ -92,5 +76,9 @@ rotation = 3.14159
 [node name="ExamplePin14" parent="Spikes" instance=ExtResource("5_onskm")]
 position = Vector2(304, -128)
 rotation = 3.14159
+
+[node name="Camera2D" type="Camera2D" parent="."]
+position = Vector2(160, 16)
+zoom = Vector2(2, 2)
 
 [editable path="FinishPoint"]

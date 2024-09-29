@@ -1,12 +1,10 @@
-[gd_scene load_steps=11 format=3 uid="uid://4vo5kd1v1q8t"]
+[gd_scene load_steps=9 format=3 uid="uid://4vo5kd1v1q8t"]
 
 [ext_resource type="Script" path="res://experimental/crate_test.gd" id="1_yugfp"]
 [ext_resource type="PackedScene" uid="uid://dmhgqvqymht2c" path="res://environment/crate.tscn" id="2_pte8s"]
 [ext_resource type="PackedScene" uid="uid://bm668srqcrjd4" path="res://environment/jumpy_spring.tscn" id="5_clart"]
 [ext_resource type="PackedScene" uid="uid://pd78setlifv6" path="res://environment/example_pin.tscn" id="6_8o83h"]
 [ext_resource type="PackedScene" uid="uid://c3ba6ngtqm7fj" path="res://environment/power_switch.tscn" id="7_8xyk8"]
-[ext_resource type="PackedScene" uid="uid://cqh07empuga21" path="res://player_character/player_character.tscn" id="8_s63ix"]
-[ext_resource type="PackedScene" uid="uid://xfwcmndnkomw" path="res://environment/electric_wire.tscn" id="8_skhi7"]
 [ext_resource type="PackedScene" uid="uid://ct85pctxsvxat" path="res://experimental/electric_heater.tscn" id="9_w7mvx"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_533bl"]
@@ -57,17 +55,8 @@ position = Vector2(1300, 640)
 
 [node name="PowerSwitch" parent="." instance=ExtResource("7_8xyk8")]
 position = Vector2(742, 638)
-connected_devices = Array[NodePath]([NodePath("../ElectricWire"), NodePath("../ElectricHeater")])
-
-[node name="ElectricWire" parent="." instance=ExtResource("8_skhi7")]
-position = Vector2(615, 627)
+connected_devices = Array[NodePath]([NodePath(""), NodePath("../ElectricHeater")])
 
 [node name="ElectricHeater" parent="." instance=ExtResource("9_w7mvx")]
 position = Vector2(1416, 680)
 start_powered = false
-
-[node name="PlayerCharacter" parent="." instance=ExtResource("8_s63ix")]
-position = Vector2(811, 637)
-
-[node name="Camera2D" type="Camera2D" parent="."]
-anchor_mode = 0
