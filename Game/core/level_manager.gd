@@ -20,6 +20,7 @@ var resetting_level := false
 var loading_level := false
 var playing_intro := false
 
+var intro_was_seen_flag := false
 var paused := false
 
 var playing_level := false
@@ -43,8 +44,13 @@ func _enter_tree() -> void:
 	
 func start_new_game() -> void:
 	current_gameplay_level_index = 0
-	playing_intro = true
-	playing_level = false
+	if !intro_was_seen_flag:
+		playing_intro = true
+		intro_was_seen_flag = true
+		playing_level = false
+	else:
+		loading_level = true
+		playing_level = false
 	animation_player.play("fade_out")
 	
 func load_level_by_index(index : int) -> void:

@@ -164,6 +164,16 @@ offset_right = 889.0
 offset_bottom = 452.0
 text = "press one of these white (input buttons) to REMOVE a key from the action above"
 
+[node name="Intro" type="Button" parent="."]
+layout_mode = 0
+offset_left = 886.0
+offset_top = 794.0
+offset_right = 1036.0
+offset_bottom = 854.0
+theme = ExtResource("4_h3o4b")
+text = "Replay Intro"
+
 [connection signal="pressed" from="BackButton" to="." method="_on_back_button_pressed"]
 [connection signal="value_changed" from="HSlider" to="." method="_on_h_slider_value_changed_music"]
 [connection signal="value_changed" from="HSlider2" to="." method="_on_h_slider_value_changed_sfx"]
+[connection signal="pressed" from="Intro" to="." method="_on_intro_pressed"]

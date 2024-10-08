@@ -20,3 +20,9 @@ func _on_h_slider_value_changed_sfx(value: float) -> void:
 
 func _on_back_button_pressed() -> void:
 	SettingsTracker.save_audio_layout()
+
+
+func _on_intro_pressed() -> void:
+	LevelManager.intro_was_seen_flag = false
+	LevelManager.start_new_game()
+	pass # Replace with function body.
